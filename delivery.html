@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Leily — Delivery</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #fffaf8;
+            color: #4f4141;
+        }
+
+        .topbar {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            background: #ffffff;
+            border-bottom: 1px solid #f1e5e2;
+        }
+
+        .back {
+            text-decoration: none;
+            color: #8d7777;
+            font-size: 14px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #b98592;
+            letter-spacing: 1px;
+        }
+
+        .page {
+            max-width: 700px;
+            margin: auto;
+            padding: 25px 18px 50px;
+        }
+
+        .intro {
+            background: #f9e9ed;
+            border-radius: 22px;
+            padding: 24px;
+            margin-bottom: 22px;
+        }
+
+        .intro h1 {
+            margin: 0 0 8px;
+            color: #6b5559;
+            font-size: 24px;
+        }
+
+        .intro p {
+            margin: 0;
+            color: #8a7478;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 22px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 5px 20px rgba(120, 90, 90, 0.06);
+        }
+
+        .card h2 {
+            margin: 0 0 7px;
+            color: #5d4b4f;
+            font-size: 18px;
+        }
+
+        .card-description {
+            margin: 0 0 18px;
+            color: #988386;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .option {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px;
+            margin-bottom: 10px;
+            background: #fffaf8;
+            border: 1px solid #f1e5e2;
+            border-radius: 15px;
+        }
+
+        .option:last-child {
+            margin-bottom: 0;
+        }
+
+        .option input {
+            width: 19px;
+            height: 19px;
+            margin-top: 2px;
+            accent-color: #c28c99;
+        }
+
+        .option-text strong {
+            display: block;
+            color: #665357;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .option-text span {
+            color: #998589;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .field {
+            margin-bottom: 16px;
+        }
+
+        .field:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            color: #6d595e;
+            font-size: 14px;
+        }
+
+        select,
+        input[type="number"] {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #eadcda;
+            border-radius: 13px;
+            outline: none;
+            font-size: 14px;
+            background: #fffdfc;
+            color: #5d4b4f;
+        }
+
+        select:focus,
+        input[type="number"]:focus {
+            border-color: #d5aab5;
+        }
+
+        .price-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .price-label {
+            font-size: 13px;
+            color: #7b686c;
+            margin-bottom: 6px;
+        }
+
+        .example {
+            background: #fff4ed;
+            border-radius: 16px;
+            padding: 15px;
+            color: #896f65;
+            font-size: 13px;
+            line-height: 1.7;
+            margin-top: 18px;
+        }
+
+        .save-button {
+            width: 100%;
+            border: none;
+            background: #c994a1;
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .saved {
+            display: none;
+            margin-top: 15px;
+            background: #eef7ee;
+            color: #617561;
+            padding: 13px;
+            border-radius: 14px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .saved.show {
+            display: block;
+        }
+
+        @media (max-width: 500px) {
+            .page {
+                padding-left: 14px;
+                padding-right: 14px;
+            }
+
+            .price-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <a class="back" href="seller.html">
+        ← Back
+    </a>
+
+    <div class="logo">
+        Leily
+    </div>
+
+    <div style="width: 40px;"></div>
+
+</header>
+
+
+<main class="page">
+
+    <section class="intro">
+
+        <h1>
+            Delivery
+        </h1>
+
+        <p>
+            Set the delivery options and prices available
+            for customers in your store.
+        </p>
+
+    </section>
+
+
+    <!-- Delivery methods -->
+
+    <section class="card">
+
+        <h2>
+            Delivery methods
+        </h2>
+
+        <p class="card-description">
+            Choose the delivery methods your store offers.
+        </p>
+
+
+        <label class="option">
+
+            <input
+                type="checkbox"
+                id="homeDelivery"
+                checked
+            >
+
+            <div class="option-text">
+
+                <strong>
+                    🚚 Home delivery
+                </strong>
+
+                <span>
+                    The order is delivered directly to the customer's address.
+                </span>
+
+            </div>
+
+        </label>
+
+
+        <label class="option">
+
+            <input
+                type="checkbox"
+                id="officeDelivery"
+                checked
+            >
+
+            <div class="option-text">
+
+                <strong>
+                    🏢 Office pickup
+                </strong>
+
+                <span>
+                    The customer receives the order from the delivery company's office.
+                </span>
+
+            </div>
+
+        </label>
+
+    </section>
+
+
+    <!-- Pricing model -->
+
+    <section class="card">
+
+        <h2>
+            Delivery pricing
+        </h2>
+
+        <p class="card-description">
+            Choose how you want to set your delivery prices.
+        </p>
+
+
+        <label class="option">
+
+            <input
+                type="radio"
+                name="pricing"
+                value="flat"
+                checked
+                onchange="changePricing()"
+            >
+
+            <div class="option-text">
+
+                <strong>
+                    One price for all provinces
+                </strong>
+
+                <span>
+                    Use the same delivery price everywhere.
+                </span>
+
+            </div>
+
+        </label>
+
+
+        <label class="option">
+
+            <input
+                type="radio"
+                name="pricing"
+                value="province"
+                onchange="changePricing()"
+            >
+
+            <div class="option-text">
+
+                <strong>
+                    Different price for each province
+                </strong>
+
+                <span>
+                    Set different prices depending on the customer's province.
+                </span>
+
+            </div>
+
+        </label>
+
+    </section>
+
+
+    <!-- Flat price -->
+
+    <section class="card" id="flatPricing">
+
+        <h2>
+            Delivery prices
+        </h2>
+
+        <p class="card-description">
+            Enter your standard delivery prices.
+        </p>
+
+
+        <div class="price-row">
+
+            <div class="field">
+
+                <div class="price-label">
+                    Home delivery — DA
+                </div>
+
+                <input
+                    type="number"
+                    id="flatHome"
+                    placeholder="700"
+                    min="0"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <div class="price-label">
+                    Office pickup — DA
+                </div>
+
+                <input
+                    type="number"
+                    id="flatOffice"
+                    placeholder="500"
+                    min="0"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="example">
+
+            <strong>
+                Example:
+            </strong>
+
+            Home delivery: 700 DA<br>
+            Office pickup: 500 DA
+
+        </div>
+
+    </section>
+
+
+    <!-- Province pricing -->
+
+    <section class="card" id="provincePricing" style="display: none;">
+
+        <h2>
+            Province delivery price
+        </h2>
+
+        <p class="card-description">
+            Choose a province and set its delivery prices.
+        </p>
+
+
+        <div class="field">
+
+            <label for="province">
+                Province
+            </label>
+
+            <select id="province">
+
+                <option value="">
+                    Select a province
+                </option>
+
+                <option>
+                    Adrar
+                </option>
+
+                <option>
+                    Algiers
+                </option>
+
+                <option>
+                    Annaba
+                </option>
+
+                <option>
+                    Blida
+                </option>
+
+                <option>
+                    Constantine
+                </option>
+
+                <option>
+                    Oran
+                </option>
+
+                <option>
+                    Sétif
+                </option>
+
+                <option>
+                    Tiaret
+                </option>
+
+                <option>
+                    Tlemcen
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="price-row">
+
+            <div class="field">
+
+                <div class="price-label">
+                    Home delivery — DA
+                </div>
+
+                <input
+                    type="number"
+                    id="provinceHome"
+                    placeholder="700"
+                    min="0"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <div class="price-label">
+                    Office pickup — DA
+                </div>
+
+                <input
+                    type="number"
+                    id="provinceOffice"
+                    placeholder="500"
+                    min="0"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="example">
+
+            <strong>
+                Example:
+            </strong>
+
+            Oran → Home: 700 DA / Office: 500 DA<br>
+            Algiers → Home: 900 DA / Office: 700 DA
+
+        </div>
+
+    </section>
+
+
+    <button
+        class="save-button"
+        onclick="saveDelivery()"
+    >
+        Save delivery settings
+    </button>
+
+
+    <div
+        id="savedMessage"
+        class="saved"
+    >
+        ✓ Delivery settings saved successfully.
+    </div>
+
+</main>
+
+
+<script>
+
+    function changePricing() {
+
+        const selected =
+            document.querySelector(
+                'input[name="pricing"]:checked'
+            ).value;
+
+        const flatPricing =
+            document.getElementById("flatPricing");
+
+        const provincePricing =
+            document.getElementById("provincePricing");
+
+
+        if (selected === "flat") {
+
+            flatPricing.style.display = "block";
+            provincePricing.style.display = "none";
+
+        } else {
+
+            flatPricing.style.display = "none";
+            provincePricing.style.display = "block";
+
+        }
+    }
+
+
+    function saveDelivery() {
+
+        const home =
+            document.getElementById("homeDelivery").checked;
+
+        const office =
+            document.getElementById("officeDelivery").checked;
+
+
+        if (!home && !office) {
+
+            alert(
+                "Please select at least one delivery method."
+            );
+
+            return;
+        }
+
+
+        const selectedPricing =
+            document.querySelector(
+                'input[name="pricing"]:checked'
+            ).value;
+
+
+        if (selectedPricing === "flat") {
+
+            if (home) {
+
+                const homePrice =
+                    document.getElementById("flatHome").value;
+
+                if (!homePrice) {
+
+                    alert(
+                        "Please enter the home delivery price."
+                    );
+
+                    return;
+                }
+            }
+
+
+            if (office) {
+
+                const officePrice =
+                    document.getElementById("flatOffice").value;
+
+                if (!officePrice) {
+
+                    alert(
+                        "Please enter the office pickup price."
+                    );
+
+                    return;
+                }
+            }
+
+        } else {
+
+            const province =
+                document.getElementById("province").value;
+
+            if (!province) {
+
+                alert(
+                    "Please select a province."
+                );
+
+                return;
+            }
+
+
+            if (home) {
+
+                const homePrice =
+                    document.getElementById("provinceHome").value;
+
+                if (!homePrice) {
+
+                    alert(
+                        "Please enter the home delivery price."
+                    );
+
+                    return;
+                }
+            }
+
+
+            if (office) {
+
+                const officePrice =
+                    document.getElementById("provinceOffice").value;
+
+                if (!officePrice) {
+
+                    alert(
+                        "Please enter the office pickup price."
+                    );
+
+                    return;
+                }
+            }
+        }
+
+
+        document
+            .getElementById("savedMessage")
+            .classList.add("show");
+
+    }
+
+</script>
+
+</body>
+</html>
