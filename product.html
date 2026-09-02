@@ -1,16 +1,11 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<!DOCTYPE html><html lang="en" dir="ltr"><head><meta charset="UTF-8">
 
 <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
 >
 
-<meta
-    name="theme-color"
-    content="#f8dfe5"
->
-
-<title>Leily — Product</title>
+<title>Leily</title>
 
 <link
     rel="stylesheet"
@@ -19,524 +14,434 @@
 
 <style>
 
-    /* PRODUCT PAGE */
+    /* =========================
+       PRODUCT PAGE
+    ========================= */
 
     .product-page {
-        width: min(1180px, 90%);
-        margin: 45px auto 100px;
+        padding: 24px 18px 110px;
+        max-width: 1100px;
+        margin: 0 auto;
     }
-
 
     .product-topbar {
         display: flex;
         align-items: center;
         justify-content: space-between;
-
-        margin-bottom: 35px;
+        margin-bottom: 28px;
     }
 
-
-    .back-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-
-        color: var(--muted);
-
+    .back-button {
         text-decoration: none;
-
+        color: inherit;
         font-size: 14px;
-
-        transition: 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 7px;
     }
-
-
-    .back-link:hover {
-        color: var(--text);
-    }
-
 
     .product-logo {
-        width: 95px;
-        height: auto;
+        font-weight: 600;
+        font-size: 22px;
     }
-
 
     .product-layout {
         display: grid;
-
-        grid-template-columns:
-            minmax(0, 1.05fr)
-            minmax(0, 0.95fr);
-
-        gap: 55px;
-
+        grid-template-columns: 1fr 1fr;
+        gap: 38px;
         align-items: start;
     }
 
-
-    /* IMAGE */
+    /* GALLERY */
 
     .product-gallery {
-        position: sticky;
-        top: 105px;
-    }
-
-
-    .main-product-image {
-        aspect-ratio: 0.88;
-
         width: 100%;
-
-        border-radius: var(--radius-large);
-
-        overflow: hidden;
-
-        background: var(--cream);
     }
 
-
-    .main-product-placeholder {
+    .main-image {
         width: 100%;
-        height: 100%;
-
-        display: grid;
-        place-items: center;
-
-        background:
-            linear-gradient(
-                145deg,
-                #fbf0f1,
-                #f8f4ed
-            );
-
-        color: #b9acae;
-
-        font-size: 14px;
-    }
-
-
-    .thumbnail-row {
-        display: flex;
-
-        gap: 10px;
-
-        margin-top: 12px;
-
-        overflow-x: auto;
-
-        scrollbar-width: none;
-    }
-
-
-    .thumbnail-row::-webkit-scrollbar {
-        display: none;
-    }
-
-
-    .thumbnail {
-        flex: 0 0 72px;
-
-        width: 72px;
-        height: 72px;
-
-        border-radius: 13px;
-
-        border: 1px solid var(--border);
-
-        background: var(--cream);
-
-        display: grid;
-        place-items: center;
-
-        color: #b9acae;
-
-        font-size: 10px;
-    }
-
-
-    .thumbnail.active {
-        border-color: var(--pink-400);
-    }
-
-
-    /* INFORMATION */
-
-    .product-information {
-        padding: 5px 0;
-    }
-
-
-    .product-category {
-        color: var(--pink-400);
-
-        font-size: 12px;
-
-        text-transform: uppercase;
-
-        letter-spacing: 0.08em;
-
-        font-weight: 600;
-
-        margin-bottom: 9px;
-    }
-
-
-    .product-information h1 {
-        font-size: clamp(32px, 4vw, 46px);
-
-        line-height: 1.1;
-
-        font-weight: 500;
-
-        letter-spacing: -0.035em;
-
-        margin-bottom: 13px;
-    }
-
-
-    .product-price {
-        font-size: 20px;
-
-        font-weight: 600;
-
-        margin-bottom: 22px;
-    }
-
-
-    .save-product {
-        width: 100%;
-
-        padding: 13px 17px;
-
-        border: 1px solid var(--border);
-
-        border-radius: 100px;
-
+        aspect-ratio: 1 / 1;
+        border-radius: 22px;
+        background: #f8eef0;
         display: flex;
         align-items: center;
         justify-content: center;
-
-        gap: 8px;
-
-        background: white;
-
-        margin-bottom: 28px;
-
-        transition: 0.2s;
-    }
-
-
-    .save-product:hover {
-        background: var(--pink-50);
-    }
-
-
-    .save-product.saved {
-        color: var(--pink-400);
-
-        border-color: var(--pink-200);
-
-        background: var(--pink-50);
-    }
-
-
-    /* PRODUCT SECTIONS */
-
-    .product-section {
-        padding: 23px 0;
-
-        border-top: 1px solid var(--border);
-    }
-
-
-    .product-section h3 {
-        font-size: 14px;
-
-        font-weight: 600;
-
-        margin-bottom: 13px;
-    }
-
-
-    .options {
-        display: flex;
-
-        flex-wrap: wrap;
-
-        gap: 8px;
-    }
-
-
-    .option {
-        min-width: 50px;
-
-        padding: 9px 14px;
-
-        border-radius: 10px;
-
-        border: 1px solid var(--border);
-
-        background: white;
-
-        font-size: 13px;
-
-        transition: 0.2s;
-    }
-
-
-    .option:hover {
-        border-color: var(--pink-300);
-    }
-
-
-    .option.selected {
-        background: var(--pink-100);
-
-        border-color: var(--pink-300);
-
-        color: var(--text);
-    }
-
-
-    .description {
-        color: var(--muted);
-
-        line-height: 1.7;
-
-        font-size: 14px;
-    }
-
-
-    /* QUANTITY */
-
-    .quantity-control {
-        display: inline-flex;
-
-        align-items: center;
-
-        border: 1px solid var(--border);
-
-        border-radius: 12px;
-
         overflow: hidden;
     }
 
-
-    .quantity-control button {
-        width: 38px;
-        height: 38px;
-
-        font-size: 18px;
-
-        background: var(--pink-50);
+    .main-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
+    .image-placeholder {
+        font-size: 14px;
+        color: #9a858b;
+    }
+
+    .thumbnail-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 9px;
+        margin-top: 10px;
+    }
+
+    .thumbnail {
+        border: 1px solid transparent;
+        background: #f8eef0;
+        border-radius: 12px;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+        padding: 0;
+        cursor: pointer;
+    }
+
+    .thumbnail.active {
+        border-color: #c99ca8;
+    }
+
+    .thumbnail img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* PRODUCT INFO */
+
+    .product-info {
+        padding-top: 5px;
+    }
+
+    .product-category {
+        font-size: 12px;
+        color: #9b7e86;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .product-name {
+        font-size: 30px;
+        line-height: 1.2;
+        margin: 0 0 12px;
+        font-weight: 600;
+    }
+
+    .product-price {
+        font-size: 21px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .save-product {
+        width: 100%;
+        border: 1px solid #ead9dd;
+        background: #fff;
+        border-radius: 14px;
+        padding: 13px;
+        cursor: pointer;
+        font-size: 15px;
+        margin-bottom: 24px;
+    }
+
+    .save-product.saved {
+        background: #f8e7eb;
+    }
+
+    .option-section {
+        margin-bottom: 21px;
+    }
+
+    .option-title {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 9px;
+    }
+
+    .option-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .option-button {
+        border: 1px solid #e6d6da;
+        background: #fff;
+        border-radius: 10px;
+        padding: 9px 14px;
+        cursor: pointer;
+        font-size: 13px;
+    }
+
+    .option-button.active {
+        background: #f7e5e9;
+        border-color: #cfa4ae;
+    }
+
+    .quantity-control {
+        display: flex;
+        align-items: center;
+        width: fit-content;
+        border: 1px solid #e5d7da;
+        border-radius: 11px;
+        overflow: hidden;
+    }
+
+    .quantity-control button {
+        border: 0;
+        background: #fff;
+        width: 38px;
+        height: 38px;
+        cursor: pointer;
+        font-size: 17px;
+    }
 
     .quantity-control span {
-        width: 40px;
-
+        width: 38px;
         text-align: center;
-
         font-size: 14px;
     }
 
-
-    /* SELLER */
-
-    .seller-box,
-    .delivery-box {
-        margin-top: 18px;
-
-        padding: 20px;
-
-        border-radius: var(--radius-medium);
-
-        background: var(--pink-50);
+    .description {
+        color: #6f6266;
+        font-size: 14px;
+        line-height: 1.8;
+        margin: 24px 0;
     }
 
+    .seller-box {
+        background: #faf3f4;
+        border-radius: 16px;
+        padding: 16px;
+        margin-bottom: 14px;
+    }
 
-    .small-label {
-        color: var(--muted);
-
+    .seller-label {
         font-size: 11px;
+        color: #9b7e86;
+        margin-bottom: 5px;
+    }
 
+    .seller-name {
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .delivery-box {
+        border: 1px solid #eee1e4;
+        border-radius: 15px;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .delivery-title {
+        font-size: 14px;
+        font-weight: 600;
         margin-bottom: 6px;
     }
 
-
-    .seller-box h3 {
-        font-size: 16px;
-
-        font-weight: 600;
-
-        margin-bottom: 7px;
-    }
-
-
-    .seller-box a {
-        color: var(--pink-400);
-
-        text-decoration: none;
-
+    .delivery-text {
         font-size: 13px;
-    }
-
-
-    .delivery-box p:last-child {
-        color: var(--muted);
-
-        font-size: 13px;
-
+        color: #776a6e;
         line-height: 1.6;
     }
 
-
-    /* BUY */
-
     .buy-button {
         width: 100%;
-
-        padding: 15px 20px;
-
-        margin-top: 22px;
-
-        border-radius: 100px;
-
-        background: var(--text);
-
-        color: white;
-
+        border: 0;
+        border-radius: 15px;
+        padding: 15px;
+        background: #dcaeb9;
+        color: #fff;
         font-size: 15px;
-
-        transition: 0.2s;
+        font-weight: 600;
+        cursor: pointer;
     }
 
-
-    .buy-button:hover {
-        transform: translateY(-2px);
+    .buy-button:active {
+        transform: scale(.99);
     }
 
-
-    /* MOBILE */
-
-    @media (max-width: 800px) {
+    @media (max-width: 750px) {
 
         .product-page {
-            width: calc(100% - 32px);
-
-            margin-top: 25px;
+            padding-top: 18px;
         }
-
 
         .product-layout {
             grid-template-columns: 1fr;
-
-            gap: 30px;
+            gap: 25px;
         }
 
-
-        .product-gallery {
-            position: static;
-        }
-
-
-        .main-product-image {
-            aspect-ratio: 0.9;
-        }
-
-
-        .product-information h1 {
-            font-size: 34px;
-        }
-
-    }
-
-
-    @media (max-width: 500px) {
-
-        .product-topbar {
-            margin-bottom: 25px;
-        }
-
-
-        .product-logo {
-            width: 80px;
-        }
-
-
-        .main-product-image {
-            border-radius: 22px;
-        }
-
-
-        .product-information h1 {
-            font-size: 30px;
+        .product-name {
+            font-size: 26px;
         }
 
     }
 
 </style>
 
-</head><body><main class="product-page">
+</head><body><div class="product-page"><!-- TOP BAR -->
+
+<div class="product-topbar">
+
+    <a
+        href="index.html"
+        class="back-button"
+    >
+        ← <span>Back</span>
+    </a>
+
+    <div class="product-logo">
+        Leily
+    </div>
+
+    <div style="width: 45px;"></div>
+
+</div>
 
 
-    <!-- TOP -->
 
-    <div class="product-topbar">
+<!-- PRODUCT -->
 
-        <a
-            href="index.html"
-            class="back-link"
+<div class="product-layout">
+
+
+    <!-- GALLERY -->
+
+    <div class="product-gallery">
+
+
+        <div class="main-image">
+
+            <img
+                id="mainProductImage"
+                src=""
+                alt=""
+            >
+
+            <span
+                id="imagePlaceholder"
+                class="image-placeholder"
+            >
+                Product image
+            </span>
+
+        </div>
+
+
+        <div
+            class="thumbnail-row"
+            id="thumbnailRow"
         >
-            ← Back
-        </a>
+        </div>
 
-
-        <img
-            src="leily-logo.png"
-            alt="Leily"
-            class="product-logo"
-        >
 
     </div>
 
 
 
-    <!-- PRODUCT -->
+    <!-- INFO -->
 
-    <section class="product-layout">
+    <div class="product-info">
 
 
-        <!-- GALLERY -->
+        <div
+            class="product-category"
+            id="productCategory"
+        >
+            Category
+        </div>
 
-        <div class="product-gallery">
 
-            <div class="main-product-image">
+        <h1
+            class="product-name"
+            id="productName"
+        >
+            Product
+        </h1>
 
-                <div class="main-product-placeholder">
-                    Product image
-                </div>
 
+        <div
+            class="product-price"
+            id="productPrice"
+        >
+            0 DA
+        </div>
+
+
+        <button
+            class="save-product"
+            id="saveProduct"
+        >
+            ♡ Save product
+        </button>
+
+
+
+        <!-- COLORS -->
+
+        <div
+            class="option-section"
+            id="colorSection"
+        >
+
+            <div class="option-title">
+                Color
             </div>
 
+            <div
+                class="option-buttons"
+                id="colorOptions"
+            >
+            </div>
 
-            <div class="thumbnail-row">
+        </div>
 
-                <button class="thumbnail active">
-                    Image 1
+
+
+        <!-- SIZES -->
+
+        <div
+            class="option-section"
+            id="sizeSection"
+        >
+
+            <div class="option-title">
+                Size
+            </div>
+
+            <div
+                class="option-buttons"
+                id="sizeOptions"
+            >
+            </div>
+
+        </div>
+
+
+
+        <!-- QUANTITY -->
+
+        <div class="option-section">
+
+            <div class="option-title">
+                Quantity
+            </div>
+
+            <div class="quantity-control">
+
+                <button id="minusButton">
+                    −
                 </button>
 
-                <button class="thumbnail">
-                    Image 2
-                </button>
+                <span id="quantity">
+                    1
+                </span>
 
-                <button class="thumbnail">
-                    Image 3
-                </button>
-
-                <button class="thumbnail">
-                    Image 4
+                <button id="plusButton">
+                    +
                 </button>
 
             </div>
@@ -545,319 +450,471 @@
 
 
 
-        <!-- INFORMATION -->
+        <!-- DESCRIPTION -->
 
-        <div class="product-information">
-
-
-            <p class="product-category">
-                Clothes
-            </p>
-
-
-            <h1>
-                Soft Knit Sweater
-            </h1>
+        <p
+            class="description"
+            id="productDescription"
+        >
+        </p>
 
 
-            <p class="product-price">
-                3,500 DA
-            </p>
 
+        <!-- SELLER -->
 
-            <button
-                class="save-product"
-                id="saveProduct"
+        <div class="seller-box">
+
+            <div class="seller-label">
+                Seller
+            </div>
+
+            <div
+                class="seller-name"
+                id="sellerName"
             >
-                ♡ Save
-            </button>
-
-
-
-            <!-- COLORS -->
-
-            <div class="product-section">
-
-                <h3>
-                    Color
-                </h3>
-
-
-                <div class="options">
-
-                    <button class="option">
-                        Black
-                    </button>
-
-                    <button class="option">
-                        Beige
-                    </button>
-
-                    <button class="option">
-                        Cream
-                    </button>
-
-                </div>
-
             </div>
-
-
-
-            <!-- SIZES -->
-
-            <div class="product-section">
-
-                <h3>
-                    Size
-                </h3>
-
-
-                <div class="options">
-
-                    <button class="option">
-                        S
-                    </button>
-
-                    <button class="option">
-                        M
-                    </button>
-
-                    <button class="option">
-                        L
-                    </button>
-
-                    <button class="option">
-                        XL
-                    </button>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- QUANTITY -->
-
-            <div class="product-section">
-
-                <h3>
-                    Quantity
-                </h3>
-
-
-                <div class="quantity-control">
-
-                    <button
-                        id="minusBtn"
-                        type="button"
-                    >
-                        −
-                    </button>
-
-
-                    <span id="quantity">
-                        1
-                    </span>
-
-
-                    <button
-                        id="plusBtn"
-                        type="button"
-                    >
-                        +
-                    </button>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- DESCRIPTION -->
-
-            <div class="product-section">
-
-                <h3>
-                    Description
-                </h3>
-
-
-                <p class="description">
-                    A soft and comfortable knit sweater,
-                    perfect for everyday wear.
-                </p>
-
-            </div>
-
-
-
-            <!-- SELLER -->
-
-            <div class="seller-box">
-
-                <p class="small-label">
-                    Seller
-                </p>
-
-
-                <h3>
-                    Sara Boutique
-                </h3>
-
-
-                <a href="#">
-                    View seller →
-                </a>
-
-            </div>
-
-
-
-            <!-- DELIVERY -->
-
-            <div class="delivery-box">
-
-                <p class="small-label">
-                    Delivery
-                </p>
-
-
-                <p>
-                    Delivery information will be available
-                    on the seller's page.
-                </p>
-
-            </div>
-
-
-
-            <!-- BUY -->
-
-            <button
-                class="buy-button"
-                id="buyButton"
-            >
-                Buy
-            </button>
-
 
         </div>
 
-    </section>
-
-</main>
 
 
+        <!-- DELIVERY -->
 
-<script>
+        <div class="delivery-box">
 
-    /* SAVE */
+            <div class="delivery-title">
+                Delivery
+            </div>
 
-    const saveProduct =
-        document.getElementById("saveProduct");
+            <div
+                class="delivery-text"
+                id="deliveryText"
+            >
+            </div>
+
+        </div>
 
 
-    saveProduct.addEventListener(
-        "click",
-        () => {
 
-            saveProduct.classList.toggle("saved");
+        <!-- BUY -->
+
+        <button
+            class="buy-button"
+            id="buyButton"
+        >
+            Buy this product
+        </button>
 
 
-            saveProduct.textContent =
-                saveProduct.classList.contains("saved")
-                    ? "♥ Saved"
-                    : "♡ Save";
+    </div>
+
+</div>
+
+</div><script>
+
+    /* =========================
+       PRODUCT DATA
+    ========================= */
+
+    const products = {
+
+        sweater: {
+
+            name: "Soft Knit Sweater",
+
+            category: "Clothes",
+
+            price: "3,500 DA",
+
+            seller: "Sara Boutique",
+
+            description:
+                "A soft and comfortable knit sweater for everyday wear. Simple, warm and easy to style.",
+
+            delivery:
+                "Delivery information will be provided by the seller.",
+
+            colors: [
+                "Black",
+                "Beige",
+                "Cream"
+            ],
+
+            sizes: [
+                "S",
+                "M",
+                "L",
+                "XL"
+            ],
+
+            images: []
+
+        },
+
+
+        bag: {
+
+            name: "Mini Shoulder Bag",
+
+            category: "Bags",
+
+            price: "4,200 DA",
+
+            seller: "Lina Store",
+
+            description:
+                "A small and elegant shoulder bag, perfect for everyday outfits and simple looks.",
+
+            delivery:
+                "Delivery information will be provided by the seller.",
+
+            colors: [
+                "Black",
+                "Brown",
+                "Cream"
+            ],
+
+            sizes: [],
+
+            images: []
+
+        },
+
+
+        necklace: {
+
+            name: "Pearl Necklace",
+
+            category: "Accessories",
+
+            price: "2,500 DA",
+
+            seller: "Lily Accessories",
+
+            description:
+                "A delicate pearl necklace with a simple feminine design that works beautifully with everyday outfits.",
+
+            delivery:
+                "Delivery information will be provided by the seller.",
+
+            colors: [
+                "White",
+                "Gold"
+            ],
+
+            sizes: [],
+
+            images: []
+
+        },
+
+
+        flats: {
+
+            name: "Classic Flats",
+
+            category: "Shoes",
+
+            price: "4,800 DA",
+
+            seller: "Nora Shoes",
+
+            description:
+                "Classic comfortable flats designed for an easy everyday look.",
+
+            delivery:
+                "Delivery information will be provided by the seller.",
+
+            colors: [
+                "Black",
+                "Beige"
+            ],
+
+            sizes: [
+                "36",
+                "37",
+                "38",
+                "39",
+                "40"
+            ],
+
+            images: []
 
         }
-    );
+
+    };
 
 
 
-    /* OPTIONS */
+    /* =========================
+       GET PRODUCT
+    ========================= */
 
-    document
-        .querySelectorAll(".option")
-        .forEach(option => {
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
 
-            option.addEventListener(
-                "click",
-                () => {
+    const productId =
+        params.get("product") || "sweater";
 
-                    const group =
-                        option.parentElement;
+    const product =
+        products[productId] || products.sweater;
 
-                    group
-                        .querySelectorAll(".option")
-                        .forEach(item => {
 
-                            item.classList.remove(
-                                "selected"
+
+    /* =========================
+       ELEMENTS
+    ========================= */
+
+    const productName =
+        document.getElementById("productName");
+
+    const productCategory =
+        document.getElementById("productCategory");
+
+    const productPrice =
+        document.getElementById("productPrice");
+
+    const productDescription =
+        document.getElementById("productDescription");
+
+    const sellerName =
+        document.getElementById("sellerName");
+
+    const deliveryText =
+        document.getElementById("deliveryText");
+
+    const colorOptions =
+        document.getElementById("colorOptions");
+
+    const sizeOptions =
+        document.getElementById("sizeOptions");
+
+    const colorSection =
+        document.getElementById("colorSection");
+
+    const sizeSection =
+        document.getElementById("sizeSection");
+
+
+
+    /* =========================
+       FILL PRODUCT
+    ========================= */
+
+    productName.textContent =
+        product.name;
+
+    productCategory.textContent =
+        product.category;
+
+    productPrice.textContent =
+        product.price;
+
+    productDescription.textContent =
+        product.description;
+
+    sellerName.textContent =
+        product.seller;
+
+    deliveryText.textContent =
+        product.delivery;
+
+
+
+    /* =========================
+       COLORS
+    ========================= */
+
+    if (product.colors.length === 0) {
+
+        colorSection.style.display =
+            "none";
+
+    } else {
+
+        product.colors.forEach(
+            (color, index) => {
+
+                const button =
+                    document.createElement("button");
+
+                button.className =
+                    "option-button";
+
+                button.textContent =
+                    color;
+
+                if (index === 0) {
+                    button.classList.add("active");
+                }
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        colorOptions
+                            .querySelectorAll(
+                                ".option-button"
+                            )
+                            .forEach(
+                                item => {
+                                    item.classList.remove(
+                                        "active"
+                                    );
+                                }
                             );
 
-                        });
+                        button.classList.add(
+                            "active"
+                        );
+
+                    }
+                );
+
+                colorOptions.appendChild(
+                    button
+                );
+
+            }
+        );
+
+    }
 
 
-                    option.classList.add(
-                        "selected"
-                    );
 
+    /* =========================
+       SIZES
+    ========================= */
+
+    if (product.sizes.length === 0) {
+
+        sizeSection.style.display =
+            "none";
+
+    } else {
+
+        product.sizes.forEach(
+            (size, index) => {
+
+                const button =
+                    document.createElement("button");
+
+                button.className =
+                    "option-button";
+
+                button.textContent =
+                    size;
+
+                if (index === 0) {
+                    button.classList.add("active");
                 }
-            );
 
-        });
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        sizeOptions
+                            .querySelectorAll(
+                                ".option-button"
+                            )
+                            .forEach(
+                                item => {
+                                    item.classList.remove(
+                                        "active"
+                                    );
+                                }
+                            );
+
+                        button.classList.add(
+                            "active"
+                        );
+
+                    }
+                );
+
+                sizeOptions.appendChild(
+                    button
+                );
+
+            }
+        );
+
+    }
 
 
 
-    /* QUANTITY */
+    /* =========================
+       QUANTITY
+    ========================= */
+
+    let quantity = 1;
 
     const quantityElement =
         document.getElementById("quantity");
 
+    document
+        .getElementById("minusButton")
+        .addEventListener(
+            "click",
+            () => {
 
-    const minusBtn =
-        document.getElementById("minusBtn");
-
-
-    const plusBtn =
-        document.getElementById("plusBtn");
-
-
-    let quantity = 1;
-
-
-    minusBtn.addEventListener(
-        "click",
-        () => {
-
-            if (quantity > 1) {
-
-                quantity--;
+                if (quantity > 1) {
+                    quantity--;
+                }
 
                 quantityElement.textContent =
                     quantity;
 
             }
-
-        }
-    );
+        );
 
 
-    plusBtn.addEventListener(
+    document
+        .getElementById("plusButton")
+        .addEventListener(
+            "click",
+            () => {
+
+                quantity++;
+
+                quantityElement.textContent =
+                    quantity;
+
+            }
+        );
+
+
+
+    /* =========================
+       SAVE
+    ========================= */
+
+    const saveButton =
+        document.getElementById("saveProduct");
+
+    saveButton.addEventListener(
         "click",
         () => {
 
-            quantity++;
+            saveButton.classList.toggle(
+                "saved"
+            );
 
-            quantityElement.textContent =
-                quantity;
+            saveButton.textContent =
+                saveButton.classList.contains("saved")
+                    ? "♥ Saved"
+                    : "♡ Save product";
 
         }
     );
 
 
 
-    /* BUY */
+    /* =========================
+       BUY
+    ========================= */
 
     document
         .getElementById("buyButton")
@@ -866,45 +923,11 @@
             () => {
 
                 alert(
-                    "The purchase form will be connected in the next stage."
+                    "The purchase form will be connected in the next step."
                 );
 
             }
         );
 
-
-
-    /* THUMBNAILS */
-
-    document
-        .querySelectorAll(".thumbnail")
-        .forEach(thumbnail => {
-
-            thumbnail.addEventListener(
-                "click",
-                () => {
-
-                    document
-                        .querySelectorAll(".thumbnail")
-                        .forEach(item => {
-
-                            item.classList.remove(
-                                "active"
-                            );
-
-                        });
-
-
-                    thumbnail.classList.add(
-                        "active"
-                    );
-
-                }
-            );
-
-        });
-
-</script>
-
-</body></html>
-```
+</script></body>
+</html>
