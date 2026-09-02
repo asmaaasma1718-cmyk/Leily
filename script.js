@@ -1,178 +1,104 @@
 const translations = {
-
 en: {
-
-    welcome: "Welcome to Leily",
-
-    heroTitle: "Find something<br>you’ll love.",
-
-    heroDescription:
-        "Discover clothing and little things chosen for you, all in one soft and simple place.",
-
-    explore: "Explore products",
-
-    discover: "Discover",
-
-    categories: "Categories",
-
-    viewAll: "View all",
-
-    all: "All",
-
-    clothes: "Clothes",
-
-    shoes: "Shoes",
-
-    bags: "Bags",
-
-    accessories: "Accessories",
-
-    beauty: "Beauty",
-
-    kids: "Kids",
-
-    fresh: "Fresh finds",
-
-    newProducts: "New products",
-
-    sellerKicker: "Have a shop?",
-
-    sellerTitle: "Bring your products<br>to Leily.",
-
-    sellerDescription:
-        "Create your seller page and let women discover what you have to offer.",
-
-    becomeSeller: "Become a seller",
-
-    home: "Home",
-
-    search: "Search",
-
-    saved: "Saved",
-
-    account: "Account",
-
-    settings: "Settings",
-
-    language: "Language",
-
-    chooseLanguage: "Choose your language",
-
-    savedProducts: "Saved products",
-
-    myAccount: "My account",
-
-    sellerAccount: "Seller account"
-
+welcome: "Welcome to Leily",
+heroTitle: "Find something<br>you’ll love.",
+heroDescription:
+"Discover clothing and little things chosen for you, all in one soft and simple place.",
+explore: "Explore products",
+discover: "Discover",
+categories: "Categories",
+viewAll: "View all",
+all: "All",
+clothes: "Clothes",
+shoes: "Shoes",
+bags: "Bags",
+accessories: "Accessories",
+beauty: "Beauty",
+kids: "Kids",
+fresh: "Fresh finds",
+newProducts: "New products",
+sellerKicker: "Have a shop?",
+sellerTitle: "Bring your products<br>to Leily.",
+sellerDescription:
+"Create your seller page and let women discover what you have to offer.",
+becomeSeller: "Become a seller",
+home: "Home",
+search: "Search",
+saved: "Saved",
+account: "Account",
+settings: "Settings",
+language: "Language",
+chooseLanguage: "Choose your language",
+savedProducts: "Saved products",
+myAccount: "My account",
+sellerAccount: "Seller account"
 },
 
-
 ar: {
-
     welcome: "مرحبًا بكِ في Leily",
-
     heroTitle: "اكتشفي شيئًا<br>ستحبينه.",
-
     heroDescription:
         "اكتشفي الملابس والأشياء الجميلة المختارة لكِ، في مكان واحد بسيط وناعم.",
-
     explore: "استكشفي المنتجات",
-
     discover: "اكتشفي",
-
     categories: "التصنيفات",
-
     viewAll: "عرض الكل",
-
     all: "الكل",
-
     clothes: "ملابس",
-
     shoes: "أحذية",
-
     bags: "حقائب",
-
     accessories: "إكسسوارات",
-
     beauty: "عناية",
-
     kids: "أطفال",
-
     fresh: "وصل حديثًا",
-
     newProducts: "أحدث المنتجات",
-
     sellerKicker: "لديكِ متجر؟",
-
     sellerTitle: "أضيفي منتجاتكِ<br>إلى Leily.",
-
     sellerDescription:
         "أنشئي صفحة متجركِ ودعي النساء يكتشفن ما تقدمينه.",
-
     becomeSeller: "أصبحي بائعة",
-
     home: "الرئيسية",
-
     search: "البحث",
-
     saved: "المحفوظات",
-
     account: "الحساب",
-
     settings: "الإعدادات",
-
     language: "اللغة",
-
     chooseLanguage: "اختاري لغتكِ",
-
     savedProducts: "المنتجات المحفوظة",
-
     myAccount: "حسابي",
-
     sellerAccount: "حساب البائعة"
-
 }
 
 };
 
-/* LANGUAGE */
+/* =========================
+LANGUAGE
+========================= */
 
 const languageSelect =
 document.getElementById("languageSelect");
 
 function setLanguage(language) {
+const dictionary = translations[language];
 
-const dictionary =
-    translations[language];
+if (!dictionary) {
+    return;
+}
 
-
-document.documentElement.lang =
-    language;
-
+document.documentElement.lang = language;
 
 document.documentElement.dir =
-    language === "ar"
-        ? "rtl"
-        : "ltr";
-
+    language === "ar" ? "rtl" : "ltr";
 
 document
     .querySelectorAll("[data-i18n]")
     .forEach(element => {
-
-        const key =
-            element.dataset.i18n;
-
+        const key = element.dataset.i18n;
 
         if (dictionary[key]) {
-
-            element.innerHTML =
-                dictionary[key];
-
+            element.innerHTML = dictionary[key];
         }
-
     });
-
 
 localStorage.setItem(
     "leily-language",
@@ -182,139 +108,94 @@ localStorage.setItem(
 }
 
 const savedLanguage =
-localStorage.getItem(
-"leily-language"
-) || "en";
+localStorage.getItem("leily-language") || "en";
 
 if (languageSelect) {
+languageSelect.value = savedLanguage;
 
-languageSelect.value =
-    savedLanguage;
-
-setLanguage(
-    savedLanguage
-);
-
+setLanguage(savedLanguage);
 
 languageSelect.addEventListener(
     "change",
     event => {
-
-        setLanguage(
-            event.target.value
-        );
-
+        setLanguage(event.target.value);
     }
 );
 
 }
 
-/* PANEL */
+/* =========================
+SIDE PANEL
+========================= */
 
 const sidePanel =
-document.getElementById(
-"sidePanel"
-);
+document.getElementById("sidePanel");
 
 const overlay =
-document.getElementById(
-"overlay"
-);
+document.getElementById("overlay");
 
 const menuBtn =
-document.getElementById(
-"menuBtn"
-);
+document.getElementById("menuBtn");
 
 const profileBtn =
-document.getElementById(
-"profileBtn"
-);
+document.getElementById("profileBtn");
 
 const closePanel =
-document.getElementById(
-"closePanel"
-);
+document.getElementById("closePanel");
 
 function openPanel() {
-
 if (sidePanel) {
-
-    sidePanel.classList.add(
-        "open"
-    );
-
+sidePanel.classList.add("open");
 }
 
-
 if (overlay) {
-
-    overlay.classList.add(
-        "visible"
-    );
-
+    overlay.classList.add("visible");
 }
 
 }
 
 function closeSidePanel() {
-
 if (sidePanel) {
-
-    sidePanel.classList.remove(
-        "open"
-    );
-
+sidePanel.classList.remove("open");
 }
 
-
 if (overlay) {
-
-    overlay.classList.remove(
-        "visible"
-    );
-
+    overlay.classList.remove("visible");
 }
 
 }
 
 if (menuBtn) {
-
 menuBtn.addEventListener(
-    "click",
-    openPanel
+"click",
+openPanel
 );
-
 }
 
 if (profileBtn) {
-
 profileBtn.addEventListener(
-    "click",
-    openPanel
+"click",
+openPanel
 );
-
 }
 
 if (closePanel) {
-
 closePanel.addEventListener(
-    "click",
-    closeSidePanel
+"click",
+closeSidePanel
 );
-
 }
 
 if (overlay) {
-
 overlay.addEventListener(
-    "click",
-    closeSidePanel
+"click",
+closeSidePanel
 );
-
 }
 
-/* SAVE PRODUCTS */
+/* =========================
+SAVE PRODUCTS
+========================= */
 
 document
 .querySelectorAll(".save-btn")
@@ -326,25 +207,20 @@ document
 
             event.stopPropagation();
 
-
-            button.classList.toggle(
-                "saved"
-            );
-
+            button.classList.toggle("saved");
 
             button.textContent =
-                button.classList.contains(
-                    "saved"
-                )
+                button.classList.contains("saved")
                     ? "♥"
                     : "♡";
-
         }
     );
 
 });
 
-/* OPEN PRODUCT */
+/* =========================
+OPEN PRODUCT
+========================= */
 
 document
 .querySelectorAll(".product-open")
@@ -355,62 +231,42 @@ document
         event => {
 
             if (
-                event.target.closest(
-                    ".save-btn"
-                )
+                event.target.closest(".save-btn")
             ) {
-
                 return;
-
             }
-
 
             const productCard =
-                element.closest(
-                    ".product-card"
-                );
-
+                element.closest(".product-card");
 
             if (!productCard) {
-
                 return;
-
             }
-
 
             const productId =
                 productCard.dataset.product;
 
-
             if (!productId) {
-
                 return;
-
             }
-
 
             window.location.href =
                 "product.html?product=" +
-                encodeURIComponent(
-                    productId
-                );
-
+                encodeURIComponent(productId);
         }
     );
 
 });
 
-/* CATEGORY FILTER */
+/* =========================
+CATEGORY FILTER
+========================= */
 
 const categoryButtons =
-document.querySelectorAll(
-".category-card"
-);
+document.querySelectorAll(".category-card");
 
 const productCards =
-document.querySelectorAll(
-".product-card"
-);
+document.querySelectorAll(".product-card");
 
 categoryButtons.forEach(
 button => {
@@ -421,41 +277,25 @@ button => {
 
             categoryButtons.forEach(
                 item => {
-
-                    item.classList.remove(
-                        "active"
-                    );
-
+                    item.classList.remove("active");
                 }
             );
 
-
-            button.classList.add(
-                "active"
-            );
-
+            button.classList.add("active");
 
             const category =
                 button.dataset.category;
-
 
             productCards.forEach(
                 card => {
 
                     if (
                         category === "all" ||
-                        card.dataset.category ===
-                            category
+                        card.dataset.category === category
                     ) {
-
-                        card.style.display =
-                            "";
-
+                        card.style.display = "";
                     } else {
-
-                        card.style.display =
-                            "none";
-
+                        card.style.display = "none";
                     }
 
                 }
@@ -468,12 +308,12 @@ button => {
 
 );
 
-/* SEARCH */
+/* =========================
+SEARCH
+========================= */
 
 const searchInput =
-document.getElementById(
-"searchInput"
-);
+document.getElementById("searchInput");
 
 if (searchInput) {
 
@@ -486,14 +326,11 @@ searchInput.addEventListener(
                 .trim()
                 .toLowerCase();
 
-
         productCards.forEach(
             card => {
 
                 const text =
-                    card.textContent
-                        .toLowerCase();
-
+                    card.textContent.toLowerCase();
 
                 card.style.display =
                     text.includes(search)
@@ -508,12 +345,12 @@ searchInput.addEventListener(
 
 }
 
-/* EXPLORE */
+/* =========================
+EXPLORE BUTTON
+========================= */
 
 const exploreButton =
-document.getElementById(
-"exploreBtn"
-);
+document.getElementById("exploreBtn");
 
 if (exploreButton) {
 
@@ -522,17 +359,12 @@ exploreButton.addEventListener(
     () => {
 
         const productsSection =
-            document.querySelector(
-                ".products-section"
-            );
-
+            document.querySelector(".products-section");
 
         if (productsSection) {
-
             productsSection.scrollIntoView({
                 behavior: "smooth"
             });
-
         }
 
     }
@@ -540,7 +372,9 @@ exploreButton.addEventListener(
 
 }
 
-/* BOTTOM NAVIGATION */
+/* =========================
+BOTTOM NAVIGATION
+========================= */
 
 document
 .querySelectorAll(".nav-item")
@@ -551,64 +385,39 @@ document
         () => {
 
             document
-                .querySelectorAll(
-                    ".nav-item"
-                )
+                .querySelectorAll(".nav-item")
                 .forEach(nav => {
-
-                    nav.classList.remove(
-                        "active"
-                    );
-
+                    nav.classList.remove("active");
                 });
 
-
-            item.classList.add(
-                "active"
-            );
-
+            item.classList.add("active");
 
             const page =
                 item.dataset.page;
-
 
             if (
                 page === "search" &&
                 searchInput
             ) {
-
                 searchInput.focus();
-
             }
 
-
-            if (
-                page === "saved"
-            ) {
+            if (page === "saved") {
 
                 const productsSection =
                     document.querySelector(
                         ".products-section"
                     );
 
-
                 if (productsSection) {
-
                     productsSection.scrollIntoView({
                         behavior: "smooth"
                     });
-
                 }
-
             }
 
-
-            if (
-                page === "account"
-            ) {
-
+            if (page === "account") {
                 openPanel();
-
             }
 
         }
@@ -616,12 +425,12 @@ document
 
 });
 
-/* SELLER */
+/* =========================
+SELLER BUTTON
+========================= */
 
 const sellerButton =
-document.getElementById(
-"sellerBtn"
-);
+document.getElementById("sellerBtn");
 
 if (sellerButton) {
 
@@ -638,12 +447,12 @@ sellerButton.addEventListener(
 
 }
 
-/* VIEW ALL CATEGORIES */
+/* =========================
+VIEW ALL CATEGORIES
+========================= */
 
 const allCategoriesButton =
-document.getElementById(
-"allCategories"
-);
+document.getElementById("allCategories");
 
 if (allCategoriesButton) {
 
@@ -653,36 +462,22 @@ allCategoriesButton.addEventListener(
 
         categoryButtons.forEach(
             item => {
-
-                item.classList.remove(
-                    "active"
-                );
-
+                item.classList.remove("active");
             }
         );
-
 
         const allButton =
             document.querySelector(
                 '.category-card[data-category="all"]'
             );
 
-
         if (allButton) {
-
-            allButton.classList.add(
-                "active"
-            );
-
+            allButton.classList.add("active");
         }
-
 
         productCards.forEach(
             card => {
-
-                card.style.display =
-                    "";
-
+                card.style.display = "";
             }
         );
 
@@ -691,12 +486,12 @@ allCategoriesButton.addEventListener(
 
 }
 
-/* VIEW ALL PRODUCTS */
+/* =========================
+VIEW ALL PRODUCTS
+========================= */
 
 const viewProductsButton =
-document.getElementById(
-"viewProducts"
-);
+document.getElementById("viewProducts");
 
 if (viewProductsButton) {
 
@@ -709,13 +504,10 @@ viewProductsButton.addEventListener(
                 ".products-section"
             );
 
-
         if (productsSection) {
-
             productsSection.scrollIntoView({
                 behavior: "smooth"
             });
-
         }
 
     }
@@ -723,12 +515,12 @@ viewProductsButton.addEventListener(
 
 }
 
-/* SAVED HEADER BUTTON */
+/* =========================
+SAVED HEADER BUTTON
+========================= */
 
 const savedButton =
-document.getElementById(
-"savedBtn"
-);
+document.getElementById("savedBtn");
 
 if (savedButton) {
 
@@ -741,17 +533,13 @@ savedButton.addEventListener(
                 ".products-section"
             );
 
-
         if (productsSection) {
-
             productsSection.scrollIntoView({
                 behavior: "smooth"
-            );
-
+            });
         }
 
     }
 );
 
 }
-alert("Leily JavaScript is working!");
