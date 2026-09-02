@@ -1,0 +1,17 @@
+{
+    "name": "Leily",
+    "short_name": "Leily",
+    "description": "A soft and simple shopping space for women.",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#f8dfe5",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "leily-logo.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
