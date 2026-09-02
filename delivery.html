@@ -97,6 +97,7 @@
             background: #fffaf8;
             border: 1px solid #f1e5e2;
             border-radius: 15px;
+            cursor: pointer;
         }
 
         .option:last-child {
@@ -108,6 +109,10 @@
             height: 19px;
             margin-top: 2px;
             accent-color: #c28c99;
+        }
+
+        .option-text {
+            flex: 1;
         }
 
         .option-text strong {
@@ -125,10 +130,6 @@
 
         .field {
             margin-bottom: 16px;
-        }
-
-        .field:last-child {
-            margin-bottom: 0;
         }
 
         label {
@@ -167,6 +168,73 @@
             margin-bottom: 6px;
         }
 
+        .province-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .province-button {
+            flex: 1;
+            border: none;
+            background: #f7e5e9;
+            color: #795f65;
+            padding: 13px;
+            border-radius: 13px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .province-button.delete {
+            background: #fff0ed;
+            color: #9a6e68;
+        }
+
+        .saved-provinces {
+            margin-top: 22px;
+        }
+
+        .saved-title {
+            font-size: 15px;
+            font-weight: bold;
+            color: #665357;
+            margin-bottom: 10px;
+        }
+
+        .province-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 14px;
+            margin-bottom: 9px;
+            border: 1px solid #f1e5e2;
+            border-radius: 15px;
+            background: #fffaf8;
+        }
+
+        .province-name {
+            font-weight: bold;
+            color: #665357;
+            font-size: 14px;
+        }
+
+        .province-prices {
+            color: #8e797d;
+            font-size: 12px;
+            line-height: 1.6;
+            text-align: right;
+        }
+
+        .edit-province {
+            border: none;
+            background: transparent;
+            color: #b98592;
+            font-size: 12px;
+            cursor: pointer;
+            padding: 4px;
+        }
+
         .example {
             background: #fff4ed;
             border-radius: 16px;
@@ -189,7 +257,7 @@
             margin-top: 5px;
         }
 
-        .saved {
+        .saved-message {
             display: none;
             margin-top: 15px;
             background: #eef7ee;
@@ -200,7 +268,7 @@
             font-size: 14px;
         }
 
-        .saved.show {
+        .saved-message.show {
             display: block;
         }
 
@@ -212,6 +280,19 @@
 
             .price-row {
                 grid-template-columns: 1fr;
+            }
+
+            .province-item {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .province-prices {
+                text-align: left;
+            }
+
+            .province-actions {
+                flex-direction: column;
             }
         }
     </style>
@@ -375,7 +456,7 @@
     </section>
 
 
-    <!-- Flat price -->
+    <!-- Flat pricing -->
 
     <section class="card" id="flatPricing">
 
@@ -443,11 +524,11 @@
     <section class="card" id="provincePricing" style="display: none;">
 
         <h2>
-            Province delivery price
+            Province prices
         </h2>
 
         <p class="card-description">
-            Choose a province and set its delivery prices.
+            Select a province and set its own delivery prices.
         </p>
 
 
@@ -457,47 +538,70 @@
                 Province
             </label>
 
-            <select id="province">
+            <select id="province" onchange="loadProvince()">
 
                 <option value="">
                     Select a province
                 </option>
 
-                <option>
-                    Adrar
-                </option>
-
-                <option>
-                    Algiers
-                </option>
-
-                <option>
-                    Annaba
-                </option>
-
-                <option>
-                    Blida
-                </option>
-
-                <option>
-                    Constantine
-                </option>
-
-                <option>
-                    Oran
-                </option>
-
-                <option>
-                    Sétif
-                </option>
-
-                <option>
-                    Tiaret
-                </option>
-
-                <option>
-                    Tlemcen
-                </option>
+                <option value="Adrar">Adrar</option>
+                <option value="Chlef">Chlef</option>
+                <option value="Laghouat">Laghouat</option>
+                <option value="Oum El Bouaghi">Oum El Bouaghi</option>
+                <option value="Batna">Batna</option>
+                <option value="Béjaïa">Béjaïa</option>
+                <option value="Biskra">Biskra</option>
+                <option value="Béchar">Béchar</option>
+                <option value="Blida">Blida</option>
+                <option value="Bouira">Bouira</option>
+                <option value="Tamanrasset">Tamanrasset</option>
+                <option value="Tébessa">Tébessa</option>
+                <option value="Tlemcen">Tlemcen</option>
+                <option value="Tiaret">Tiaret</option>
+                <option value="Tizi Ouzou">Tizi Ouzou</option>
+                <option value="Algiers">Algiers</option>
+                <option value="Djelfa">Djelfa</option>
+                <option value="Jijel">Jijel</option>
+                <option value="Sétif">Sétif</option>
+                <option value="Saïda">Saïda</option>
+                <option value="Skikda">Skikda</option>
+                <option value="Sidi Bel Abbès">Sidi Bel Abbès</option>
+                <option value="Annaba">Annaba</option>
+                <option value="Guelma">Guelma</option>
+                <option value="Constantine">Constantine</option>
+                <option value="Médéa">Médéa</option>
+                <option value="Mostaganem">Mostaganem</option>
+                <option value="M'Sila">M'Sila</option>
+                <option value="Mascara">Mascara</option>
+                <option value="Ouargla">Ouargla</option>
+                <option value="Oran">Oran</option>
+                <option value="El Bayadh">El Bayadh</option>
+                <option value="Illizi">Illizi</option>
+                <option value="Bordj Bou Arréridj">Bordj Bou Arréridj</option>
+                <option value="Boumerdès">Boumerdès</option>
+                <option value="El Tarf">El Tarf</option>
+                <option value="Tindouf">Tindouf</option>
+                <option value="Tissemsilt">Tissemsilt</option>
+                <option value="El Oued">El Oued</option>
+                <option value="Khenchela">Khenchela</option>
+                <option value="Souk Ahras">Souk Ahras</option>
+                <option value="Tipaza">Tipaza</option>
+                <option value="Mila">Mila</option>
+                <option value="Aïn Defla">Aïn Defla</option>
+                <option value="Naâma">Naâma</option>
+                <option value="Aïn Témouchent">Aïn Témouchent</option>
+                <option value="Ghardaïa">Ghardaïa</option>
+                <option value="Relizane">Relizane</option>
+                <option value="Timimoun">Timimoun</option>
+                <option value="Bordj Badji Mokhtar">Bordj Badji Mokhtar</option>
+                <option value="Ouled Djellal">Ouled Djellal</option>
+                <option value="Béni Abbès">Béni Abbès</option>
+                <option value="In Salah">In Salah</option>
+                <option value="In Guezzam">In Guezzam</option>
+                <option value="Touggourt">Touggourt</option>
+                <option value="Djanet">Djanet</option>
+                <option value="El M'Ghair">El M'Ghair</option>
+                <option value="El Meniaa">El Meniaa</option>
 
             </select>
 
@@ -540,18 +644,49 @@
         </div>
 
 
-        <div class="example">
+        <div class="province-actions">
 
-            <strong>
-                Example:
-            </strong>
+            <button
+                class="province-button"
+                onclick="saveProvince()"
+            >
+                Save province
+            </button>
 
-            Oran → Home: 700 DA / Office: 500 DA<br>
-            Algiers → Home: 900 DA / Office: 700 DA
+            <button
+                class="province-button delete"
+                onclick="deleteProvince()"
+            >
+                Delete province
+            </button>
+
+        </div>
+
+
+        <div class="saved-provinces">
+
+            <div class="saved-title">
+                Saved provinces
+            </div>
+
+            <div id="provinceList"></div>
 
         </div>
 
     </section>
+
+
+    <div class="example">
+
+        <strong>
+            How it works:
+        </strong>
+
+        Each province keeps its own delivery prices.
+        You can return to any province later and change
+        its prices without changing the prices of other provinces.
+
+    </div>
 
 
     <button
@@ -564,7 +699,7 @@
 
     <div
         id="savedMessage"
-        class="saved"
+        class="saved-message"
     >
         ✓ Delivery settings saved successfully.
     </div>
@@ -573,6 +708,20 @@
 
 
 <script>
+
+    /*
+        Temporary local storage.
+
+        Later, this will be replaced with Supabase
+        so the seller's delivery settings are saved
+        to her actual account.
+    */
+
+    let provincePrices =
+        JSON.parse(
+            localStorage.getItem("leilyDeliveryPrices") || "{}"
+        );
+
 
     function changePricing() {
 
@@ -598,7 +747,286 @@
             flatPricing.style.display = "none";
             provincePricing.style.display = "block";
 
+            renderProvinceList();
         }
+    }
+
+
+    function loadProvince() {
+
+        const province =
+            document.getElementById("province").value;
+
+        const homeInput =
+            document.getElementById("provinceHome");
+
+        const officeInput =
+            document.getElementById("provinceOffice");
+
+
+        if (!province) {
+
+            homeInput.value = "";
+            officeInput.value = "";
+
+            return;
+        }
+
+
+        if (provincePrices[province]) {
+
+            homeInput.value =
+                provincePrices[province].home ?? "";
+
+            officeInput.value =
+                provincePrices[province].office ?? "";
+
+        } else {
+
+            homeInput.value = "";
+            officeInput.value = "";
+
+        }
+    }
+
+
+    function saveProvince() {
+
+        const province =
+            document.getElementById("province").value;
+
+        const home =
+            document.getElementById("provinceHome").value;
+
+        const office =
+            document.getElementById("provinceOffice").value;
+
+
+        if (!province) {
+
+            alert(
+                "Please select a province."
+            );
+
+            return;
+        }
+
+
+        const homeEnabled =
+            document.getElementById("homeDelivery").checked;
+
+        const officeEnabled =
+            document.getElementById("officeDelivery").checked;
+
+
+        if (homeEnabled && !home) {
+
+            alert(
+                "Please enter the home delivery price."
+            );
+
+            return;
+        }
+
+
+        if (officeEnabled && !office) {
+
+            alert(
+                "Please enter the office pickup price."
+            );
+
+            return;
+        }
+
+
+        provincePrices[province] = {
+
+            home: homeEnabled
+                ? Number(home)
+                : null,
+
+            office: officeEnabled
+                ? Number(office)
+                : null
+
+        };
+
+
+        localStorage.setItem(
+            "leilyDeliveryPrices",
+            JSON.stringify(provincePrices)
+        );
+
+
+        renderProvinceList();
+
+
+        alert(
+            province + " delivery prices saved."
+        );
+
+    }
+
+
+    function deleteProvince() {
+
+        const province =
+            document.getElementById("province").value;
+
+
+        if (!province) {
+
+            alert(
+                "Please select a province first."
+            );
+
+            return;
+        }
+
+
+        if (!provincePrices[province]) {
+
+            alert(
+                "This province has no saved prices."
+            );
+
+            return;
+        }
+
+
+        delete provincePrices[province];
+
+
+        localStorage.setItem(
+            "leilyDeliveryPrices",
+            JSON.stringify(provincePrices)
+        );
+
+
+        document.getElementById("provinceHome").value = "";
+        document.getElementById("provinceOffice").value = "";
+
+
+        renderProvinceList();
+
+
+        alert(
+            province + " has been removed."
+        );
+
+    }
+
+
+    function editProvince(province) {
+
+        document.getElementById("province").value =
+            province;
+
+        loadProvince();
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+
+    function renderProvinceList() {
+
+        const list =
+            document.getElementById("provinceList");
+
+        list.innerHTML = "";
+
+
+        const provinces =
+            Object.keys(provincePrices);
+
+
+        if (provinces.length === 0) {
+
+            list.innerHTML =
+                '<div style="color:#998589;font-size:13px;">No provinces saved yet.</div>';
+
+            return;
+        }
+
+
+        provinces.forEach(function(province) {
+
+            const data =
+                provincePrices[province];
+
+
+            const item =
+                document.createElement("div");
+
+            item.className =
+                "province-item";
+
+
+            let prices = "";
+
+
+            if (data.home !== null) {
+
+                prices +=
+                    "Home: " +
+                    data.home +
+                    " DA";
+
+            }
+
+
+            if (
+                data.home !== null &&
+                data.office !== null
+            ) {
+
+                prices += " · ";
+
+            }
+
+
+            if (data.office !== null) {
+
+                prices +=
+                    "Office: " +
+                    data.office +
+                    " DA";
+
+            }
+
+
+            item.innerHTML = `
+
+                <div>
+
+                    <div class="province-name">
+                        ${province}
+                    </div>
+
+                    <div class="province-prices">
+                        ${prices}
+                    </div>
+
+                </div>
+
+                <button
+                    class="edit-province"
+                    onclick="editProvince('${province.replace(/'/g, "\\'")}')"
+                >
+                    Edit
+                </button>
+
+            `;
+
+
+            list.appendChild(item);
+
+        });
+
     }
 
 
@@ -660,52 +1088,40 @@
                 }
             }
 
+
+            localStorage.setItem(
+                "leilyFlatHome",
+                document.getElementById("flatHome").value
+            );
+
+            localStorage.setItem(
+                "leilyFlatOffice",
+                document.getElementById("flatOffice").value
+            );
+
         } else {
 
-            const province =
-                document.getElementById("province").value;
-
-            if (!province) {
+            if (Object.keys(provincePrices).length === 0) {
 
                 alert(
-                    "Please select a province."
+                    "Please save at least one province."
                 );
 
                 return;
             }
 
-
-            if (home) {
-
-                const homePrice =
-                    document.getElementById("provinceHome").value;
-
-                if (!homePrice) {
-
-                    alert(
-                        "Please enter the home delivery price."
-                    );
-
-                    return;
-                }
-            }
-
-
-            if (office) {
-
-                const officePrice =
-                    document.getElementById("provinceOffice").value;
-
-                if (!officePrice) {
-
-                    alert(
-                        "Please enter the office pickup price."
-                    );
-
-                    return;
-                }
-            }
         }
+
+
+        localStorage.setItem(
+            "leilyDeliveryHome",
+            home
+        );
+
+        localStorage.setItem(
+            "leilyDeliveryOffice",
+            office
+        );
 
 
         document
@@ -713,6 +1129,59 @@
             .classList.add("show");
 
     }
+
+
+    /*
+        Load previously saved settings.
+    */
+
+    const savedHome =
+        localStorage.getItem("leilyDeliveryHome");
+
+    const savedOffice =
+        localStorage.getItem("leilyDeliveryOffice");
+
+
+    if (savedHome !== null) {
+
+        document.getElementById("homeDelivery").checked =
+            savedHome === "true";
+
+    }
+
+
+    if (savedOffice !== null) {
+
+        document.getElementById("officeDelivery").checked =
+            savedOffice === "true";
+
+    }
+
+
+    const savedFlatHome =
+        localStorage.getItem("leilyFlatHome");
+
+    const savedFlatOffice =
+        localStorage.getItem("leilyFlatOffice");
+
+
+    if (savedFlatHome !== null) {
+
+        document.getElementById("flatHome").value =
+            savedFlatHome;
+
+    }
+
+
+    if (savedFlatOffice !== null) {
+
+        document.getElementById("flatOffice").value =
+            savedFlatOffice;
+
+    }
+
+
+    renderProvinceList();
 
 </script>
 
