@@ -1,470 +1,804 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#f8dfe5">
+<meta name="description" content="Leily — A soft and simple shopping space for women.">
 
-    <meta name="theme-color" content="#f8dfe5">
-    <meta name="description" content="Leily — A soft and simple shopping space for women.">
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
+<title>Leily</title>
 
-    <title>Leily</title>
-</head>
+</head><body><header class="top-header"><div class="header-left">
 
-<body>
+    <button class="icon-btn mobile-menu" id="menuBtn">
+        ☰
+    </button>
 
-<header class="top-header">
+    <a href="#" class="logo-container">
+        <img src="leily-logo.png" alt="Leily" class="logo">
+    </a>
 
-    <div class="header-left">
-        <button class="icon-btn mobile-menu" id="menuBtn">☰</button>
+</div>
 
-        <a href="#" class="logo-container">
-            <img src="leily-logo.png" alt="Leily" class="logo">
-        </a>
-    </div>
 
-    <div class="search-container">
-        <span class="search-icon">⌕</span>
-        <input
-            type="search"
-            id="searchInput"
-            placeholder="Search for products..."
+<div class="search-container">
+
+    <span class="search-icon">
+        ⌕
+    </span>
+
+    <input
+        type="search"
+        id="searchInput"
+        placeholder="Search for products..."
+    >
+
+</div>
+
+
+<div class="header-actions">
+
+    <button
+        class="icon-btn"
+        id="savedBtn"
+        title="Saved"
+    >
+        ♡
+    </button>
+
+
+    <button
+        class="profile-btn"
+        id="profileBtn"
+    >
+
+        <span class="profile-icon">
+            ○
+        </span>
+
+        <span id="accountText">
+            Account
+        </span>
+
+    </button>
+
+</div>
+
+</header><main><!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <p
+            class="small-title"
+            data-i18n="welcome"
         >
-    </div>
+            Welcome to Leily
+        </p>
 
-    <div class="header-actions">
 
-        <button class="icon-btn" id="savedBtn" title="Saved">
-            ♡
+        <h1 data-i18n="heroTitle">
+            Find something<br>
+            you’ll love.
+        </h1>
+
+
+        <p
+            class="hero-description"
+            data-i18n="heroDescription"
+        >
+            Discover clothing and little things chosen for you,
+            all in one soft and simple place.
+        </p>
+
+
+        <button
+            class="primary-btn"
+            id="exploreBtn"
+        >
+
+            <span data-i18n="explore">
+                Explore products
+            </span>
+
+            <span>
+                →
+            </span>
+
         </button>
 
-        <button class="profile-btn" id="profileBtn">
-            <span class="profile-icon">○</span>
-            <span id="accountText">Account</span>
-        </button>
+    </div>
+
+
+    <div class="hero-decoration">
+
+        <div class="soft-circle circle-one"></div>
+
+        <div class="soft-circle circle-two"></div>
 
     </div>
 
-</header>
+</section>
 
 
-<main>
 
-    <!-- HERO -->
+<!-- CATEGORIES -->
 
-    <section class="hero">
+<section class="section">
 
-        <div class="hero-content">
-
-            <p class="small-title" data-i18n="welcome">
-                Welcome to Leily
-            </p>
-
-            <h1 data-i18n="heroTitle">
-                Find something<br>
-                you’ll love.
-            </h1>
-
-            <p class="hero-description" data-i18n="heroDescription">
-                Discover clothing and little things chosen for you,
-                all in one soft and simple place.
-            </p>
-
-            <button class="primary-btn" id="exploreBtn">
-                <span data-i18n="explore">Explore products</span>
-                <span>→</span>
-            </button>
-
-        </div>
-
-        <div class="hero-decoration">
-            <div class="soft-circle circle-one"></div>
-            <div class="soft-circle circle-two"></div>
-        </div>
-
-    </section>
-
-
-    <!-- CATEGORIES -->
-
-    <section class="section">
-
-        <div class="section-header">
-
-            <div>
-                <p class="section-kicker" data-i18n="discover">
-                    Discover
-                </p>
-
-                <h2 data-i18n="categories">
-                    Categories
-                </h2>
-            </div>
-
-            <button class="text-btn" id="allCategories">
-                <span data-i18n="viewAll">View all</span>
-                →
-            </button>
-
-        </div>
-
-
-        <div class="categories">
-
-            <button class="category-card active" data-category="all">
-                <div class="category-icon">✦</div>
-                <span data-i18n="all">All</span>
-            </button>
-
-            <button class="category-card" data-category="clothes">
-                <div class="category-icon">♡</div>
-                <span data-i18n="clothes">Clothes</span>
-            </button>
-
-            <button class="category-card" data-category="shoes">
-                <div class="category-icon">⌁</div>
-                <span data-i18n="shoes">Shoes</span>
-            </button>
-
-            <button class="category-card" data-category="bags">
-                <div class="category-icon">□</div>
-                <span data-i18n="bags">Bags</span>
-            </button>
-
-            <button class="category-card" data-category="accessories">
-                <div class="category-icon">✧</div>
-                <span data-i18n="accessories">Accessories</span>
-            </button>
-
-            <button class="category-card" data-category="beauty">
-                <div class="category-icon">○</div>
-                <span data-i18n="beauty">Beauty</span>
-            </button>
-
-            <button class="category-card" data-category="kids">
-                <div class="category-icon">♡</div>
-                <span data-i18n="kids">Kids</span>
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- NEW PRODUCTS -->
-
-    <section class="section products-section">
-
-        <div class="section-header">
-
-            <div>
-                <p class="section-kicker" data-i18n="fresh">
-                    Fresh finds
-                </p>
-
-                <h2 data-i18n="newProducts">
-                    New products
-                </h2>
-            </div>
-
-            <button class="text-btn" id="viewProducts">
-                <span data-i18n="viewAll">View all</span>
-                →
-            </button>
-
-        </div>
-
-
-        <div class="products-grid" id="productsGrid">
-
-            <!-- Product 1 -->
-
-            <article class="product-card" data-category="clothes">
-
-                <div class="product-image">
-                    <div class="placeholder-image">
-                        <span>Product</span>
-                    </div>
-
-                    <button class="save-btn" aria-label="Save product">
-                        ♡
-                    </button>
-                </div>
-
-                <div class="product-info">
-
-                    <p class="seller-name">
-                        Sara Boutique
-                    </p>
-
-                    <h3>
-                        Soft knit sweater
-                    </h3>
-
-                    <div class="product-bottom">
-                        <strong>3,500 DA</strong>
-                        <span class="product-color">
-                            3 colors
-                        </span>
-                    </div>
-
-                </div>
-
-            </article>
-
-
-            <!-- Product 2 -->
-
-            <article class="product-card" data-category="bags">
-
-                <div class="product-image">
-                    <div class="placeholder-image">
-                        <span>Product</span>
-                    </div>
-
-                    <button class="save-btn" aria-label="Save product">
-                        ♡
-                    </button>
-                </div>
-
-                <div class="product-info">
-
-                    <p class="seller-name">
-                        Lilia Store
-                    </p>
-
-                    <h3>
-                        Minimal shoulder bag
-                    </h3>
-
-                    <div class="product-bottom">
-                        <strong>4,800 DA</strong>
-                        <span class="product-color">
-                            2 colors
-                        </span>
-                    </div>
-
-                </div>
-
-            </article>
-
-
-            <!-- Product 3 -->
-
-            <article class="product-card" data-category="accessories">
-
-                <div class="product-image">
-                    <div class="placeholder-image">
-                        <span>Product</span>
-                    </div>
-
-                    <button class="save-btn" aria-label="Save product">
-                        ♡
-                    </button>
-                </div>
-
-                <div class="product-info">
-
-                    <p class="seller-name">
-                        Mellow
-                    </p>
-
-                    <h3>
-                        Simple pearl necklace
-                    </h3>
-
-                    <div class="product-bottom">
-                        <strong>1,900 DA</strong>
-                        <span class="product-color">
-                            1 color
-                        </span>
-                    </div>
-
-                </div>
-
-            </article>
-
-
-            <!-- Product 4 -->
-
-            <article class="product-card" data-category="shoes">
-
-                <div class="product-image">
-                    <div class="placeholder-image">
-                        <span>Product</span>
-                    </div>
-
-                    <button class="save-btn" aria-label="Save product">
-                        ♡
-                    </button>
-                </div>
-
-                <div class="product-info">
-
-                    <p class="seller-name">
-                        Rose Shop
-                    </p>
-
-                    <h3>
-                        Everyday ballet flats
-                    </h3>
-
-                    <div class="product-bottom">
-                        <strong>3,900 DA</strong>
-                        <span class="product-color">
-                            3 colors
-                        </span>
-                    </div>
-
-                </div>
-
-            </article>
-
-        </div>
-
-    </section>
-
-
-    <!-- SELLER CTA -->
-
-    <section class="seller-banner">
+    <div class="section-header">
 
         <div>
 
-            <p class="section-kicker" data-i18n="sellerKicker">
-                Have a shop?
+            <p
+                class="section-kicker"
+                data-i18n="discover"
+            >
+                Discover
             </p>
 
-            <h2 data-i18n="sellerTitle">
-                Bring your products<br>
-                to Leily.
+
+            <h2 data-i18n="categories">
+                Categories
             </h2>
 
-            <p data-i18n="sellerDescription">
-                Create your seller page and let women discover
-                what you have to offer.
-            </p>
-
         </div>
 
-        <button class="secondary-btn" id="sellerBtn">
-            <span data-i18n="becomeSeller">
-                Become a seller
+
+        <button
+            class="text-btn"
+            id="allCategories"
+        >
+
+            <span data-i18n="viewAll">
+                View all
             </span>
+
             →
-        </button>
 
-    </section>
-
-</main>
-
-
-<!-- BOTTOM NAVIGATION -->
-
-<nav class="bottom-nav">
-
-    <button class="nav-item active" data-page="home">
-        <span>⌂</span>
-        <small data-i18n="home">Home</small>
-    </button>
-
-    <button class="nav-item" data-page="search">
-        <span>⌕</span>
-        <small data-i18n="search">Search</small>
-    </button>
-
-    <button class="nav-item" data-page="saved">
-        <span>♡</span>
-        <small data-i18n="saved">Saved</small>
-    </button>
-
-    <button class="nav-item" data-page="account">
-        <span>○</span>
-        <small data-i18n="account">Account</small>
-    </button>
-
-</nav>
-
-
-<!-- LANGUAGE / ACCOUNT PANEL -->
-
-<div class="overlay" id="overlay"></div>
-
-<aside class="side-panel" id="sidePanel">
-
-    <button class="close-btn" id="closePanel">
-        ×
-    </button>
-
-    <div class="panel-content">
-
-        <p class="section-kicker">
-            Leily
-        </p>
-
-        <h2 data-i18n="settings">
-            Settings
-        </h2>
-
-
-        <div class="setting-card">
-
-            <div>
-                <strong data-i18n="language">
-                    Language
-                </strong>
-
-                <p data-i18n="chooseLanguage">
-                    Choose your language
-                </p>
-            </div>
-
-            <select id="languageSelect">
-
-                <option value="en">
-                    English
-                </option>
-
-                <option value="ar">
-                    العربية
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <button class="panel-action">
-            <span>♡</span>
-            <span data-i18n="savedProducts">
-                Saved products
-            </span>
-        </button>
-
-
-        <button class="panel-action">
-            <span>○</span>
-            <span data-i18n="myAccount">
-                My account
-            </span>
-        </button>
-
-
-        <button class="panel-action">
-            <span>＋</span>
-            <span data-i18n="sellerAccount">
-                Seller account
-            </span>
         </button>
 
     </div>
 
-</aside>
 
 
-<script src="script.js"></script>
+    <div class="categories">
 
-</body>
+
+        <button
+            class="category-card active"
+            data-category="all"
+        >
+
+            <div class="category-icon">
+                ✦
+            </div>
+
+            <span data-i18n="all">
+                All
+            </span>
+
+        </button>
+
+
+        <button
+            class="category-card"
+            data-category="clothes"
+        >
+
+            <div class="category-icon">
+                ♡
+            </div>
+
+            <span data-i18n="clothes">
+                Clothes
+            </span>
+
+        </button>
+
+
+        <button
+            class="category-card"
+            data-category="shoes"
+        >
+
+            <div class="category-icon">
+                ⌁
+            </div>
+
+            <span data-i18n="shoes">
+                Shoes
+            </span>
+
+        </button>
+
+
+        <button
+            class="category-card"
+            data-category="bags"
+        >
+
+            <div class="category-icon">
+                □
+            </div>
+
+            <span data-i18n="bags">
+                Bags
+            </span>
+
+        </button>
+
+
+        <button
+            class="category-card"
+            data-category="accessories"
+        >
+
+            <div class="category-icon">
+                ✧
+            </div>
+
+            <span data-i18n="accessories">
+                Accessories
+            </span>
+
+        </button>
+
+
+        <button
+            class="category-card"
+            data-category="beauty"
+        >
+
+            <div class="category-icon">
+                ○
+            </div>
+
+            <span data-i18n="beauty">
+                Beauty
+            </span>
+
+        </button>
+
+
+        <button
+            class="category-card"
+            data-category="kids"
+        >
+
+            <div class="category-icon">
+                ♡
+            </div>
+
+            <span data-i18n="kids">
+                Kids
+            </span>
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- NEW PRODUCTS -->
+
+<section class="section products-section">
+
+    <div class="section-header">
+
+        <div>
+
+            <p
+                class="section-kicker"
+                data-i18n="fresh"
+            >
+                Fresh finds
+            </p>
+
+
+            <h2 data-i18n="newProducts">
+                New products
+            </h2>
+
+        </div>
+
+
+        <button
+            class="text-btn"
+            id="viewProducts"
+        >
+
+            <span data-i18n="viewAll">
+                View all
+            </span>
+
+            →
+
+        </button>
+
+    </div>
+
+
+
+    <div
+        class="products-grid"
+        id="productsGrid"
+    >
+
+
+        <!-- PRODUCT 1 -->
+
+        <article
+            class="product-card"
+            data-category="clothes"
+            data-product="sweater"
+        >
+
+            <div
+                class="product-image product-open"
+                data-product-link="product.html"
+            >
+
+                <div class="placeholder-image">
+                    <span>
+                        Product
+                    </span>
+                </div>
+
+
+                <button
+                    class="save-btn"
+                    aria-label="Save product"
+                    type="button"
+                >
+                    ♡
+                </button>
+
+            </div>
+
+
+            <div class="product-info product-open"
+                 data-product-link="product.html">
+
+                <p class="seller-name">
+                    Sara Boutique
+                </p>
+
+
+                <h3>
+                    Soft knit sweater
+                </h3>
+
+
+                <div class="product-bottom">
+
+                    <strong>
+                        3,500 DA
+                    </strong>
+
+
+                    <span class="product-color">
+                        3 colors
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- PRODUCT 2 -->
+
+        <article
+            class="product-card"
+            data-category="bags"
+            data-product="bag"
+        >
+
+            <div
+                class="product-image product-open"
+                data-product-link="product.html"
+            >
+
+                <div class="placeholder-image">
+                    <span>
+                        Product
+                    </span>
+                </div>
+
+
+                <button
+                    class="save-btn"
+                    aria-label="Save product"
+                    type="button"
+                >
+                    ♡
+                </button>
+
+            </div>
+
+
+            <div
+                class="product-info product-open"
+                data-product-link="product.html"
+            >
+
+                <p class="seller-name">
+                    Lilia Store
+                </p>
+
+
+                <h3>
+                    Minimal shoulder bag
+                </h3>
+
+
+                <div class="product-bottom">
+
+                    <strong>
+                        4,800 DA
+                    </strong>
+
+
+                    <span class="product-color">
+                        2 colors
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- PRODUCT 3 -->
+
+        <article
+            class="product-card"
+            data-category="accessories"
+            data-product="necklace"
+        >
+
+            <div
+                class="product-image product-open"
+                data-product-link="product.html"
+            >
+
+                <div class="placeholder-image">
+                    <span>
+                        Product
+                    </span>
+                </div>
+
+
+                <button
+                    class="save-btn"
+                    aria-label="Save product"
+                    type="button"
+                >
+                    ♡
+                </button>
+
+            </div>
+
+
+            <div
+                class="product-info product-open"
+                data-product-link="product.html"
+            >
+
+                <p class="seller-name">
+                    Mellow
+                </p>
+
+
+                <h3>
+                    Simple pearl necklace
+                </h3>
+
+
+                <div class="product-bottom">
+
+                    <strong>
+                        1,900 DA
+                    </strong>
+
+
+                    <span class="product-color">
+                        1 color
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- PRODUCT 4 -->
+
+        <article
+            class="product-card"
+            data-category="shoes"
+            data-product="flats"
+        >
+
+            <div
+                class="product-image product-open"
+                data-product-link="product.html"
+            >
+
+                <div class="placeholder-image">
+                    <span>
+                        Product
+                    </span>
+                </div>
+
+
+                <button
+                    class="save-btn"
+                    aria-label="Save product"
+                    type="button"
+                >
+                    ♡
+                </button>
+
+            </div>
+
+
+            <div
+                class="product-info product-open"
+                data-product-link="product.html"
+            >
+
+                <p class="seller-name">
+                    Rose Shop
+                </p>
+
+
+                <h3>
+                    Everyday ballet flats
+                </h3>
+
+
+                <div class="product-bottom">
+
+                    <strong>
+                        3,900 DA
+                    </strong>
+
+
+                    <span class="product-color">
+                        3 colors
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- SELLER CTA -->
+
+<section class="seller-banner">
+
+    <div>
+
+        <p
+            class="section-kicker"
+            data-i18n="sellerKicker"
+        >
+            Have a shop?
+        </p>
+
+
+        <h2 data-i18n="sellerTitle">
+            Bring your products<br>
+            to Leily.
+        </h2>
+
+
+        <p data-i18n="sellerDescription">
+            Create your seller page and let women discover
+            what you have to offer.
+        </p>
+
+    </div>
+
+
+    <button
+        class="secondary-btn"
+        id="sellerBtn"
+    >
+
+        <span data-i18n="becomeSeller">
+            Become a seller
+        </span>
+
+        →
+
+    </button>
+
+</section>
+
+</main><!-- BOTTOM NAVIGATION --><nav class="bottom-nav"><button
+    class="nav-item active"
+    data-page="home"
+>
+
+    <span>
+        ⌂
+    </span>
+
+    <small data-i18n="home">
+        Home
+    </small>
+
+</button>
+
+
+<button
+    class="nav-item"
+    data-page="search"
+>
+
+    <span>
+        ⌕
+    </span>
+
+    <small data-i18n="search">
+        Search
+    </small>
+
+</button>
+
+
+<button
+    class="nav-item"
+    data-page="saved"
+>
+
+    <span>
+        ♡
+    </span>
+
+    <small data-i18n="saved">
+        Saved
+    </small>
+
+</button>
+
+
+<button
+    class="nav-item"
+    data-page="account"
+>
+
+    <span>
+        ○
+    </span>
+
+    <small data-i18n="account">
+        Account
+    </small>
+
+</button>
+
+</nav><!-- LANGUAGE / ACCOUNT PANEL --><div
+    class="overlay"
+    id="overlay"
+></div><aside
+    class="side-panel"
+    id="sidePanel"
+><button
+    class="close-btn"
+    id="closePanel"
+>
+    ×
+</button>
+
+
+<div class="panel-content">
+
+    <p class="section-kicker">
+        Leily
+    </p>
+
+
+    <h2 data-i18n="settings">
+        Settings
+    </h2>
+
+
+
+    <div class="setting-card">
+
+        <div>
+
+            <strong data-i18n="language">
+                Language
+            </strong>
+
+
+            <p data-i18n="chooseLanguage">
+                Choose your language
+            </p>
+
+        </div>
+
+
+        <select id="languageSelect">
+
+            <option value="en">
+                English
+            </option>
+
+            <option value="ar">
+                العربية
+            </option>
+
+        </select>
+
+    </div>
+
+
+
+    <button class="panel-action">
+
+        <span>
+            ♡
+        </span>
+
+        <span data-i18n="savedProducts">
+            Saved products
+        </span>
+
+    </button>
+
+
+
+    <button class="panel-action">
+
+        <span>
+            ○
+        </span>
+
+        <span data-i18n="myAccount">
+            My account
+        </span>
+
+    </button>
+
+
+
+    <button class="panel-action">
+
+        <span>
+            ＋
+        </span>
+
+        <span data-i18n="sellerAccount">
+            Seller account
+        </span>
+
+    </button>
+
+</div>
+
+</aside><script src="script.js"></script></body>
 </html>
+```
