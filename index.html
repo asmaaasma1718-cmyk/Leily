@@ -1,71 +1,85 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#f8dfe5">
-<meta name="description" content="Leily — A soft and simple shopping space for women.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="style.css">
-<link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f8dfe5">
+    <meta name="description" content="Leily — A soft and simple shopping space for women.">
 
-<title>Leily</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
 
-</head><body><header class="top-header"><div class="header-left">
+    <title>Leily</title>
+</head>
 
-    <button class="icon-btn mobile-menu" id="menuBtn">
-        ☰
-    </button>
+<body>
 
-    <a href="#" class="logo-container">
-        <img src="leily-logo.png" alt="Leily" class="logo">
-    </a>
+<header class="top-header">
 
-</div>
+    <div class="header-left">
 
+        <button class="icon-btn mobile-menu" id="menuBtn">
+            ☰
+        </button>
 
-<div class="search-container">
+        <a href="#" class="logo-container">
+            <img src="leily-logo.png" alt="Leily" class="logo">
+        </a>
 
-    <span class="search-icon">
-        ⌕
-    </span>
-
-    <input
-        type="search"
-        id="searchInput"
-        placeholder="Search for products..."
-    >
-
-</div>
+    </div>
 
 
-<div class="header-actions">
+    <div class="search-container">
 
-    <button
-        class="icon-btn"
-        id="savedBtn"
-        title="Saved"
-    >
-        ♡
-    </button>
-
-
-    <button
-        class="profile-btn"
-        id="profileBtn"
-    >
-
-        <span class="profile-icon">
-            ○
+        <span class="search-icon">
+            ⌕
         </span>
 
-        <span id="accountText">
-            Account
-        </span>
+        <input
+            type="search"
+            id="searchInput"
+            placeholder="Search for products..."
+        >
 
-    </button>
+    </div>
 
-</div>
 
-</header><main><!-- HERO -->
+    <div class="header-actions">
+
+        <button
+            class="icon-btn"
+            id="savedBtn"
+            title="Saved"
+        >
+            ♡
+        </button>
+
+
+        <button
+            class="profile-btn"
+            id="profileBtn"
+        >
+
+            <span class="profile-icon">
+                ○
+            </span>
+
+            <span id="accountText">
+                Account
+            </span>
+
+        </button>
+
+    </div>
+
+</header>
+
+
+<main>
+
+<!-- HERO -->
 
 <section class="hero">
 
@@ -165,7 +179,6 @@
 
 
     <div class="categories">
-
 
         <button
             class="category-card active"
@@ -294,13 +307,14 @@
 
             <p
                 class="section-kicker"
+                id="productsKicker"
                 data-i18n="fresh"
             >
                 Fresh finds
             </p>
 
 
-            <h2 data-i18n="newProducts">
+            <h2 id="productsTitle" data-i18n="newProducts">
                 New products
             </h2>
 
@@ -361,8 +375,10 @@
             </div>
 
 
-            <div class="product-info product-open"
-                 data-product-link="product.html">
+            <div
+                class="product-info product-open"
+                data-product-link="product.html"
+            >
 
                 <p class="seller-name">
                     Sara Boutique
@@ -588,6 +604,45 @@
 
     </div>
 
+
+    <!-- SAVED EMPTY MESSAGE -->
+
+    <div
+        id="savedEmpty"
+        style="display:none; text-align:center; padding:40px 20px;"
+    >
+        <p style="font-size:40px; margin:0 0 10px;">
+            ♡
+        </p>
+
+        <h3 id="savedEmptyTitle">
+            No saved products yet
+        </h3>
+
+        <p id="savedEmptyText">
+            Products you save will appear here.
+        </p>
+
+    </div>
+
+
+    <!-- BACK TO PRODUCTS -->
+
+    <div
+        id="backToProducts"
+        style="display:none; text-align:center; margin-top:25px;"
+    >
+
+        <button
+            class="secondary-btn"
+            id="backToAllProducts"
+            type="button"
+        >
+            ← Back to products
+        </button>
+
+    </div>
+
 </section>
 
 
@@ -635,170 +690,205 @@
 
 </section>
 
-</main><!-- BOTTOM NAVIGATION --><nav class="bottom-nav"><button
-    class="nav-item active"
-    data-page="home"
->
-
-    <span>
-        ⌂
-    </span>
-
-    <small data-i18n="home">
-        Home
-    </small>
-
-</button>
-
-
-<button
-    class="nav-item"
-    data-page="search"
->
-
-    <span>
-        ⌕
-    </span>
-
-    <small data-i18n="search">
-        Search
-    </small>
-
-</button>
-
-
-<button
-    class="nav-item"
-    data-page="saved"
->
-
-    <span>
-        ♡
-    </span>
-
-    <small data-i18n="saved">
-        Saved
-    </small>
-
-</button>
-
-
-<button
-    class="nav-item"
-    data-page="account"
->
-
-    <span>
-        ○
-    </span>
-
-    <small data-i18n="account">
-        Account
-    </small>
-
-</button>
-
-</nav><!-- LANGUAGE / ACCOUNT PANEL --><div
-    class="overlay"
-    id="overlay"
-></div><aside
-    class="side-panel"
-    id="sidePanel"
-><button
-    class="close-btn"
-    id="closePanel"
->
-    ×
-</button>
-
-
-<div class="panel-content">
-
-    <p class="section-kicker">
-        Leily
-    </p>
-
-
-    <h2 data-i18n="settings">
-        Settings
-    </h2>
+</main>
 
 
 
-    <div class="setting-card">
+<!-- BOTTOM NAVIGATION -->
 
-        <div>
+<nav class="bottom-nav">
 
-            <strong data-i18n="language">
-                Language
-            </strong>
+    <button
+        class="nav-item active"
+        data-page="home"
+    >
 
+        <span>
+            ⌂
+        </span>
 
-            <p data-i18n="chooseLanguage">
-                Choose your language
-            </p>
+        <small data-i18n="home">
+            Home
+        </small>
 
-        </div>
-
-
-        <select id="languageSelect">
-
-            <option value="en">
-                English
-            </option>
-
-            <option value="ar">
-                العربية
-            </option>
-
-        </select>
-
-    </div>
+    </button>
 
 
+    <button
+        class="nav-item"
+        data-page="search"
+    >
 
-    <button class="panel-action">
+        <span>
+            ⌕
+        </span>
+
+        <small data-i18n="search">
+            Search
+        </small>
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        data-page="saved"
+    >
 
         <span>
             ♡
         </span>
 
-        <span data-i18n="savedProducts">
-            Saved products
-        </span>
+        <small data-i18n="saved">
+            Saved
+        </small>
 
     </button>
 
 
-
-    <button class="panel-action">
+    <button
+        class="nav-item"
+        data-page="account"
+    >
 
         <span>
             ○
         </span>
 
-        <span data-i18n="myAccount">
-            My account
-        </span>
+        <small data-i18n="account">
+            Account
+        </small>
 
     </button>
 
+</nav>
 
 
-    <button class="panel-action">
 
-        <span>
-            ＋
-        </span>
+<!-- LANGUAGE / ACCOUNT PANEL -->
 
-        <span data-i18n="sellerAccount">
-            Seller account
-        </span>
+<div
+    class="overlay"
+    id="overlay"
+></div>
 
+
+<aside
+    class="side-panel"
+    id="sidePanel"
+>
+
+    <button
+        class="close-btn"
+        id="closePanel"
+    >
+        ×
     </button>
 
-</div>
 
-</aside><script src="script.js"></script></body>
+    <div class="panel-content">
+
+        <p class="section-kicker">
+            Leily
+        </p>
+
+
+        <h2 data-i18n="settings">
+            Settings
+        </h2>
+
+
+
+        <div class="setting-card">
+
+            <div>
+
+                <strong data-i18n="language">
+                    Language
+                </strong>
+
+
+                <p data-i18n="chooseLanguage">
+                    Choose your language
+                </p>
+
+            </div>
+
+
+            <select id="languageSelect">
+
+                <option value="en">
+                    English
+                </option>
+
+                <option value="ar">
+                    العربية
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <button
+            class="panel-action"
+            id="savedPanelBtn"
+            type="button"
+        >
+
+            <span>
+                ♡
+            </span>
+
+            <span data-i18n="savedProducts">
+                Saved products
+            </span>
+
+        </button>
+
+
+
+        <button
+            class="panel-action"
+            id="accountPanelBtn"
+            type="button"
+        >
+
+            <span>
+                ○
+            </span>
+
+            <span data-i18n="myAccount">
+                My account
+            </span>
+
+        </button>
+
+
+
+        <button
+            class="panel-action"
+            id="sellerPanelBtn"
+            type="button"
+        >
+
+            <span>
+                ＋
+            </span>
+
+            <span data-i18n="sellerAccount">
+                Seller account
+            </span>
+
+        </button>
+
+    </div>
+
+</aside>
+
+
+<script src="script.js"></script>
+
+</body>
 </html>
-```
