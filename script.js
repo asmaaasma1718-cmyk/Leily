@@ -1,171 +1,376 @@
 const translations = {
 
     en: {
-
         welcome: "Welcome to Leily",
-
-        heroTitle:
-            "Find something<br>you’ll love.",
-
+        heroTitle: "Find something<br>you’ll love.",
         heroDescription:
             "Discover clothing and little things chosen for you, all in one soft and simple place.",
-
         explore: "Explore products",
-
         discover: "Discover",
-
         categories: "Categories",
-
         viewAll: "View all",
-
         all: "All",
-
         clothes: "Clothes",
-
         shoes: "Shoes",
-
         bags: "Bags",
-
         accessories: "Accessories",
-
         beauty: "Beauty",
-
         kids: "Kids",
-
         fresh: "Fresh finds",
-
         newProducts: "New products",
-
         sellerKicker: "Have a shop?",
-
-        sellerTitle:
-            "Bring your products<br>to Leily.",
-
+        sellerTitle: "Bring your products<br>to Leily.",
         sellerDescription:
             "Create your seller page and let women discover what you have to offer.",
-
         becomeSeller: "Become a seller",
-
         home: "Home",
-
         search: "Search",
-
         saved: "Saved",
-
         account: "Account",
-
         settings: "Settings",
-
         language: "Language",
-
         chooseLanguage: "Choose your language",
-
         savedProducts: "Saved products",
-
         myAccount: "My account",
-
         sellerAccount: "Seller account",
-
         savedTitle: "Saved products",
-
         noSavedTitle: "No saved products yet",
-
-        noSavedText:
-            "Products you save will appear here.",
-
+        noSavedText: "Products you save will appear here.",
         backToProducts: "Back to products"
-
     },
 
-
     ar: {
-
         welcome: "مرحبًا بكِ في Leily",
-
-        heroTitle:
-            "اكتشفي شيئًا<br>ستحبينه.",
-
+        heroTitle: "اكتشفي شيئًا<br>ستحبينه.",
         heroDescription:
             "اكتشفي الملابس والأشياء الجميلة المختارة لكِ، في مكان واحد بسيط وناعم.",
-
         explore: "استكشفي المنتجات",
-
         discover: "اكتشفي",
-
         categories: "التصنيفات",
-
         viewAll: "عرض الكل",
-
         all: "الكل",
-
         clothes: "ملابس",
-
         shoes: "أحذية",
-
         bags: "حقائب",
-
         accessories: "إكسسوارات",
-
         beauty: "عناية",
-
         kids: "أطفال",
-
         fresh: "وصل حديثًا",
-
         newProducts: "أحدث المنتجات",
-
         sellerKicker: "لديكِ متجر؟",
-
-        sellerTitle:
-            "أضيفي منتجاتكِ<br>إلى Leily.",
-
+        sellerTitle: "أضيفي منتجاتكِ<br>إلى Leily.",
         sellerDescription:
             "أنشئي صفحة متجركِ ودعي النساء يكتشفن ما تقدمينه.",
-
         becomeSeller: "أصبحي بائعة",
-
         home: "الرئيسية",
-
         search: "البحث",
-
         saved: "المحفوظات",
-
         account: "الحساب",
-
         settings: "الإعدادات",
-
         language: "اللغة",
-
         chooseLanguage: "اختاري لغتكِ",
-
         savedProducts: "المنتجات المحفوظة",
-
         myAccount: "حسابي",
-
         sellerAccount: "حساب البائعة",
-
         savedTitle: "المنتجات المحفوظة",
-
         noSavedTitle: "لا توجد منتجات محفوظة بعد",
-
-        noSavedText:
-            "المنتجات التي تحفظينها ستظهر هنا.",
-
+        noSavedText: "المنتجات التي تحفظينها ستظهر هنا.",
         backToProducts: "العودة إلى المنتجات"
-
     }
 
 };
+
+
+/* =========================
+BASIC ELEMENTS
+========================= */
+
+const languageSelect =
+    document.getElementById("languageSelect");
+
+const sidePanel =
+    document.getElementById("sidePanel");
+
+const overlay =
+    document.getElementById("overlay");
+
+const menuBtn =
+    document.getElementById("menuBtn");
+
+const profileBtn =
+    document.getElementById("profileBtn");
+
+const closePanel =
+    document.getElementById("closePanel");
+
+const searchInput =
+    document.getElementById("searchInput");
+
+const productsGrid =
+    document.getElementById("productsGrid");
+
+const productsKicker =
+    document.getElementById("productsKicker");
+
+const productsTitle =
+    document.getElementById("productsTitle");
+
+const savedEmpty =
+    document.getElementById("savedEmpty");
+
+const backToProducts =
+    document.getElementById("backToProducts");
+
+const backToAllProducts =
+    document.getElementById("backToAllProducts");
+
+const savedButton =
+    document.getElementById("savedBtn");
+
+const savedPanelButton =
+    document.getElementById("savedPanelBtn");
+
+const accountPanelButton =
+    document.getElementById("accountPanelBtn");
+
+const sellerPanelButton =
+    document.getElementById("sellerPanelBtn");
+
+const sellerButton =
+    document.getElementById("sellerBtn");
+
+const exploreButton =
+    document.getElementById("exploreBtn");
+
+const viewProductsButton =
+    document.getElementById("viewProducts");
+
+const allCategoriesButton =
+    document.getElementById("allCategories");
+
+
+const categoryButtons =
+    document.querySelectorAll(".category-card");
+
+const productCards =
+    document.querySelectorAll(".product-card");
+
+
+/* =========================
+SAVED PRODUCTS
+========================= */
+
+const savedStorageKey =
+    "leily-saved-products";
+
+let savedProducts = [];
+
+try {
+
+    savedProducts =
+        JSON.parse(
+            localStorage.getItem(savedStorageKey) || "[]"
+        );
+
+    if (!Array.isArray(savedProducts)) {
+        savedProducts = [];
+    }
+
+} catch (error) {
+
+    savedProducts = [];
+
+}
+
+
+let savedMode = false;
+
+
+function saveSavedProducts() {
+
+    localStorage.setItem(
+        savedStorageKey,
+        JSON.stringify(savedProducts)
+    );
+
+}
+
+
+function isProductSaved(productId) {
+
+    return savedProducts.includes(productId);
+
+}
+
+
+function updateSaveButtons() {
+
+    document
+        .querySelectorAll(".save-btn")
+        .forEach(button => {
+
+            const productCard =
+                button.closest(".product-card");
+
+            if (!productCard) {
+                return;
+            }
+
+            const productId =
+                productCard.dataset.product;
+
+            if (isProductSaved(productId)) {
+
+                button.classList.add("saved");
+                button.textContent = "♥";
+
+            } else {
+
+                button.classList.remove("saved");
+                button.textContent = "♡";
+
+            }
+
+        });
+
+}
+
+
+/* =========================
+SAVED VIEW
+========================= */
+
+function showAllProducts() {
+
+    savedMode = false;
+
+    const language =
+        document.documentElement.lang || "en";
+
+    const dictionary =
+        translations[language] || translations.en;
+
+
+    if (productsKicker) {
+        productsKicker.innerHTML =
+            dictionary.fresh;
+    }
+
+    if (productsTitle) {
+        productsTitle.innerHTML =
+            dictionary.newProducts;
+    }
+
+    if (savedEmpty) {
+        savedEmpty.style.display = "none";
+    }
+
+    if (backToProducts) {
+        backToProducts.style.display = "none";
+    }
+
+
+    productCards.forEach(card => {
+
+        card.style.display = "";
+
+    });
+
+
+    updateSaveButtons();
+
+}
+
+
+function showSavedProducts() {
+
+    savedMode = true;
+
+    const language =
+        document.documentElement.lang || "en";
+
+    const dictionary =
+        translations[language] || translations.en;
+
+
+    if (productsKicker) {
+        productsKicker.innerHTML =
+            dictionary.saved;
+    }
+
+    if (productsTitle) {
+        productsTitle.innerHTML =
+            dictionary.savedTitle;
+    }
+
+
+    let visibleCount = 0;
+
+
+    productCards.forEach(card => {
+
+        const productId =
+            card.dataset.product;
+
+        if (savedProducts.includes(productId)) {
+
+            card.style.display = "";
+            visibleCount++;
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+
+    if (savedEmpty) {
+
+        savedEmpty.style.display =
+            visibleCount === 0
+                ? "block"
+                : "none";
+
+    }
+
+
+    if (backToProducts) {
+        backToProducts.style.display = "block";
+    }
+
+
+    updateSaveButtons();
+
+}
+
+
+function openSavedProducts() {
+
+    closeSidePanel();
+
+    showSavedProducts();
+
+
+    const productsSection =
+        document.querySelector(".products-section");
+
+    if (productsSection) {
+
+        productsSection.scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }
+
+}
 
 
 
 /* =========================
 LANGUAGE
 ========================= */
-
-const languageSelect =
-    document.getElementById("languageSelect");
-
 
 function setLanguage(language) {
 
@@ -176,11 +381,14 @@ function setLanguage(language) {
         return;
     }
 
+
     document.documentElement.lang =
         language;
 
     document.documentElement.dir =
-        language === "ar" ? "rtl" : "ltr";
+        language === "ar"
+            ? "rtl"
+            : "ltr";
 
 
     document
@@ -200,55 +408,47 @@ function setLanguage(language) {
         });
 
 
-    const savedTitle =
-        document.getElementById(
-            "productsTitle"
-        );
+    if (savedEmpty) {
 
-    const savedEmptyTitle =
-        document.getElementById(
-            "savedEmptyTitle"
-        );
+        const title =
+            savedEmpty.querySelector("h3");
 
-    const savedEmptyText =
-        document.getElementById(
-            "savedEmptyText"
-        );
-
-    const backButton =
-        document.getElementById(
-            "backToAllProducts"
-        );
+        const text =
+            savedEmpty.querySelector("p:last-child");
 
 
-    if (savedEmptyTitle) {
+        if (title) {
+            title.textContent =
+                dictionary.noSavedTitle;
+        }
 
-        savedEmptyTitle.textContent =
-            dictionary.noSavedTitle;
+        if (text) {
+            text.textContent =
+                dictionary.noSavedText;
+        }
 
     }
 
 
-    if (savedEmptyText) {
+    if (backToAllProducts) {
 
-        savedEmptyText.textContent =
-            dictionary.noSavedText;
-
-    }
-
-
-    if (backButton) {
-
-        backButton.textContent =
+        backToAllProducts.textContent =
             dictionary.backToProducts;
 
     }
 
 
-    if (savedMode && savedTitle) {
+    if (savedMode) {
 
-        savedTitle.textContent =
-            dictionary.savedTitle;
+        if (productsKicker) {
+            productsKicker.innerHTML =
+                dictionary.saved;
+        }
+
+        if (productsTitle) {
+            productsTitle.innerHTML =
+                dictionary.savedTitle;
+        }
 
     }
 
@@ -262,9 +462,7 @@ function setLanguage(language) {
 
 
 const savedLanguage =
-    localStorage.getItem(
-        "leily-language"
-    ) || "en";
+    localStorage.getItem("leily-language") || "en";
 
 
 if (languageSelect) {
@@ -294,38 +492,14 @@ if (languageSelect) {
 SIDE PANEL
 ========================= */
 
-const sidePanel =
-    document.getElementById("sidePanel");
-
-const overlay =
-    document.getElementById("overlay");
-
-const menuBtn =
-    document.getElementById("menuBtn");
-
-const profileBtn =
-    document.getElementById("profileBtn");
-
-const closePanel =
-    document.getElementById("closePanel");
-
-
 function openPanel() {
 
     if (sidePanel) {
-
-        sidePanel.classList.add(
-            "open"
-        );
-
+        sidePanel.classList.add("open");
     }
 
     if (overlay) {
-
-        overlay.classList.add(
-            "visible"
-        );
-
+        overlay.classList.add("visible");
     }
 
 }
@@ -334,19 +508,11 @@ function openPanel() {
 function closeSidePanel() {
 
     if (sidePanel) {
-
-        sidePanel.classList.remove(
-            "open"
-        );
-
+        sidePanel.classList.remove("open");
     }
 
     if (overlay) {
-
-        overlay.classList.remove(
-            "visible"
-        );
-
+        overlay.classList.remove("visible");
     }
 
 }
@@ -394,84 +560,8 @@ if (overlay) {
 
 
 /* =========================
-SAVE PRODUCTS
+SAVE BUTTONS
 ========================= */
-
-const savedStorageKey =
-    "leily-saved-products";
-
-
-let savedProducts =
-    JSON.parse(
-        localStorage.getItem(
-            savedStorageKey
-        ) || "[]"
-    );
-
-
-function saveSavedProducts() {
-
-    localStorage.setItem(
-        savedStorageKey,
-        JSON.stringify(savedProducts)
-    );
-
-}
-
-
-function isProductSaved(productId) {
-
-    return savedProducts.includes(
-        productId
-    );
-
-}
-
-
-function updateSaveButtons() {
-
-    document
-        .querySelectorAll(".save-btn")
-        .forEach(button => {
-
-            const productCard =
-                button.closest(
-                    ".product-card"
-                );
-
-            if (!productCard) {
-                return;
-            }
-
-            const productId =
-                productCard.dataset.product;
-
-            if (
-                isProductSaved(productId)
-            ) {
-
-                button.classList.add(
-                    "saved"
-                );
-
-                button.textContent =
-                    "♥";
-
-            } else {
-
-                button.classList.remove(
-                    "saved"
-                );
-
-                button.textContent =
-                    "♡";
-
-            }
-
-        });
-
-}
-
 
 document
     .querySelectorAll(".save-btn")
@@ -483,14 +573,14 @@ document
 
                 event.stopPropagation();
 
+
                 const productCard =
-                    button.closest(
-                        ".product-card"
-                    );
+                    button.closest(".product-card");
 
                 if (!productCard) {
                     return;
                 }
+
 
                 const productId =
                     productCard.dataset.product;
@@ -501,22 +591,17 @@ document
 
 
                 if (
-                    savedProducts.includes(
-                        productId
-                    )
+                    savedProducts.includes(productId)
                 ) {
 
                     savedProducts =
                         savedProducts.filter(
-                            id =>
-                                id !== productId
+                            id => id !== productId
                         );
 
                 } else {
 
-                    savedProducts.push(
-                        productId
-                    );
+                    savedProducts.push(productId);
 
                 }
 
@@ -527,165 +612,13 @@ document
 
 
                 if (savedMode) {
-
                     showSavedProducts();
-
                 }
 
             }
         );
 
     });
-
-
-
-/* =========================
-SAVED PRODUCTS VIEW
-========================= */
-
-const productsGrid =
-    document.getElementById(
-        "productsGrid"
-    );
-
-const productsKicker =
-    document.getElementById(
-        "productsKicker"
-    );
-
-const productsTitle =
-    document.getElementById(
-        "productsTitle"
-    );
-
-const savedEmpty =
-    document.getElementById(
-        "savedEmpty"
-    );
-
-const backToProducts =
-    document.getElementById(
-        "backToProducts"
-    );
-
-const backToAllProducts =
-    document.getElementById(
-        "backToAllProducts"
-    );
-
-
-let savedMode = false;
-
-
-function showAllProducts() {
-
-    savedMode = false;
-
-
-    const dictionary =
-        translations[
-            document.documentElement.lang
-        ] || translations.en;
-
-
-    productsKicker.innerHTML =
-        dictionary.fresh;
-
-    productsTitle.innerHTML =
-        dictionary.newProducts;
-
-
-    document
-        .querySelectorAll(".product-card")
-        .forEach(card => {
-
-            card.style.display = "";
-
-        });
-
-
-    savedEmpty.style.display =
-        "none";
-
-    backToProducts.style.display =
-        "none";
-
-
-    updateSaveButtons();
-
-}
-
-
-function showSavedProducts() {
-
-    savedMode = true;
-
-
-    const dictionary =
-        translations[
-            document.documentElement.lang
-        ] || translations.en;
-
-
-    productsKicker.innerHTML =
-        dictionary.saved;
-
-    productsTitle.innerHTML =
-        dictionary.savedTitle;
-
-
-    let visibleCount = 0;
-
-
-    document
-        .querySelectorAll(".product-card")
-        .forEach(card => {
-
-            const productId =
-                card.dataset.product;
-
-
-            if (
-                savedProducts.includes(
-                    productId
-                )
-            ) {
-
-                card.style.display =
-                    "";
-
-                visibleCount++;
-
-            } else {
-
-                card.style.display =
-                    "none";
-
-            }
-
-        });
-
-
-    if (visibleCount === 0) {
-
-        savedEmpty.style.display =
-            "block";
-
-    } else {
-
-        savedEmpty.style.display =
-            "none";
-
-    }
-
-
-    backToProducts.style.display =
-        "block";
-
-
-    updateSaveButtons();
-
-}
 
 
 
@@ -702,21 +635,14 @@ document
             event => {
 
                 if (
-                    event.target.closest(
-                        ".save-btn"
-                    )
+                    event.target.closest(".save-btn")
                 ) {
-
                     return;
-
                 }
 
 
                 const productCard =
-                    element.closest(
-                        ".product-card"
-                    );
-
+                    element.closest(".product-card");
 
                 if (!productCard) {
                     return;
@@ -726,7 +652,6 @@ document
                 const productId =
                     productCard.dataset.product;
 
-
                 if (!productId) {
                     return;
                 }
@@ -734,9 +659,7 @@ document
 
                 window.location.href =
                     "product.html?product=" +
-                    encodeURIComponent(
-                        productId
-                    );
+                    encodeURIComponent(productId);
 
             }
         );
@@ -749,90 +672,56 @@ document
 CATEGORY FILTER
 ========================= */
 
-const categoryButtons =
-    document.querySelectorAll(
-        ".category-card"
-    );
+categoryButtons.forEach(button => {
 
-const productCards =
-    document.querySelectorAll(
-        ".product-card"
-    );
+    button.addEventListener(
+        "click",
+        () => {
+
+            showAllProducts();
 
 
-categoryButtons.forEach(
-    button => {
+            categoryButtons.forEach(item => {
 
-        button.addEventListener(
-            "click",
-            () => {
+                item.classList.remove("active");
 
-                if (savedMode) {
+            });
 
-                    showAllProducts();
+
+            button.classList.add("active");
+
+
+            const category =
+                button.dataset.category;
+
+
+            productCards.forEach(card => {
+
+                if (
+                    category === "all" ||
+                    card.dataset.category === category
+                ) {
+
+                    card.style.display = "";
+
+                } else {
+
+                    card.style.display = "none";
 
                 }
 
+            });
 
-                categoryButtons.forEach(
-                    item => {
+        }
+    );
 
-                        item.classList.remove(
-                            "active"
-                        );
-
-                    }
-                );
-
-
-                button.classList.add(
-                    "active"
-                );
-
-
-                const category =
-                    button.dataset.category;
-
-
-                productCards.forEach(
-                    card => {
-
-                        if (
-                            category === "all" ||
-                            card.dataset.category ===
-                            category
-                        ) {
-
-                            card.style.display =
-                                "";
-
-                        } else {
-
-                            card.style.display =
-                                "none";
-
-                        }
-
-                    }
-                );
-
-            }
-        );
-
-    }
-);
+});
 
 
 
 /* =========================
 SEARCH
 ========================= */
-
-const searchInput =
-    document.getElementById(
-        "searchInput"
-    );
-
 
 if (searchInput) {
 
@@ -841,9 +730,7 @@ if (searchInput) {
         () => {
 
             if (savedMode) {
-
                 showAllProducts();
-
             }
 
 
@@ -853,21 +740,18 @@ if (searchInput) {
                     .toLowerCase();
 
 
-            productCards.forEach(
-                card => {
+            productCards.forEach(card => {
 
-                    const text =
-                        card.textContent
-                            .toLowerCase();
+                const text =
+                    card.textContent.toLowerCase();
 
 
-                    card.style.display =
-                        text.includes(search)
-                            ? ""
-                            : "none";
+                card.style.display =
+                    text.includes(search)
+                        ? ""
+                        : "none";
 
-                }
-            );
+            });
 
         }
     );
@@ -877,14 +761,8 @@ if (searchInput) {
 
 
 /* =========================
-EXPLORE BUTTON
+EXPLORE
 ========================= */
-
-const exploreButton =
-    document.getElementById(
-        "exploreBtn"
-    );
-
 
 if (exploreButton) {
 
@@ -929,9 +807,7 @@ document
             () => {
 
                 document
-                    .querySelectorAll(
-                        ".nav-item"
-                    )
+                    .querySelectorAll(".nav-item")
                     .forEach(nav => {
 
                         nav.classList.remove(
@@ -941,18 +817,14 @@ document
                     });
 
 
-                item.classList.add(
-                    "active"
-                );
+                item.classList.add("active");
 
 
                 const page =
                     item.dataset.page;
 
 
-                if (
-                    page === "home"
-                ) {
+                if (page === "home") {
 
                     showAllProducts();
 
@@ -976,33 +848,14 @@ document
                 }
 
 
-                if (
-                    page === "saved"
-                ) {
+                if (page === "saved") {
 
-                    showSavedProducts();
-
-
-                    const productsSection =
-                        document.querySelector(
-                            ".products-section"
-                        );
-
-
-                    if (productsSection) {
-
-                        productsSection.scrollIntoView({
-                            behavior: "smooth"
-                        });
-
-                    }
+                    openSavedProducts();
 
                 }
 
 
-                if (
-                    page === "account"
-                ) {
+                if (page === "account") {
 
                     openPanel();
 
@@ -1016,39 +869,14 @@ document
 
 
 /* =========================
-TOP SAVED BUTTON
+TOP SAVED
 ========================= */
-
-const savedButton =
-    document.getElementById(
-        "savedBtn"
-    );
-
 
 if (savedButton) {
 
     savedButton.addEventListener(
         "click",
-        () => {
-
-            showSavedProducts();
-
-
-            const productsSection =
-                document.querySelector(
-                    ".products-section"
-                );
-
-
-            if (productsSection) {
-
-                productsSection.scrollIntoView({
-                    behavior: "smooth"
-                });
-
-            }
-
-        }
+        openSavedProducts
     );
 
 }
@@ -1056,41 +884,14 @@ if (savedButton) {
 
 
 /* =========================
-SIDE PANEL SAVED BUTTON
+SIDE PANEL SAVED
 ========================= */
-
-const savedPanelButton =
-    document.getElementById(
-        "savedPanelBtn"
-    );
-
 
 if (savedPanelButton) {
 
     savedPanelButton.addEventListener(
         "click",
-        () => {
-
-            closeSidePanel();
-
-            showSavedProducts();
-
-
-            const productsSection =
-                document.querySelector(
-                    ".products-section"
-                );
-
-
-            if (productsSection) {
-
-                productsSection.scrollIntoView({
-                    behavior: "smooth"
-                });
-
-            }
-
-        }
+        openSavedProducts
     );
 
 }
@@ -1098,7 +899,7 @@ if (savedPanelButton) {
 
 
 /* =========================
-BACK TO ALL PRODUCTS
+BACK TO PRODUCTS
 ========================= */
 
 if (backToAllProducts) {
@@ -1108,6 +909,7 @@ if (backToAllProducts) {
         () => {
 
             showAllProducts();
+
 
             const productsSection =
                 document.querySelector(
@@ -1133,12 +935,6 @@ if (backToAllProducts) {
 /* =========================
 VIEW ALL PRODUCTS
 ========================= */
-
-const viewProductsButton =
-    document.getElementById(
-        "viewProducts"
-    );
-
 
 if (viewProductsButton) {
 
@@ -1174,34 +970,20 @@ if (viewProductsButton) {
 VIEW ALL CATEGORIES
 ========================= */
 
-const allCategoriesButton =
-    document.getElementById(
-        "allCategories"
-    );
-
-
 if (allCategoriesButton) {
 
     allCategoriesButton.addEventListener(
         "click",
         () => {
 
-            if (savedMode) {
-
-                showAllProducts();
-
-            }
+            showAllProducts();
 
 
-            categoryButtons.forEach(
-                item => {
+            categoryButtons.forEach(item => {
 
-                    item.classList.remove(
-                        "active"
-                    );
+                item.classList.remove("active");
 
-                }
-            );
+            });
 
 
             const allButton =
@@ -1212,21 +994,16 @@ if (allCategoriesButton) {
 
             if (allButton) {
 
-                allButton.classList.add(
-                    "active"
-                );
+                allButton.classList.add("active");
 
             }
 
 
-            productCards.forEach(
-                card => {
+            productCards.forEach(card => {
 
-                    card.style.display =
-                        "";
+                card.style.display = "";
 
-                }
-            );
+            });
 
         }
     );
@@ -1238,12 +1015,6 @@ if (allCategoriesButton) {
 /* =========================
 SELLER BUTTON
 ========================= */
-
-const sellerButton =
-    document.getElementById(
-        "sellerBtn"
-    );
-
 
 if (sellerButton) {
 
@@ -1263,14 +1034,8 @@ if (sellerButton) {
 
 
 /* =========================
-SELLER PANEL BUTTON
+SELLER PANEL
 ========================= */
-
-const sellerPanelButton =
-    document.getElementById(
-        "sellerPanelBtn"
-    );
-
 
 if (sellerPanelButton) {
 
@@ -1289,14 +1054,8 @@ if (sellerPanelButton) {
 
 
 /* =========================
-ACCOUNT PANEL BUTTON
+ACCOUNT PANEL
 ========================= */
-
-const accountPanelButton =
-    document.getElementById(
-        "accountPanelBtn"
-    );
-
 
 if (accountPanelButton) {
 
@@ -1316,7 +1075,7 @@ if (accountPanelButton) {
 
 
 /* =========================
-INITIAL STATE
+INITIALIZE
 ========================= */
 
 updateSaveButtons();
