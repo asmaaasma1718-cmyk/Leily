@@ -1,335 +1,481 @@
 const translations = {
 
-    en: {
+en: {
 
-        welcome: "Welcome to Leily",
+    welcome: "Welcome to Leily",
 
-        heroTitle: "Find something<br>you’ll love.",
+    heroTitle: "Find something<br>you’ll love.",
 
-        heroDescription:
-            "Discover clothing and little things chosen for you, all in one soft and simple place.",
+    heroDescription:
+        "Discover clothing and little things chosen for you, all in one soft and simple place.",
 
-        explore: "Explore products",
+    explore: "Explore products",
 
-        discover: "Discover",
+    discover: "Discover",
 
-        categories: "Categories",
+    categories: "Categories",
 
-        viewAll: "View all",
+    viewAll: "View all",
 
-        all: "All",
+    all: "All",
 
-        clothes: "Clothes",
+    clothes: "Clothes",
 
-        shoes: "Shoes",
+    shoes: "Shoes",
 
-        bags: "Bags",
+    bags: "Bags",
 
-        accessories: "Accessories",
+    accessories: "Accessories",
 
-        beauty: "Beauty",
+    beauty: "Beauty",
 
-        kids: "Kids",
+    kids: "Kids",
 
-        fresh: "Fresh finds",
+    fresh: "Fresh finds",
 
-        newProducts: "New products",
+    newProducts: "New products",
 
-        sellerKicker: "Have a shop?",
+    sellerKicker: "Have a shop?",
 
-        sellerTitle: "Bring your products<br>to Leily.",
+    sellerTitle: "Bring your products<br>to Leily.",
 
-        sellerDescription:
-            "Create your seller page and let women discover what you have to offer.",
+    sellerDescription:
+        "Create your seller page and let women discover what you have to offer.",
 
-        becomeSeller: "Become a seller",
+    becomeSeller: "Become a seller",
 
-        home: "Home",
+    home: "Home",
 
-        search: "Search",
+    search: "Search",
 
-        saved: "Saved",
+    saved: "Saved",
 
-        account: "Account",
+    account: "Account",
 
-        settings: "Settings",
+    settings: "Settings",
 
-        language: "Language",
+    language: "Language",
 
-        chooseLanguage: "Choose your language",
+    chooseLanguage: "Choose your language",
 
-        savedProducts: "Saved products",
+    savedProducts: "Saved products",
 
-        myAccount: "My account",
+    myAccount: "My account",
 
-        sellerAccount: "Seller account"
+    sellerAccount: "Seller account"
 
-    },
+},
 
 
-    ar: {
+ar: {
 
-        welcome: "مرحبًا بكِ في Leily",
+    welcome: "مرحبًا بكِ في Leily",
 
-        heroTitle: "اكتشفي شيئًا<br>ستحبينه.",
+    heroTitle: "اكتشفي شيئًا<br>ستحبينه.",
 
-        heroDescription:
-            "اكتشفي الملابس والأشياء الجميلة المختارة لكِ، في مكان واحد بسيط وناعم.",
+    heroDescription:
+        "اكتشفي الملابس والأشياء الجميلة المختارة لكِ، في مكان واحد بسيط وناعم.",
 
-        explore: "استكشفي المنتجات",
+    explore: "استكشفي المنتجات",
 
-        discover: "اكتشفي",
+    discover: "اكتشفي",
 
-        categories: "التصنيفات",
+    categories: "التصنيفات",
 
-        viewAll: "عرض الكل",
+    viewAll: "عرض الكل",
 
-        all: "الكل",
+    all: "الكل",
 
-        clothes: "ملابس",
+    clothes: "ملابس",
 
-        shoes: "أحذية",
+    shoes: "أحذية",
 
-        bags: "حقائب",
+    bags: "حقائب",
 
-        accessories: "إكسسوارات",
+    accessories: "إكسسوارات",
 
-        beauty: "عناية",
+    beauty: "عناية",
 
-        kids: "أطفال",
+    kids: "أطفال",
 
-        fresh: "وصل حديثًا",
+    fresh: "وصل حديثًا",
 
-        newProducts: "أحدث المنتجات",
+    newProducts: "أحدث المنتجات",
 
-        sellerKicker: "لديكِ متجر؟",
+    sellerKicker: "لديكِ متجر؟",
 
-        sellerTitle: "أضيفي منتجاتكِ<br>إلى Leily.",
+    sellerTitle: "أضيفي منتجاتكِ<br>إلى Leily.",
 
-        sellerDescription:
-            "أنشئي صفحة متجركِ ودعي النساء يكتشفن ما تقدمينه.",
+    sellerDescription:
+        "أنشئي صفحة متجركِ ودعي النساء يكتشفن ما تقدمينه.",
 
-        becomeSeller: "أصبحي بائعة",
+    becomeSeller: "أصبحي بائعة",
 
-        home: "الرئيسية",
+    home: "الرئيسية",
 
-        search: "البحث",
+    search: "البحث",
 
-        saved: "المحفوظات",
+    saved: "المحفوظات",
 
-        account: "الحساب",
+    account: "الحساب",
 
-        settings: "الإعدادات",
+    settings: "الإعدادات",
 
-        language: "اللغة",
+    language: "اللغة",
 
-        chooseLanguage: "اختاري لغتكِ",
+    chooseLanguage: "اختاري لغتكِ",
 
-        savedProducts: "المنتجات المحفوظة",
+    savedProducts: "المنتجات المحفوظة",
 
-        myAccount: "حسابي",
+    myAccount: "حسابي",
 
-        sellerAccount: "حساب البائعة"
-
-    }
-
-};
-
-
-const languageSelect =
-    document.getElementById("languageSelect");
-
-
-function setLanguage(language) {
-
-    const dictionary = translations[language];
-
-    document.documentElement.lang = language;
-
-    document.documentElement.dir =
-        language === "ar" ? "rtl" : "ltr";
-
-
-    document.querySelectorAll("[data-i18n]")
-        .forEach(element => {
-
-            const key = element.dataset.i18n;
-
-            if (dictionary[key]) {
-
-                element.innerHTML =
-                    dictionary[key];
-
-            }
-
-        });
-
-
-    localStorage.setItem(
-        "leily-language",
-        language
-    );
+    sellerAccount: "حساب البائعة"
 
 }
 
+};
+
+/* LANGUAGE */
+
+const languageSelect =
+document.getElementById("languageSelect");
+
+function setLanguage(language) {
+
+const dictionary =
+    translations[language];
+
+
+document.documentElement.lang =
+    language;
+
+
+document.documentElement.dir =
+    language === "ar"
+        ? "rtl"
+        : "ltr";
+
+
+document
+    .querySelectorAll("[data-i18n]")
+    .forEach(element => {
+
+        const key =
+            element.dataset.i18n;
+
+
+        if (dictionary[key]) {
+
+            element.innerHTML =
+                dictionary[key];
+
+        }
+
+    });
+
+
+localStorage.setItem(
+    "leily-language",
+    language
+);
+
+}
 
 const savedLanguage =
-    localStorage.getItem("leily-language") || "en";
+localStorage.getItem(
+"leily-language"
+) || "en";
 
+if (languageSelect) {
 
-languageSelect.value = savedLanguage;
+languageSelect.value =
+    savedLanguage;
 
-setLanguage(savedLanguage);
+setLanguage(
+    savedLanguage
+);
 
 
 languageSelect.addEventListener(
     "change",
     event => {
 
-        setLanguage(event.target.value);
+        setLanguage(
+            event.target.value
+        );
 
     }
 );
 
+}
 
 /* PANEL */
 
 const sidePanel =
-    document.getElementById("sidePanel");
+document.getElementById(
+"sidePanel"
+);
 
 const overlay =
-    document.getElementById("overlay");
+document.getElementById(
+"overlay"
+);
 
 const menuBtn =
-    document.getElementById("menuBtn");
+document.getElementById(
+"menuBtn"
+);
 
 const profileBtn =
-    document.getElementById("profileBtn");
+document.getElementById(
+"profileBtn"
+);
 
 const closePanel =
-    document.getElementById("closePanel");
-
+document.getElementById(
+"closePanel"
+);
 
 function openPanel() {
 
-    sidePanel.classList.add("open");
+if (sidePanel) {
 
-    overlay.classList.add("visible");
+    sidePanel.classList.add(
+        "open"
+    );
 
 }
 
+
+if (overlay) {
+
+    overlay.classList.add(
+        "visible"
+    );
+
+}
+
+}
 
 function closeSidePanel() {
 
-    sidePanel.classList.remove("open");
+if (sidePanel) {
 
-    overlay.classList.remove("visible");
+    sidePanel.classList.remove(
+        "open"
+    );
 
 }
 
+
+if (overlay) {
+
+    overlay.classList.remove(
+        "visible"
+    );
+
+}
+
+}
+
+if (menuBtn) {
 
 menuBtn.addEventListener(
     "click",
     openPanel
 );
 
+}
+
+if (profileBtn) {
 
 profileBtn.addEventListener(
     "click",
     openPanel
 );
 
+}
+
+if (closePanel) {
 
 closePanel.addEventListener(
     "click",
     closeSidePanel
 );
 
+}
+
+if (overlay) {
 
 overlay.addEventListener(
     "click",
     closeSidePanel
 );
 
+}
 
 /* SAVE PRODUCTS */
 
-document.querySelectorAll(".save-btn")
-    .forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                button.classList.toggle("saved");
-
-                button.textContent =
-                    button.classList.contains("saved")
-                        ? "♥"
-                        : "♡";
-
-            }
-        );
-
-    });
-
-
-/* CATEGORY FILTER */
-
-const categoryButtons =
-    document.querySelectorAll(".category-card");
-
-const productCards =
-    document.querySelectorAll(".product-card");
-
-
-categoryButtons.forEach(button => {
+document
+.querySelectorAll(".save-btn")
+.forEach(button => {
 
     button.addEventListener(
         "click",
-        () => {
+        event => {
 
-            categoryButtons.forEach(
-                item =>
-                    item.classList.remove("active")
+            event.stopPropagation();
+
+
+            button.classList.toggle(
+                "saved"
             );
 
 
-            button.classList.add("active");
-
-
-            const category =
-                button.dataset.category;
-
-
-            productCards.forEach(card => {
-
-                if (
-                    category === "all" ||
-                    card.dataset.category === category
-                ) {
-
-                    card.style.display = "";
-
-                } else {
-
-                    card.style.display = "none";
-
-                }
-
-            });
+            button.textContent =
+                button.classList.contains(
+                    "saved"
+                )
+                    ? "♥"
+                    : "♡";
 
         }
     );
 
 });
 
+/* OPEN PRODUCT */
+
+document
+.querySelectorAll(".product-open")
+.forEach(element => {
+
+    element.addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target.closest(
+                    ".save-btn"
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            const productCard =
+                element.closest(
+                    ".product-card"
+                );
+
+
+            if (!productCard) {
+
+                return;
+
+            }
+
+
+            const productId =
+                productCard.dataset.product;
+
+
+            if (!productId) {
+
+                return;
+
+            }
+
+
+            window.location.href =
+                "product.html?product=" +
+                encodeURIComponent(
+                    productId
+                );
+
+        }
+    );
+
+});
+
+/* CATEGORY FILTER */
+
+const categoryButtons =
+document.querySelectorAll(
+".category-card"
+);
+
+const productCards =
+document.querySelectorAll(
+".product-card"
+);
+
+categoryButtons.forEach(
+button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            categoryButtons.forEach(
+                item => {
+
+                    item.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
+
+
+            button.classList.add(
+                "active"
+            );
+
+
+            const category =
+                button.dataset.category;
+
+
+            productCards.forEach(
+                card => {
+
+                    if (
+                        category === "all" ||
+                        card.dataset.category ===
+                            category
+                    ) {
+
+                        card.style.display =
+                            "";
+
+                    } else {
+
+                        card.style.display =
+                            "none";
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+}
+
+);
 
 /* SEARCH */
 
 const searchInput =
-    document.getElementById("searchInput");
+document.getElementById(
+"searchInput"
+);
 
+if (searchInput) {
 
 searchInput.addEventListener(
     "input",
@@ -341,103 +487,270 @@ searchInput.addEventListener(
                 .toLowerCase();
 
 
-        productCards.forEach(card => {
+        productCards.forEach(
+            card => {
 
-            const text =
-                card.textContent.toLowerCase();
-
-
-            card.style.display =
-                text.includes(search)
-                    ? ""
-                    : "none";
-
-        });
-
-    }
-);
+                const text =
+                    card.textContent
+                        .toLowerCase();
 
 
-/* EXPLORE */
-
-document.getElementById("exploreBtn")
-    .addEventListener(
-        "click",
-        () => {
-
-            document
-                .querySelector(".products-section")
-                .scrollIntoView({
-                    behavior: "smooth"
-                });
-
-        }
-    );
-
-
-/* BOTTOM NAV */
-
-document.querySelectorAll(".nav-item")
-    .forEach(item => {
-
-        item.addEventListener(
-            "click",
-            () => {
-
-                document.querySelectorAll(".nav-item")
-                    .forEach(
-                        nav =>
-                            nav.classList.remove("active")
-                    );
-
-
-                item.classList.add("active");
-
-
-                const page =
-                    item.dataset.page;
-
-
-                if (page === "search") {
-
-                    searchInput.focus();
-
-                }
-
-
-                if (page === "saved") {
-
-                    document
-                        .querySelector(".products-section")
-                        .scrollIntoView({
-                            behavior: "smooth"
-                        });
-
-                }
-
-
-                if (page === "account") {
-
-                    openPanel();
-
-                }
+                card.style.display =
+                    text.includes(search)
+                        ? ""
+                        : "none";
 
             }
         );
 
-    });
+    }
+);
+
+}
+
+/* EXPLORE */
+
+const exploreButton =
+document.getElementById(
+"exploreBtn"
+);
+
+if (exploreButton) {
+
+exploreButton.addEventListener(
+    "click",
+    () => {
+
+        const productsSection =
+            document.querySelector(
+                ".products-section"
+            );
 
 
-/* SELLER */
+        if (productsSection) {
 
-document.getElementById("sellerBtn")
-    .addEventListener(
+            productsSection.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
+
+    }
+);
+
+}
+
+/* BOTTOM NAVIGATION */
+
+document
+.querySelectorAll(".nav-item")
+.forEach(item => {
+
+    item.addEventListener(
         "click",
         () => {
 
-            alert(
-                "Seller registration will be connected to Supabase in the next stage."
+            document
+                .querySelectorAll(
+                    ".nav-item"
+                )
+                .forEach(nav => {
+
+                    nav.classList.remove(
+                        "active"
+                    );
+
+                });
+
+
+            item.classList.add(
+                "active"
             );
+
+
+            const page =
+                item.dataset.page;
+
+
+            if (
+                page === "search" &&
+                searchInput
+            ) {
+
+                searchInput.focus();
+
+            }
+
+
+            if (
+                page === "saved"
+            ) {
+
+                const productsSection =
+                    document.querySelector(
+                        ".products-section"
+                    );
+
+
+                if (productsSection) {
+
+                    productsSection.scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+                }
+
+            }
+
+
+            if (
+                page === "account"
+            ) {
+
+                openPanel();
+
+            }
 
         }
     );
+
+});
+
+/* SELLER */
+
+const sellerButton =
+document.getElementById(
+"sellerBtn"
+);
+
+if (sellerButton) {
+
+sellerButton.addEventListener(
+    "click",
+    () => {
+
+        alert(
+            "Seller registration will be connected to Supabase in the next stage."
+        );
+
+    }
+);
+
+}
+
+/* VIEW ALL CATEGORIES */
+
+const allCategoriesButton =
+document.getElementById(
+"allCategories"
+);
+
+if (allCategoriesButton) {
+
+allCategoriesButton.addEventListener(
+    "click",
+    () => {
+
+        categoryButtons.forEach(
+            item => {
+
+                item.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+        const allButton =
+            document.querySelector(
+                '.category-card[data-category="all"]'
+            );
+
+
+        if (allButton) {
+
+            allButton.classList.add(
+                "active"
+            );
+
+        }
+
+
+        productCards.forEach(
+            card => {
+
+                card.style.display =
+                    "";
+
+            }
+        );
+
+    }
+);
+
+}
+
+/* VIEW ALL PRODUCTS */
+
+const viewProductsButton =
+document.getElementById(
+"viewProducts"
+);
+
+if (viewProductsButton) {
+
+viewProductsButton.addEventListener(
+    "click",
+    () => {
+
+        const productsSection =
+            document.querySelector(
+                ".products-section"
+            );
+
+
+        if (productsSection) {
+
+            productsSection.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
+
+    }
+);
+
+}
+
+/* SAVED HEADER BUTTON */
+
+const savedButton =
+document.getElementById(
+"savedBtn"
+);
+
+if (savedButton) {
+
+savedButton.addEventListener(
+    "click",
+    () => {
+
+        const productsSection =
+            document.querySelector(
+                ".products-section"
+            );
+
+
+        if (productsSection) {
+
+            productsSection.scrollIntoView({
+                behavior: "smooth"
+            );
+
+        }
+
+    }
+);
+
+}
