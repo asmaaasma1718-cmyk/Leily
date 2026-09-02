@@ -192,19 +192,26 @@
 
     <header class="topbar">
         <a class="back" href="index.html">← Back</a>
+
         <div class="logo">Leily</div>
+
         <div style="width: 40px;"></div>
     </header>
+
 
     <main class="page">
 
         <section class="welcome">
+
             <h1>Seller Space</h1>
+
             <p>
                 Manage your store, products, orders and store settings
                 from one simple place.
             </p>
+
         </section>
+
 
         <section class="store-card">
 
@@ -215,11 +222,15 @@
                 </div>
 
                 <div class="store-info">
+
                     <h2>My Store</h2>
+
                     <p>Your seller profile</p>
+
                 </div>
 
             </div>
+
 
             <button class="edit-button" onclick="editStore()">
                 ✏️ Edit store information
@@ -227,94 +238,203 @@
 
         </section>
 
-        <h2 class="section-title">Store management</h2>
+
+        <h2 class="section-title">
+            Store management
+        </h2>
+
 
         <section class="grid">
 
             <a href="#" class="menu-card" onclick="openSection('products')">
-                <div class="icon">🛍️</div>
-                <h3>My Products</h3>
-                <p>Add, edit and manage your products.</p>
+
+                <div class="icon">
+                    🛍️
+                </div>
+
+                <h3>
+                    My Products
+                </h3>
+
+                <p>
+                    Add, edit and manage your products.
+                </p>
+
             </a>
+
 
             <a href="#" class="menu-card" onclick="openSection('orders')">
-                <div class="icon">📦</div>
-                <h3>Orders</h3>
-                <p>View and manage your customer orders.</p>
+
+                <div class="icon">
+                    📦
+                </div>
+
+                <h3>
+                    Orders
+                </h3>
+
+                <p>
+                    View and manage your customer orders.
+                </p>
+
             </a>
+
 
             <a href="#" class="menu-card" onclick="openSection('delivery')">
-                <div class="icon">🚚</div>
-                <h3>Delivery</h3>
-                <p>Set your delivery options and prices.</p>
+
+                <div class="icon">
+                    🚚
+                </div>
+
+                <h3>
+                    Delivery
+                </h3>
+
+                <p>
+                    Set your delivery options and prices.
+                </p>
+
             </a>
 
-            <a href="#" class="menu-card" onclick="openSection('payment')">
-                <div class="icon">💳</div>
-                <h3>Payment Methods</h3>
-                <p>Choose the payment methods your store accepts.</p>
+
+            <!-- Payment Methods -->
+
+            <a href="payment.html" class="menu-card">
+
+                <div class="icon">
+                    💳
+                </div>
+
+                <h3>
+                    Payment Methods
+                </h3>
+
+                <p>
+                    Choose the payment methods your store accepts.
+                </p>
+
             </a>
 
         </section>
 
-        <h2 class="section-title">Store settings</h2>
+
+        <h2 class="section-title">
+            Store settings
+        </h2>
+
 
         <section class="grid">
 
             <a href="#" class="menu-card" onclick="openSection('profile')">
-                <div class="icon">👤</div>
-                <h3>Store Profile</h3>
-                <p>Manage your store name, photo and information.</p>
+
+                <div class="icon">
+                    👤
+                </div>
+
+                <h3>
+                    Store Profile
+                </h3>
+
+                <p>
+                    Manage your store name, photo and information.
+                </p>
+
             </a>
 
+
             <a href="#" class="menu-card" onclick="openSection('policy')">
-                <div class="icon">📋</div>
-                <h3>Store Policy</h3>
-                <p>Add your payment, delivery and order policies.</p>
+
+                <div class="icon">
+                    📋
+                </div>
+
+                <h3>
+                    Store Policy
+                </h3>
+
+                <p>
+                    Add your payment, delivery and order policies.
+                </p>
+
             </a>
 
         </section>
 
+
         <div class="coming">
-            <strong>Leily Seller</strong><br>
+
+            <strong>
+                Leily Seller
+            </strong>
+
+            <br>
+
             This is the first version of your seller space.
             More features will be connected later, including real
             products, orders, accounts and payment settings.
+
         </div>
 
     </main>
 
+
     <script>
 
         function editStore() {
-            alert("Store information editing will be added soon.");
+
+            alert(
+                "Store information editing will be added soon."
+            );
+
         }
+
 
         function openSection(section) {
 
             if (section === "products") {
-                alert("My Products will be added next.");
+
+                alert(
+                    "My Products will be added next."
+                );
+
             }
+
 
             if (section === "orders") {
-                alert("Orders will be added soon.");
+
+                alert(
+                    "Orders will be added soon."
+                );
+
             }
+
 
             if (section === "delivery") {
-                alert("Delivery settings will be added soon.");
+
+                alert(
+                    "Delivery settings will be added soon."
+                );
+
             }
 
-            if (section === "payment") {
-                alert("Payment methods will be added next.");
-            }
 
             if (section === "profile") {
-                alert("Store profile settings will be added soon.");
+
+                alert(
+                    "Store profile settings will be added soon."
+                );
+
             }
 
+
             if (section === "policy") {
-                alert("Store policy will be added soon.");
+
+                alert(
+                    "Store policy will be added soon."
+                );
+
             }
+
         }
 
     </script>
