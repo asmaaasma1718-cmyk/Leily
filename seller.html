@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Leily — Seller</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #fffaf8;
+            color: #4f4141;
+        }
+
+        .topbar {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            background: #ffffff;
+            border-bottom: 1px solid #f1e5e2;
+        }
+
+        .back {
+            text-decoration: none;
+            color: #8d7777;
+            font-size: 14px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #b98592;
+            letter-spacing: 1px;
+        }
+
+        .page {
+            max-width: 900px;
+            margin: auto;
+            padding: 25px 18px 50px;
+        }
+
+        .welcome {
+            background: #f9e9ed;
+            border-radius: 22px;
+            padding: 25px;
+            margin-bottom: 22px;
+        }
+
+        .welcome h1 {
+            margin: 0 0 8px;
+            font-size: 25px;
+            color: #6b5559;
+        }
+
+        .welcome p {
+            margin: 0;
+            color: #8a7478;
+            line-height: 1.6;
+        }
+
+        .store-card {
+            background: #ffffff;
+            border-radius: 22px;
+            padding: 22px;
+            margin-bottom: 22px;
+            box-shadow: 0 5px 20px rgba(120, 90, 90, 0.06);
+        }
+
+        .store-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .store-image {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: #f4dce2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .store-info h2 {
+            margin: 0 0 6px;
+            font-size: 20px;
+            color: #5d4b4f;
+        }
+
+        .store-info p {
+            margin: 0;
+            color: #988386;
+            font-size: 14px;
+        }
+
+        .edit-button {
+            margin-top: 18px;
+            width: 100%;
+            border: none;
+            background: #f7e5e9;
+            color: #795f65;
+            padding: 13px;
+            border-radius: 14px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .section-title {
+            margin: 28px 3px 12px;
+            font-size: 19px;
+            color: #5d4b4f;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .menu-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 22px 16px;
+            text-decoration: none;
+            color: #5d4b4f;
+            box-shadow: 0 5px 20px rgba(120, 90, 90, 0.05);
+            transition: 0.2s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 15px;
+            background: #f9e9ed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 13px;
+        }
+
+        .menu-card h3 {
+            margin: 0 0 6px;
+            font-size: 16px;
+        }
+
+        .menu-card p {
+            margin: 0;
+            color: #998589;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .coming {
+            margin-top: 24px;
+            background: #fff4ed;
+            border-radius: 20px;
+            padding: 18px;
+            color: #896f65;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 500px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page {
+                padding-left: 14px;
+                padding-right: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="topbar">
+        <a class="back" href="index.html">← Back</a>
+        <div class="logo">Leily</div>
+        <div style="width: 40px;"></div>
+    </header>
+
+    <main class="page">
+
+        <section class="welcome">
+            <h1>Seller Space</h1>
+            <p>
+                Manage your store, products, orders and store settings
+                from one simple place.
+            </p>
+        </section>
+
+        <section class="store-card">
+
+            <div class="store-header">
+
+                <div class="store-image">
+                    👜
+                </div>
+
+                <div class="store-info">
+                    <h2>My Store</h2>
+                    <p>Your seller profile</p>
+                </div>
+
+            </div>
+
+            <button class="edit-button" onclick="editStore()">
+                ✏️ Edit store information
+            </button>
+
+        </section>
+
+        <h2 class="section-title">Store management</h2>
+
+        <section class="grid">
+
+            <a href="#" class="menu-card" onclick="openSection('products')">
+                <div class="icon">🛍️</div>
+                <h3>My Products</h3>
+                <p>Add, edit and manage your products.</p>
+            </a>
+
+            <a href="#" class="menu-card" onclick="openSection('orders')">
+                <div class="icon">📦</div>
+                <h3>Orders</h3>
+                <p>View and manage your customer orders.</p>
+            </a>
+
+            <a href="#" class="menu-card" onclick="openSection('delivery')">
+                <div class="icon">🚚</div>
+                <h3>Delivery</h3>
+                <p>Set your delivery options and prices.</p>
+            </a>
+
+            <a href="#" class="menu-card" onclick="openSection('payment')">
+                <div class="icon">💳</div>
+                <h3>Payment Methods</h3>
+                <p>Choose the payment methods your store accepts.</p>
+            </a>
+
+        </section>
+
+        <h2 class="section-title">Store settings</h2>
+
+        <section class="grid">
+
+            <a href="#" class="menu-card" onclick="openSection('profile')">
+                <div class="icon">👤</div>
+                <h3>Store Profile</h3>
+                <p>Manage your store name, photo and information.</p>
+            </a>
+
+            <a href="#" class="menu-card" onclick="openSection('policy')">
+                <div class="icon">📋</div>
+                <h3>Store Policy</h3>
+                <p>Add your payment, delivery and order policies.</p>
+            </a>
+
+        </section>
+
+        <div class="coming">
+            <strong>Leily Seller</strong><br>
+            This is the first version of your seller space.
+            More features will be connected later, including real
+            products, orders, accounts and payment settings.
+        </div>
+
+    </main>
+
+    <script>
+
+        function editStore() {
+            alert("Store information editing will be added soon.");
+        }
+
+        function openSection(section) {
+
+            if (section === "products") {
+                alert("My Products will be added next.");
+            }
+
+            if (section === "orders") {
+                alert("Orders will be added soon.");
+            }
+
+            if (section === "delivery") {
+                alert("Delivery settings will be added soon.");
+            }
+
+            if (section === "payment") {
+                alert("Payment methods will be added next.");
+            }
+
+            if (section === "profile") {
+                alert("Store profile settings will be added soon.");
+            }
+
+            if (section === "policy") {
+                alert("Store policy will be added soon.");
+            }
+        }
+
+    </script>
+
+</body>
+</html>
