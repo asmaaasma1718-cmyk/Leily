@@ -165,6 +165,47 @@
             line-height: 1.5;
         }
 
+        /* Store setup */
+
+        .setup-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(120, 90, 90, 0.05);
+        }
+
+        .setup-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #f2e7e4;
+        }
+
+        .setup-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .setup-label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #665255;
+            margin-bottom: 7px;
+        }
+
+        .setup-value {
+            font-size: 13px;
+            color: #918083;
+            line-height: 1.6;
+        }
+
+        .status-ok {
+            color: #6f9275;
+            font-weight: 600;
+        }
+
+        .status-empty {
+            color: #a28e8e;
+        }
+
         .coming {
             margin-top: 24px;
             background: #fff4ed;
@@ -191,11 +232,17 @@
 <body>
 
     <header class="topbar">
-        <a class="back" href="index.html">← Back</a>
 
-        <div class="logo">Leily</div>
+        <a class="back" href="index.html">
+            ← Back
+        </a>
+
+        <div class="logo">
+            Leily
+        </div>
 
         <div style="width: 40px;"></div>
+
     </header>
 
 
@@ -203,7 +250,9 @@
 
         <section class="welcome">
 
-            <h1>Seller Space</h1>
+            <h1>
+                Seller Space
+            </h1>
 
             <p>
                 Manage your store, products, orders and store settings
@@ -223,9 +272,13 @@
 
                 <div class="store-info">
 
-                    <h2>My Store</h2>
+                    <h2>
+                        My Store
+                    </h2>
 
-                    <p>Your seller profile</p>
+                    <p>
+                        Your seller profile
+                    </p>
 
                 </div>
 
@@ -246,7 +299,7 @@
 
         <section class="grid">
 
-            <a href="#" class="menu-card" onclick="openSection('products')">
+            <a href="#" class="menu-card" onclick="openSection('products'); return false;">
 
                 <div class="icon">
                     🛍️
@@ -263,7 +316,7 @@
             </a>
 
 
-            <a href="#" class="menu-card" onclick="openSection('orders')">
+            <a href="#" class="menu-card" onclick="openSection('orders'); return false;">
 
                 <div class="icon">
                     📦
@@ -280,7 +333,9 @@
             </a>
 
 
-            <a href="#" class="menu-card" onclick="openSection('delivery')">
+            <!-- Delivery -->
+
+            <a href="delivery.html" class="menu-card">
 
                 <div class="icon">
                     🚚
@@ -319,13 +374,67 @@
 
 
         <h2 class="section-title">
+            Current store setup
+        </h2>
+
+
+        <section class="setup-card">
+
+            <!-- Payment -->
+
+            <div class="setup-item">
+
+                <div class="setup-label">
+                    💳 Payment methods
+                </div>
+
+                <div id="paymentSummary" class="setup-value">
+                    Loading...
+                </div>
+
+            </div>
+
+
+            <!-- Delivery -->
+
+            <div class="setup-item">
+
+                <div class="setup-label">
+                    🚚 Delivery
+                </div>
+
+                <div id="deliverySummary" class="setup-value">
+                    Loading...
+                </div>
+
+            </div>
+
+
+            <!-- Delivery prices -->
+
+            <div class="setup-item">
+
+                <div class="setup-label">
+                    💰 Delivery prices
+                </div>
+
+                <div id="deliveryPricesSummary" class="setup-value">
+                    Loading...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <h2 class="section-title">
             Store settings
         </h2>
 
 
         <section class="grid">
 
-            <a href="#" class="menu-card" onclick="openSection('profile')">
+            <a href="#" class="menu-card" onclick="openSection('profile'); return false;">
 
                 <div class="icon">
                     👤
@@ -342,7 +451,7 @@
             </a>
 
 
-            <a href="#" class="menu-card" onclick="openSection('policy')">
+            <a href="#" class="menu-card" onclick="openSection('policy'); return false;">
 
                 <div class="icon">
                     📋
@@ -380,6 +489,19 @@
 
     <script>
 
+        const PAYMENT_STORAGE_KEY = "leilyPaymentSettings";
+
+        const DELIVERY_PRICES_KEY = "leilyDeliveryPrices";
+
+        const DELIVERY_HOME_KEY = "leilyDeliveryHome";
+
+        const DELIVERY_OFFICE_KEY = "leilyDeliveryOffice";
+
+        const FLAT_HOME_KEY = "leilyFlatHome";
+
+        const FLAT_OFFICE_KEY = "leilyFlatOffice";
+
+
         function editStore() {
 
             alert(
@@ -409,15 +531,6 @@
             }
 
 
-            if (section === "delivery") {
-
-                alert(
-                    "Delivery settings will be added soon."
-                );
-
-            }
-
-
             if (section === "profile") {
 
                 alert(
@@ -436,6 +549,303 @@
             }
 
         }
+
+
+        // -----------------------------------------
+        // PAYMENT SUMMARY
+        // -----------------------------------------
+
+        function loadPaymentSummary() {
+
+            const element =
+                document.getElementById("paymentSummary");
+
+
+            const saved =
+                localStorage.getItem(PAYMENT_STORAGE_KEY);
+
+
+            if (!saved) {
+
+                element.innerHTML =
+                    '<span class="status-empty">No payment methods configured yet.</span>';
+
+                return;
+            }
+
+
+            try {
+
+                const settings =
+                    JSON.parse(saved);
+
+
+                const methods = [];
+
+
+                if (settings.cash === true) {
+
+                    methods.push("Cash on delivery");
+
+                }
+
+
+                if (settings.full === true) {
+
+                    methods.push("Full payment in advance");
+
+                }
+
+
+                if (settings.half === true) {
+
+                    methods.push("Half payment in advance");
+
+                }
+
+
+                if (methods.length === 0) {
+
+                    element.innerHTML =
+                        '<span class="status-empty">No payment method selected.</span>';
+
+                    return;
+                }
+
+
+                element.innerHTML =
+                    '<span class="status-ok">✓ Configured</span><br>' +
+                    methods.join("<br>");
+
+            } catch (error) {
+
+                element.innerHTML =
+                    '<span class="status-empty">Payment settings could not be read.</span>';
+
+            }
+
+        }
+
+
+        // -----------------------------------------
+        // DELIVERY SUMMARY
+        // -----------------------------------------
+
+        function loadDeliverySummary() {
+
+            const element =
+                document.getElementById("deliverySummary");
+
+
+            const home =
+                localStorage.getItem(DELIVERY_HOME_KEY) === "true";
+
+
+            const office =
+                localStorage.getItem(DELIVERY_OFFICE_KEY) === "true";
+
+
+            const flatHome =
+                localStorage.getItem(FLAT_HOME_KEY) || "";
+
+
+            const flatOffice =
+                localStorage.getItem(FLAT_OFFICE_KEY) || "";
+
+
+            const pricesRaw =
+                localStorage.getItem(DELIVERY_PRICES_KEY);
+
+
+            let provincePrices = {};
+
+            try {
+
+                provincePrices =
+                    pricesRaw ? JSON.parse(pricesRaw) : {};
+
+            } catch (error) {
+
+                provincePrices = {};
+
+            }
+
+
+            const savedProvinces =
+                Object.keys(provincePrices);
+
+
+            if (!home && !office && savedProvinces.length === 0) {
+
+                element.innerHTML =
+                    '<span class="status-empty">No delivery settings configured yet.</span>';
+
+                return;
+            }
+
+
+            let html =
+                '<span class="status-ok">✓ Configured</span><br>';
+
+
+            if (home) {
+
+                html += "Home delivery";
+
+                if (flatHome) {
+
+                    html += " — " + flatHome + " DA";
+
+                }
+
+                html += "<br>";
+
+            }
+
+
+            if (office) {
+
+                html += "Office pickup";
+
+                if (flatOffice) {
+
+                    html += " — " + flatOffice + " DA";
+
+                }
+
+                html += "<br>";
+
+            }
+
+
+            if (savedProvinces.length > 0) {
+
+                html +=
+                    "Province-specific prices: " +
+                    savedProvinces.length +
+                    " province(s)";
+
+            }
+
+
+            element.innerHTML = html;
+
+        }
+
+
+        // -----------------------------------------
+        // DELIVERY PRICE SUMMARY
+        // -----------------------------------------
+
+        function loadDeliveryPricesSummary() {
+
+            const element =
+                document.getElementById("deliveryPricesSummary");
+
+
+            const pricesRaw =
+                localStorage.getItem(DELIVERY_PRICES_KEY);
+
+
+            if (!pricesRaw) {
+
+                const flatHome =
+                    localStorage.getItem(FLAT_HOME_KEY);
+
+                const flatOffice =
+                    localStorage.getItem(FLAT_OFFICE_KEY);
+
+
+                if (!flatHome && !flatOffice) {
+
+                    element.innerHTML =
+                        '<span class="status-empty">No delivery prices configured yet.</span>';
+
+                    return;
+
+                }
+
+
+                let html = "";
+
+
+                if (flatHome) {
+
+                    html +=
+                        "Home: " +
+                        flatHome +
+                        " DA<br>";
+
+                }
+
+
+                if (flatOffice) {
+
+                    html +=
+                        "Office: " +
+                        flatOffice +
+                        " DA";
+
+                }
+
+
+                element.innerHTML = html;
+
+                return;
+            }
+
+
+            try {
+
+                const prices =
+                    JSON.parse(pricesRaw);
+
+
+                const provinces =
+                    Object.keys(prices);
+
+
+                if (provinces.length === 0) {
+
+                    element.innerHTML =
+                        '<span class="status-empty">No province prices configured yet.</span>';
+
+                    return;
+                }
+
+
+                element.innerHTML =
+                    '<span class="status-ok">✓ ' +
+                    provinces.length +
+                    ' province(s) configured</span><br>' +
+                    'Open Delivery to view or edit individual prices.';
+
+            } catch (error) {
+
+                element.innerHTML =
+                    '<span class="status-empty">Delivery prices could not be read.</span>';
+
+            }
+
+        }
+
+
+        // -----------------------------------------
+        // LOAD EVERYTHING
+        // -----------------------------------------
+
+        function loadStoreSetup() {
+
+            loadPaymentSummary();
+
+            loadDeliverySummary();
+
+            loadDeliveryPricesSummary();
+
+        }
+
+
+        loadStoreSetup();
 
     </script>
 
