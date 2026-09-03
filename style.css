@@ -856,12 +856,18 @@ button {
     }
 
 
+    /* MOBILE HEADER */
+
     .top-header {
-        height: 65px;
+        height: 60px;
 
         padding: 0 16px;
 
         gap: 10px;
+
+        position: relative;
+
+        z-index: 50;
     }
 
 
@@ -871,16 +877,19 @@ button {
 
 
     .logo {
-        width: 86px;
+        width: 62px;
+        height: auto;
     }
 
+
+    /* MOBILE SEARCH */
 
     .search-container {
         order: 3;
 
-        position: absolute;
+        position: fixed;
 
-        top: 73px;
+        top: 69px;
 
         left: 16px;
         right: 16px;
@@ -888,11 +897,15 @@ button {
         max-width: none;
 
         width: auto;
+
+        z-index: 55;
+
+        height: 44px;
     }
 
 
     .top-header {
-        margin-bottom: 55px;
+        margin-bottom: 58px;
     }
 
 
