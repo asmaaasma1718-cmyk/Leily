@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Leily — Payment Methods</title>
+    <title>Payment Methods - Leily</title>
 
     <style>
         * {
@@ -14,178 +13,227 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: #fffaf8;
-            color: #4f4141;
+            background: #fffaf7;
+            color: #4d4141;
         }
 
-        .topbar {
-            height: 70px;
+        .top-bar {
+            height: 60px;
+            background: #f9e9e7;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-            background: #ffffff;
-            border-bottom: 1px solid #f1e5e2;
+            padding: 0 18px;
+            position: relative;
+            border-bottom: 1px solid #f1d9d5;
         }
 
-        .back {
+        .back-btn {
             text-decoration: none;
-            color: #8d7777;
-            font-size: 14px;
+            color: #6d5959;
+            font-size: 15px;
+            font-weight: 600;
         }
 
         .logo {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
             font-size: 24px;
-            font-weight: bold;
-            color: #b98592;
+            font-weight: 700;
+            color: #8d6868;
             letter-spacing: 1px;
         }
 
-        .page {
-            max-width: 700px;
-            margin: auto;
-            padding: 25px 18px 50px;
+        .container {
+            max-width: 650px;
+            margin: 30px auto;
+            padding: 0 18px 50px;
         }
 
-        .intro {
-            background: #f9e9ed;
-            border-radius: 22px;
-            padding: 24px;
-            margin-bottom: 22px;
-        }
-
-        .intro h1 {
+        h1 {
             margin: 0 0 8px;
-            color: #6b5559;
-            font-size: 24px;
+            font-size: 27px;
+            color: #5d4a4a;
         }
 
-        .intro p {
-            margin: 0;
-            color: #8a7478;
-            line-height: 1.6;
+        .subtitle {
+            margin: 0 0 25px;
+            color: #8b7777;
             font-size: 14px;
+            line-height: 1.6;
         }
 
         .card {
-            background: #ffffff;
-            border-radius: 22px;
+            background: white;
+            border: 1px solid #f0dfdb;
+            border-radius: 18px;
             padding: 20px;
-            margin-bottom: 16px;
-            box-shadow: 0 5px 20px rgba(120, 90, 90, 0.06);
+            margin-bottom: 18px;
+            box-shadow: 0 4px 15px rgba(120, 90, 90, 0.05);
         }
 
-        .method {
+        .payment-option {
             display: flex;
-            align-items: flex-start;
-            gap: 14px;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f3e8e5;
         }
 
-        .method input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            margin-top: 3px;
-            accent-color: #c28c99;
+        .payment-option:last-of-type {
+            border-bottom: none;
         }
 
-        .method-content {
-            flex: 1;
+        .payment-option input[type="checkbox"] {
+            width: 19px;
+            height: 19px;
+            accent-color: #c99595;
+            cursor: pointer;
+            flex-shrink: 0;
         }
 
-        .method-title {
-            font-size: 17px;
-            font-weight: bold;
-            color: #5d4b4f;
-            margin-bottom: 6px;
+        .payment-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: #5f4d4d;
+            cursor: pointer;
         }
 
-        .method-description {
-            font-size: 13px;
-            color: #988386;
-            line-height: 1.6;
+        .payment-description {
+            font-size: 12px;
+            color: #9a8888;
+            margin-top: 4px;
+            line-height: 1.5;
         }
 
-        .payment-details {
+        .details-box {
             display: none;
-            margin-top: 18px;
-            padding-top: 18px;
-            border-top: 1px solid #f1e5e2;
+            background: #fff7f5;
+            border: 1px solid #f1dfdb;
+            border-radius: 14px;
+            padding: 15px;
+            margin: 8px 0 12px;
         }
 
-        .payment-details.show {
+        .details-box.show {
             display: block;
         }
 
-        label {
-            display: block;
-            margin-bottom: 7px;
-            color: #6d595e;
+        .details-title {
             font-size: 14px;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 13px;
-            border: 1px solid #eadcda;
-            border-radius: 13px;
-            outline: none;
-            font-size: 14px;
-            background: #fffdfc;
-        }
-
-        input[type="text"]:focus {
-            border-color: #d5aab5;
+            font-weight: 700;
+            color: #6a5555;
+            margin-bottom: 12px;
         }
 
         .field {
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
 
-        .notice {
-            background: #fff4ed;
-            border-radius: 16px;
-            padding: 15px;
-            color: #896f65;
-            font-size: 13px;
-            line-height: 1.6;
-            margin-top: 10px;
+        .field:last-child {
+            margin-bottom: 0;
         }
 
-        .save-button {
+        .field label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: #7d6868;
+            margin-bottom: 6px;
+        }
+
+        .field input {
             width: 100%;
-            border: none;
-            background: #c994a1;
-            color: white;
-            padding: 15px;
-            border-radius: 15px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 8px;
-        }
-
-        .save-button:active {
-            transform: scale(0.99);
-        }
-
-        .saved {
-            display: none;
-            margin-top: 15px;
-            background: #eef7ee;
-            color: #617561;
-            padding: 13px;
-            border-radius: 14px;
-            text-align: center;
+            padding: 12px;
+            border: 1px solid #e7d5d1;
+            border-radius: 10px;
+            background: white;
+            color: #514444;
+            outline: none;
             font-size: 14px;
         }
 
-        .saved.show {
+        .field input:focus {
+            border-color: #c99595;
+        }
+
+        .notice {
+            background: #fff4e9;
+            border: 1px solid #f2ddc7;
+            border-radius: 14px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 13px;
+            line-height: 1.7;
+            color: #795f4f;
+        }
+
+        .notice strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #6b5142;
+        }
+
+        .save-btn {
+            width: 100%;
+            border: none;
+            background: #c99595;
+            color: white;
+            padding: 14px;
+            border-radius: 13px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .save-btn:hover {
+            background: #b98282;
+        }
+
+        .success-message {
+            display: none;
+            background: #edf8ef;
+            border: 1px solid #cfe7d3;
+            color: #4f7356;
+            padding: 13px;
+            border-radius: 12px;
+            margin-top: 15px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .success-message.show {
             display: block;
         }
 
-        @media (max-width: 500px) {
-            .page {
-                padding-left: 14px;
-                padding-right: 14px;
+        .error-message {
+            display: none;
+            background: #fff0ef;
+            border: 1px solid #f0d0cd;
+            color: #9a5f5b;
+            padding: 13px;
+            border-radius: 12px;
+            margin-top: 15px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin-top: 24px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .card {
+                padding: 17px;
             }
         }
     </style>
@@ -193,246 +241,374 @@
 
 <body>
 
-<header class="topbar">
-    <a class="back" href="seller.html">← Back</a>
-    <div class="logo">Leily</div>
-    <div style="width: 40px;"></div>
-</header>
+    <div class="top-bar">
+        <a href="seller.html" class="back-btn">← Back</a>
+        <div class="logo">Leily</div>
+    </div>
 
-<main class="page">
+    <div class="container">
 
-    <section class="intro">
         <h1>Payment Methods</h1>
-        <p>
+
+        <p class="subtitle">
             Choose the payment methods your store accepts.
-            These settings will apply to your store.
+            These settings apply to your whole store.
         </p>
-    </section>
 
-    <!-- Cash on delivery -->
+        <div class="card">
 
-    <section class="card">
+            <!-- Cash on Delivery -->
+            <div class="payment-option">
+                <input
+                    type="checkbox"
+                    id="cashPayment"
+                    onchange="togglePaymentDetails()"
+                >
 
-        <div class="method">
+                <div>
+                    <label for="cashPayment" class="payment-label">
+                        Cash on delivery
+                    </label>
 
-            <input
-                type="checkbox"
-                id="cash"
-                checked
-            >
+                    <div class="payment-description">
+                        The buyer pays when receiving the order.
+                    </div>
+                </div>
+            </div>
 
-            <div class="method-content">
 
-                <div class="method-title">
-                    💵 Cash on delivery
+            <!-- Full Payment -->
+            <div class="payment-option">
+                <input
+                    type="checkbox"
+                    id="fullPayment"
+                    onchange="togglePaymentDetails()"
+                >
+
+                <div>
+                    <label for="fullPayment" class="payment-label">
+                        Full payment in advance
+                    </label>
+
+                    <div class="payment-description">
+                        The buyer pays the full amount before shipping.
+                    </div>
+                </div>
+            </div>
+
+            <div id="fullPaymentDetails" class="details-box">
+
+                <div class="details-title">
+                    Payment account details
                 </div>
 
-                <div class="method-description">
-                    The customer pays when receiving the order.
+                <div class="field">
+                    <label for="fullCCP">
+                        CCP
+                    </label>
+
+                    <input
+                        type="text"
+                        id="fullCCP"
+                        placeholder="Enter CCP number"
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="fullRIP">
+                        RIP
+                    </label>
+
+                    <input
+                        type="text"
+                        id="fullRIP"
+                        placeholder="Enter RIP number"
+                    >
                 </div>
 
             </div>
 
-        </div>
 
-    </section>
+            <!-- Half Payment -->
+            <div class="payment-option">
+                <input
+                    type="checkbox"
+                    id="halfPayment"
+                    onchange="togglePaymentDetails()"
+                >
 
-    <!-- Full payment -->
+                <div>
+                    <label for="halfPayment" class="payment-label">
+                        Half payment in advance
+                    </label>
 
-    <section class="card">
+                    <div class="payment-description">
+                        The buyer pays half before shipping and the rest on delivery.
+                    </div>
+                </div>
+            </div>
 
-        <div class="method">
+            <div id="halfPaymentDetails" class="details-box">
 
-            <input
-                type="checkbox"
-                id="full"
-                onchange="togglePaymentDetails()"
-            >
-
-            <div class="method-content">
-
-                <div class="method-title">
-                    💳 Full payment in advance
+                <div class="details-title">
+                    Payment account details
                 </div>
 
-                <div class="method-description">
-                    The customer transfers the full order amount
-                    after the seller accepts the order.
+                <div class="field">
+                    <label for="halfCCP">
+                        CCP
+                    </label>
+
+                    <input
+                        type="text"
+                        id="halfCCP"
+                        placeholder="Enter CCP number"
+                    >
                 </div>
 
-                <div id="fullDetails" class="payment-details">
+                <div class="field">
+                    <label for="halfRIP">
+                        RIP
+                    </label>
 
-                    <div class="field">
-                        <label for="fullCCP">
-                            CCP account
-                        </label>
-
-                        <input
-                            type="text"
-                            id="fullCCP"
-                            placeholder="Enter CCP account"
-                        >
-                    </div>
-
-                    <div class="field">
-                        <label for="fullRIP">
-                            RIP
-                        </label>
-
-                        <input
-                            type="text"
-                            id="fullRIP"
-                            placeholder="Enter RIP"
-                        >
-                    </div>
-
+                    <input
+                        type="text"
+                        id="halfRIP"
+                        placeholder="Enter RIP number"
+                    >
                 </div>
 
             </div>
 
-        </div>
 
-    </section>
+            <!-- Notice -->
+            <div class="notice">
+                <strong>Important</strong>
 
-    <!-- Half payment -->
+                Your CCP/RIP information will not be displayed publicly
+                on your store page.
 
-    <section class="card">
-
-        <div class="method">
-
-            <input
-                type="checkbox"
-                id="half"
-                onchange="togglePaymentDetails()"
-            >
-
-            <div class="method-content">
-
-                <div class="method-title">
-                    💰 Half payment in advance
-                </div>
-
-                <div class="method-description">
-                    The customer pays half of the order amount
-                    before shipping and the remaining amount
-                    when receiving the order.
-                </div>
-
-                <div id="halfDetails" class="payment-details">
-
-                    <div class="field">
-                        <label for="halfCCP">
-                            CCP account
-                        </label>
-
-                        <input
-                            type="text"
-                            id="halfCCP"
-                            placeholder="Enter CCP account"
-                        >
-                    </div>
-
-                    <div class="field">
-                        <label for="halfRIP">
-                            RIP
-                        </label>
-
-                        <input
-                            type="text"
-                            id="halfRIP"
-                            placeholder="Enter RIP"
-                        >
-                    </div>
-
-                </div>
-
+                If a buyer chooses an advance-payment method,
+                the payment details will only be shown to that buyer
+                after you accept the order.
             </div>
 
+
+            <button class="save-btn" onclick="saveSettings()">
+                Save Payment Settings
+            </button>
+
+            <div id="successMessage" class="success-message">
+                Payment settings saved successfully.
+            </div>
+
+            <div id="errorMessage" class="error-message"></div>
+
         </div>
 
-    </section>
-
-    <div class="notice">
-        <strong>Important:</strong><br>
-        CCP and RIP information will not be displayed publicly
-        on the seller's store page. They will only be shown to
-        the customer after the seller accepts an order that
-        requires advance payment.
     </div>
 
-    <button class="save-button" onclick="saveSettings()">
-        Save payment settings
-    </button>
 
-    <div id="savedMessage" class="saved">
-        ✓ Payment settings saved successfully.
-    </div>
+    <script>
 
-</main>
-
-<script>
-
-    function togglePaymentDetails() {
-
-        const full = document.getElementById("full");
-        const half = document.getElementById("half");
-
-        const fullDetails = document.getElementById("fullDetails");
-        const halfDetails = document.getElementById("halfDetails");
-
-        if (full.checked) {
-            fullDetails.classList.add("show");
-        } else {
-            fullDetails.classList.remove("show");
-        }
-
-        if (half.checked) {
-            halfDetails.classList.add("show");
-        } else {
-            halfDetails.classList.remove("show");
-        }
-    }
+        const PAYMENT_STORAGE_KEY = "leilyPaymentSettings";
 
 
-    function saveSettings() {
+        // Load saved settings
+        function loadSettings() {
 
-        const cash = document.getElementById("cash").checked;
-        const full = document.getElementById("full").checked;
-        const half = document.getElementById("half").checked;
+            const saved = localStorage.getItem(PAYMENT_STORAGE_KEY);
 
-        if (!cash && !full && !half) {
-            alert("Please select at least one payment method.");
-            return;
-        }
+            if (!saved) {
 
-        if (full) {
+                // Default: cash on delivery
+                document.getElementById("cashPayment").checked = true;
 
-            const ccp = document.getElementById("fullCCP").value.trim();
-            const rip = document.getElementById("fullRIP").value.trim();
+                togglePaymentDetails();
 
-            if (!ccp && !rip) {
-                alert("Please enter your CCP or RIP information.");
                 return;
+            }
+
+            try {
+
+                const settings = JSON.parse(saved);
+
+                document.getElementById("cashPayment").checked =
+                    settings.cash === true;
+
+                document.getElementById("fullPayment").checked =
+                    settings.full === true;
+
+                document.getElementById("halfPayment").checked =
+                    settings.half === true;
+
+
+                document.getElementById("fullCCP").value =
+                    settings.fullCCP || "";
+
+                document.getElementById("fullRIP").value =
+                    settings.fullRIP || "";
+
+                document.getElementById("halfCCP").value =
+                    settings.halfCCP || "";
+
+                document.getElementById("halfRIP").value =
+                    settings.halfRIP || "";
+
+
+                togglePaymentDetails();
+
+            } catch (error) {
+
+                console.log("Could not load payment settings.");
+
+                document.getElementById("cashPayment").checked = true;
+
+                togglePaymentDetails();
             }
         }
 
-        if (half) {
 
-            const ccp = document.getElementById("halfCCP").value.trim();
-            const rip = document.getElementById("halfRIP").value.trim();
+        // Show / hide CCP and RIP fields
+        function togglePaymentDetails() {
 
-            if (!ccp && !rip) {
-                alert("Please enter your CCP or RIP information.");
-                return;
-            }
+            const fullSelected =
+                document.getElementById("fullPayment").checked;
+
+            const halfSelected =
+                document.getElementById("halfPayment").checked;
+
+
+            document
+                .getElementById("fullPaymentDetails")
+                .classList
+                .toggle("show", fullSelected);
+
+
+            document
+                .getElementById("halfPaymentDetails")
+                .classList
+                .toggle("show", halfSelected);
         }
 
-        document
-            .getElementById("savedMessage")
-            .classList.add("show");
-    }
 
-</script>
+        // Save settings
+        function saveSettings() {
+
+            const cash =
+                document.getElementById("cashPayment").checked;
+
+            const full =
+                document.getElementById("fullPayment").checked;
+
+            const half =
+                document.getElementById("halfPayment").checked;
+
+
+            const fullCCP =
+                document.getElementById("fullCCP").value.trim();
+
+            const fullRIP =
+                document.getElementById("fullRIP").value.trim();
+
+            const halfCCP =
+                document.getElementById("halfCCP").value.trim();
+
+            const halfRIP =
+                document.getElementById("halfRIP").value.trim();
+
+
+            const errorMessage =
+                document.getElementById("errorMessage");
+
+            const successMessage =
+                document.getElementById("successMessage");
+
+
+            // Hide old messages
+            errorMessage.classList.remove("show");
+            successMessage.classList.remove("show");
+
+
+            // At least one payment method
+            if (!cash && !full && !half) {
+
+                errorMessage.textContent =
+                    "Please select at least one payment method.";
+
+                errorMessage.classList.add("show");
+
+                return;
+            }
+
+
+            // Full payment requires CCP or RIP
+            if (full && !fullCCP && !fullRIP) {
+
+                errorMessage.textContent =
+                    "Please enter a CCP or RIP number for full advance payment.";
+
+                errorMessage.classList.add("show");
+
+                return;
+            }
+
+
+            // Half payment requires CCP or RIP
+            if (half && !halfCCP && !halfRIP) {
+
+                errorMessage.textContent =
+                    "Please enter a CCP or RIP number for half advance payment.";
+
+                errorMessage.classList.add("show");
+
+                return;
+            }
+
+
+            // Create settings object
+            const settings = {
+
+                cash: cash,
+
+                full: full,
+
+                half: half,
+
+                fullCCP: fullCCP,
+
+                fullRIP: fullRIP,
+
+                halfCCP: halfCCP,
+
+                halfRIP: halfRIP
+            };
+
+
+            // Save to browser
+            localStorage.setItem(
+                PAYMENT_STORAGE_KEY,
+                JSON.stringify(settings)
+            );
+
+
+            // Show success
+            successMessage.classList.add("show");
+
+
+            // Hide success after a few seconds
+            setTimeout(function () {
+
+                successMessage.classList.remove("show");
+
+            }, 4000);
+        }
+
+
+        // Start page
+        loadSettings();
+
+    </script>
 
 </body>
 </html>
