@@ -813,25 +813,22 @@ if (savedButton) {
 
 /* ========================= SAVED PANEL BUTTON ========================= */
 
-/*
-    The original index.html has three
-    .panel-action buttons and does not give
-    them IDs.
-
-    The first one is Saved products.
-*/
-
 const panelActions =
     document.querySelectorAll(
         ".panel-action"
     );
 
+const savedPanelButton =
+    panelActions[0];
 
-if (panelActions.length > 0) {
+if (savedPanelButton) {
 
-    panelActions[0].addEventListener(
+    savedPanelButton.addEventListener(
         "click",
-        () => {
+        event => {
+
+            event.preventDefault();
+            event.stopPropagation();
 
             showSavedProducts();
 
