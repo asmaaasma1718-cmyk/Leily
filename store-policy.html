@@ -1,1 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Store Policy - Leily</title>
+
+    <style>
+        :root {
+            --pink: #f3d6de;
+            --pink-dark: #d9aebc;
+            --cream: #fffaf5;
+            --white: #ffffff;
+            --text: #5f5154;
+            --muted: #9a898e;
+            --border: #eadde0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: var(--cream);
+            color: var(--text);
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 18px 20px;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .back {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 22px;
+        }
+
+        .topbar h1 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 25px 18px 40px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .intro h2 {
+            margin: 0 0 8px;
+            font-size: 24px;
+        }
+
+        .intro p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 22px;
+            margin-bottom: 18px;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .card-description {
+            margin: 0 0 16px;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .field {
+            margin-bottom: 16px;
+        }
+
+        .field:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 13px 14px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: #fffdfb;
+            color: var(--text);
+            font-size: 15px;
+            line-height: 1.6;
+            resize: vertical;
+            outline: none;
+        }
+
+        textarea:focus {
+            border-color: var(--pink-dark);
+        }
+
+        .hint {
+            margin-top: 6px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .save-btn {
+            width: 100%;
+            border: none;
+            border-radius: 14px;
+            padding: 15px;
+            background: var(--pink-dark);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .save-btn:hover {
+            opacity: 0.9;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 13px;
+            color: #7d6870;
+            font-size: 14px;
+            min-height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="topbar">
+        <a href="seller.html" class="back">←</a>
+        <h1>Store Policy</h1>
+    </header>
+
+    <main class="container">
+
+        <div class="intro">
+            <h2>My Store Policy</h2>
+
+            <p>
+                Add the policies and information customers should know before placing an order.
+            </p>
+        </div>
+
+
+        <!-- Returns & Exchanges -->
+
+        <section class="card">
+
+            <h3>Returns & Exchanges</h3>
+
+            <p class="card-description">
+                Explain whether customers can return or exchange products and under which conditions.
+            </p>
+
+            <div class="field">
+
+                <label for="returns">
+                    Return & exchange policy
+                </label>
+
+                <textarea
+                    id="returns"
+                    placeholder="Example: Returns and exchanges are accepted within 3 days if the product is unused and in its original condition."
+                ></textarea>
+
+            </div>
+
+        </section>
+
+
+        <!-- Payment Policy -->
+
+        <section class="card">
+
+            <h3>Payment Policy</h3>
+
+            <p class="card-description">
+                Add any additional information about how customers pay for orders.
+            </p>
+
+            <div class="field">
+
+                <label for="payment">
+                    Payment information
+                </label>
+
+                <textarea
+                    id="payment"
+                    placeholder="Example: Payment is made according to the payment method selected when placing the order."
+                ></textarea>
+
+            </div>
+
+        </section>
+
+
+        <!-- Delivery Policy -->
+
+        <section class="card">
+
+            <h3>Delivery Policy</h3>
+
+            <p class="card-description">
+                Explain delivery expectations, timing, or conditions that customers should know.
+            </p>
+
+            <div class="field">
+
+                <label for="delivery">
+                    Delivery information
+                </label>
+
+                <textarea
+                    id="delivery"
+                    placeholder="Example: Delivery usually takes 1–3 business days depending on the wilaya."
+                ></textarea>
+
+            </div>
+
+        </section>
+
+
+        <!-- Order Policy -->
+
+        <section class="card">
+
+            <h3>Order Policy</h3>
+
+            <p class="card-description">
+                Add any rules customers should know when placing or confirming an order.
+            </p>
+
+            <div class="field">
+
+                <label for="orders">
+                    Order information
+                </label>
+
+                <textarea
+                    id="orders"
+                    placeholder="Example: Please make sure your phone number and address are correct before confirming your order."
+                ></textarea>
+
+            </div>
+
+        </section>
+
+
+        <!-- Additional Information -->
+
+        <section class="card">
+
+            <h3>Additional Information</h3>
+
+            <p class="card-description">
+                Add anything else you want customers to know about your store.
+            </p>
+
+            <div class="field">
+
+                <label for="additional">
+                    Additional notes
+                </label>
+
+                <textarea
+                    id="additional"
+                    placeholder="Write any additional information here..."
+                ></textarea>
+
+            </div>
+
+        </section>
+
+
+        <button
+            class="save-btn"
+            onclick="savePolicy()"
+        >
+            Save Store Policy
+        </button>
+
+
+        <div
+            class="message"
+            id="message"
+        ></div>
+
+    </main>
+
+
+    <script>
+
+        const STORAGE_KEY = "leilyStorePolicy";
+
+
+        function loadPolicy() {
+
+            const saved =
+                localStorage.getItem(STORAGE_KEY);
+
+
+            if (!saved) return;
+
+
+            try {
+
+                const policy =
+                    JSON.parse(saved);
+
+
+                document.getElementById("returns").value =
+                    policy.returns || "";
+
+
+                document.getElementById("payment").value =
+                    policy.payment || "";
+
+
+                document.getElementById("delivery").value =
+                    policy.delivery || "";
+
+
+                document.getElementById("orders").value =
+                    policy.orders || "";
+
+
+                document.getElementById("additional").value =
+                    policy.additional || "";
+
+
+            } catch (error) {
+
+                console.log(
+                    "Could not load store policy."
+                );
+
+            }
+
+        }
+
+
+        function savePolicy() {
+
+            const policy = {
+
+                returns:
+                    document.getElementById("returns").value.trim(),
+
+                payment:
+                    document.getElementById("payment").value.trim(),
+
+                delivery:
+                    document.getElementById("delivery").value.trim(),
+
+                orders:
+                    document.getElementById("orders").value.trim(),
+
+                additional:
+                    document.getElementById("additional").value.trim()
+
+            };
+
+
+            localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify(policy)
+            );
+
+
+            const message =
+                document.getElementById("message");
+
+
+            message.textContent =
+                "Store policy saved successfully.";
+
+
+            setTimeout(() => {
+
+                message.textContent = "";
+
+            }, 2500);
+
+        }
+
+
+        loadPolicy();
+
+    </script>
+
+</body>
+</html>
