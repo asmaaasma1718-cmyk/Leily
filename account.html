@@ -1,1 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>My Account - Leily</title>
+
+    <style>
+        :root {
+            --pink: #f3d6df;
+            --pink-dark: #d99aaa;
+            --cream: #fffaf7;
+            --white: #ffffff;
+            --text: #5f5055;
+            --soft-text: #8d7d83;
+            --border: #eadde1;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: var(--cream);
+            color: var(--text);
+        }
+
+        .topbar {
+            height: 65px;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .back-button {
+            border: none;
+            background: none;
+            font-size: 25px;
+            color: var(--text);
+            cursor: pointer;
+            margin-right: 12px;
+        }
+
+        .topbar-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 25px 18px 40px;
+        }
+
+        .welcome {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .account-icon {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            background: var(--pink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-size: 35px;
+        }
+
+        .welcome h1 {
+            margin: 5px 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .welcome p {
+            margin: 5px 0;
+            color: var(--soft-text);
+            font-size: 14px;
+        }
+
+        .section {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 18px;
+        }
+
+        .section h2 {
+            margin: 0 0 18px;
+            font-size: 18px;
+        }
+
+        .field {
+            margin-bottom: 15px;
+        }
+
+        .field:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 14px;
+            color: var(--soft-text);
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: #fffdfc;
+            color: var(--text);
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: var(--pink-dark);
+        }
+
+        .role-options {
+            display: flex;
+            gap: 12px;
+        }
+
+        .role-option {
+            flex: 1;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 15px 10px;
+            text-align: center;
+            cursor: pointer;
+            background: #fffdfc;
+            transition: 0.2s;
+        }
+
+        .role-option.selected {
+            background: var(--pink);
+            border-color: var(--pink-dark);
+        }
+
+        .role-option .icon {
+            font-size: 25px;
+            margin-bottom: 6px;
+        }
+
+        .role-option strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .role-option small {
+            color: var(--soft-text);
+            font-size: 12px;
+        }
+
+        .save-button {
+            width: 100%;
+            border: none;
+            border-radius: 14px;
+            padding: 14px;
+            background: var(--pink-dark);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .save-button:hover {
+            opacity: 0.9;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .action-card {
+            text-decoration: none;
+            color: var(--text);
+            background: #fffdfc;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 17px 12px;
+            text-align: center;
+        }
+
+        .action-card .icon {
+            font-size: 25px;
+            margin-bottom: 7px;
+        }
+
+        .action-card strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .message {
+            display: none;
+            text-align: center;
+            color: #7c9a80;
+            background: #f2f8f2;
+            border-radius: 12px;
+            padding: 11px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 450px) {
+            .role-options {
+                flex-direction: column;
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="topbar">
+        <button class="back-button" onclick="window.location.href='index.html'">‹</button>
+        <div class="topbar-title">My Account</div>
+    </header>
+
+    <main class="container">
+
+        <div class="welcome">
+            <div class="account-icon">👤</div>
+            <h1>My Account</h1>
+            <p>Manage your Leily account</p>
+        </div>
+
+        <div id="message" class="message">
+            Your information has been saved successfully.
+        </div>
+
+        <section class="section">
+            <h2>Personal Information</h2>
+
+            <div class="field">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="Enter your name">
+            </div>
+
+            <div class="field">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email">
+            </div>
+
+            <div class="field">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="Enter your phone number">
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Address</h2>
+
+            <div class="field">
+                <label for="wilaya">Wilaya</label>
+                <input type="text" id="wilaya" placeholder="Enter your wilaya">
+            </div>
+
+            <div class="field">
+                <label for="municipality">Municipality</label>
+                <input type="text" id="municipality" placeholder="Enter your municipality">
+            </div>
+
+            <div class="field">
+                <label for="address">Address</label>
+                <input type="text" id="address" placeholder="Enter your address">
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Account Type</h2>
+
+            <div class="role-options">
+
+                <div class="role-option selected" id="buyerOption" onclick="selectRole('buyer')">
+                    <div class="icon">🛍️</div>
+                    <strong>Buyer</strong>
+                    <small>Shop and place orders</small>
+                </div>
+
+                <div class="role-option" id="sellerOption" onclick="selectRole('seller')">
+                    <div class="icon">🏪</div>
+                    <strong>Seller</strong>
+                    <small>Open and manage a store</small>
+                </div>
+
+            </div>
+        </section>
+
+        <button class="save-button" onclick="saveAccount()">
+            Save Changes
+        </button>
+
+        <section class="section" style="margin-top: 18px;">
+            <h2>Quick Access</h2>
+
+            <div class="quick-actions">
+
+                <a href="orders.html" class="action-card">
+                    <div class="icon">📦</div>
+                    <strong>My Orders</strong>
+                </a>
+
+                <a href="index.html" class="action-card">
+                    <div class="icon">♡</div>
+                    <strong>Saved Products</strong>
+                </a>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+
+        let selectedRole = "buyer";
+
+        function selectRole(role) {
+
+            selectedRole = role;
+
+            const buyer = document.getElementById("buyerOption");
+            const seller = document.getElementById("sellerOption");
+
+            buyer.classList.remove("selected");
+            seller.classList.remove("selected");
+
+            if (role === "buyer") {
+                buyer.classList.add("selected");
+            } else {
+                seller.classList.add("selected");
+            }
+        }
+
+        function saveAccount() {
+
+            const account = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                phone: document.getElementById("phone").value,
+                wilaya: document.getElementById("wilaya").value,
+                municipality: document.getElementById("municipality").value,
+                address: document.getElementById("address").value,
+                role: selectedRole
+            };
+
+            localStorage.setItem(
+                "leilyUserAccount",
+                JSON.stringify(account)
+            );
+
+            const message = document.getElementById("message");
+
+            message.style.display = "block";
+
+            setTimeout(function() {
+                message.style.display = "none";
+            }, 2500);
+        }
+
+        function loadAccount() {
+
+            const saved = localStorage.getItem("leilyUserAccount");
+
+            if (!saved) return;
+
+            const account = JSON.parse(saved);
+
+            document.getElementById("name").value = account.name || "";
+            document.getElementById("email").value = account.email || "";
+            document.getElementById("phone").value = account.phone || "";
+            document.getElementById("wilaya").value = account.wilaya || "";
+            document.getElementById("municipality").value = account.municipality || "";
+            document.getElementById("address").value = account.address || "";
+
+            if (account.role) {
+                selectRole(account.role);
+            }
+        }
+
+        loadAccount();
+
+    </script>
+
+</body>
+</html>
