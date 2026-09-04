@@ -207,16 +207,16 @@
                 </div>
 
                 <div class="field">
-                    <label for="logoUrl">Store logo image URL</label>
+                    <label for="logoFile">Store logo</label>
 
                     <input
-                        type="url"
-                        id="logoUrl"
-                        placeholder="https://..."
+                        type="file"
+                        id="logoFile"
+                        accept="image/*"
                     >
 
                     <div class="hint">
-                        You can add your logo image link here.
+                        Choose a photo from your phone.
                     </div>
                 </div>
 
@@ -306,44 +306,51 @@
     <script>
 
         const STORAGE_KEY = "leilyStoreProfile";
+        const LOGO_STORAGE_KEY = "leilyStoreLogo";
+
 
         function loadProfile() {
 
             const saved = localStorage.getItem(STORAGE_KEY);
 
-            if (!saved) return;
+            if (saved) {
 
-            try {
+                try {
 
-                const profile = JSON.parse(saved);
+                    const profile = JSON.parse(saved);
 
-                document.getElementById("storeName").value =
-                    profile.storeName || "";
+                    document.getElementById("storeName").value =
+                        profile.storeName || "";
 
-                document.getElementById("description").value =
-                    profile.description || "";
+                    document.getElementById("description").value =
+                        profile.description || "";
 
-                document.getElementById("wilaya").value =
-                    profile.wilaya || "";
+                    document.getElementById("wilaya").value =
+                        profile.wilaya || "";
 
-                document.getElementById("municipality").value =
-                    profile.municipality || "";
+                    document.getElementById("municipality").value =
+                        profile.municipality || "";
 
-                document.getElementById("instagram").value =
-                    profile.instagram || "";
+                    document.getElementById("instagram").value =
+                        profile.instagram || "";
 
-                document.getElementById("facebook").value =
-                    profile.facebook || "";
+                    document.getElementById("facebook").value =
+                        profile.facebook || "";
 
-                document.getElementById("logoUrl").value =
-                    profile.logoUrl || "";
+                } catch (error) {
 
-                updateLogoPreview(profile.logoUrl);
+                    console.log("Could not load store profile.");
 
-            } catch (error) {
+                }
+            }
 
-                console.log("Could not load store profile.");
 
+            const savedLogo =
+                localStorage.getItem(LOGO_STORAGE_KEY);
+
+            if (savedLogo) {
+
+                showLogo(savedLogo);
             }
         }
 
@@ -368,10 +375,7 @@
                     document.getElementById("instagram").value.trim(),
 
                 facebook:
-                    document.getElementById("facebook").value.trim(),
-
-                logoUrl:
-                    document.getElementById("logoUrl").value.trim()
+                    document.getElementById("facebook").value.trim()
             };
 
 
@@ -379,9 +383,6 @@
                 STORAGE_KEY,
                 JSON.stringify(profile)
             );
-
-
-            updateLogoPreview(profile.logoUrl);
 
 
             const message =
@@ -392,33 +393,69 @@
 
 
             setTimeout(() => {
+
                 message.textContent = "";
+
             }, 2500);
         }
 
 
-        function updateLogoPreview(url) {
+        function showLogo(imageData) {
 
             const preview =
                 document.getElementById("logoPreview");
 
-            if (!url) {
+            preview.innerHTML = "";
 
-                preview.innerHTML = "👜";
-                return;
-            }
+            const img =
+                document.createElement("img");
 
-            preview.innerHTML =
-                `<img src="${url}" alt="Store logo"
-                onerror="this.parentElement.innerHTML='👜'">`;
+            img.src = imageData;
+            img.alt = "Store logo";
+
+            preview.appendChild(img);
         }
 
 
         document
-            .getElementById("logoUrl")
-            .addEventListener("input", function () {
+            .getElementById("logoFile")
+            .addEventListener("change", function () {
 
-                updateLogoPreview(this.value.trim());
+                const file = this.files[0];
+
+                if (!file) return;
+
+
+                if (!file.type.startsWith("image/")) {
+
+                    alert("Please choose an image.");
+
+                    this.value = "";
+
+                    return;
+                }
+
+
+                const reader = new FileReader();
+
+
+                reader.onload = function (event) {
+
+                    const imageData =
+                        event.target.result;
+
+
+                    showLogo(imageData);
+
+
+                    localStorage.setItem(
+                        LOGO_STORAGE_KEY,
+                        imageData
+                    );
+                };
+
+
+                reader.readAsDataURL(file);
 
             });
 
