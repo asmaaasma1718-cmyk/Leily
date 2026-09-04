@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Store Profile - Leily</title>
+
+    <style>
+        :root {
+            --pink: #f3d6de;
+            --pink-dark: #d9aebc;
+            --cream: #fffaf5;
+            --white: #ffffff;
+            --text: #5f5154;
+            --muted: #9a898e;
+            --border: #eadde0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: var(--cream);
+            color: var(--text);
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 18px 20px;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .back {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 22px;
+        }
+
+        .topbar h1 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 25px 18px 40px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .intro h2 {
+            margin: 0 0 8px;
+            font-size: 24px;
+        }
+
+        .intro p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 22px;
+            margin-bottom: 18px;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            margin-bottom: 18px;
+            font-size: 18px;
+        }
+
+        .field {
+            margin-bottom: 16px;
+        }
+
+        .field:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: #fffdfb;
+            color: var(--text);
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: var(--pink-dark);
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .hint {
+            margin-top: 6px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .logo-box {
+            text-align: center;
+            margin-bottom: 22px;
+        }
+
+        .logo-preview {
+            width: 105px;
+            height: 105px;
+            margin: 0 auto 12px;
+            border-radius: 50%;
+            background: var(--pink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: var(--white);
+            font-size: 36px;
+        }
+
+        .logo-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo-box input {
+            text-align: center;
+        }
+
+        .save-btn {
+            width: 100%;
+            border: none;
+            border-radius: 14px;
+            padding: 15px;
+            background: var(--pink-dark);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .save-btn:hover {
+            opacity: 0.9;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 13px;
+            color: #7d6870;
+            font-size: 14px;
+            min-height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="topbar">
+        <a href="seller.html" class="back">←</a>
+        <h1>Store Profile</h1>
+    </header>
+
+    <main class="container">
+
+        <div class="intro">
+            <h2>My Store Profile</h2>
+            <p>
+                Add the information customers will see about your store.
+            </p>
+        </div>
+
+        <section class="card">
+
+            <div class="logo-box">
+
+                <div class="logo-preview" id="logoPreview">
+                    👜
+                </div>
+
+                <div class="field">
+                    <label for="logoUrl">Store logo image URL</label>
+
+                    <input
+                        type="url"
+                        id="logoUrl"
+                        placeholder="https://..."
+                    >
+
+                    <div class="hint">
+                        You can add your logo image link here.
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="field">
+                <label for="storeName">Store name</label>
+
+                <input
+                    type="text"
+                    id="storeName"
+                    placeholder="My Store"
+                >
+            </div>
+
+            <div class="field">
+                <label for="description">Store description</label>
+
+                <textarea
+                    id="description"
+                    placeholder="Tell customers a little about your store..."
+                ></textarea>
+            </div>
+
+        </section>
+
+        <section class="card">
+
+            <h3>Location</h3>
+
+            <div class="field">
+                <label for="wilaya">Wilaya</label>
+
+                <input
+                    type="text"
+                    id="wilaya"
+                    placeholder="Example: Oran"
+                >
+            </div>
+
+            <div class="field">
+                <label for="municipality">Municipality</label>
+
+                <input
+                    type="text"
+                    id="municipality"
+                    placeholder="Example: Bir El Djir"
+                >
+            </div>
+
+        </section>
+
+        <section class="card">
+
+            <h3>Social Media</h3>
+
+            <div class="field">
+                <label for="instagram">Instagram</label>
+
+                <input
+                    type="url"
+                    id="instagram"
+                    placeholder="https://instagram.com/..."
+                >
+            </div>
+
+            <div class="field">
+                <label for="facebook">Facebook</label>
+
+                <input
+                    type="url"
+                    id="facebook"
+                    placeholder="https://facebook.com/..."
+                >
+            </div>
+
+        </section>
+
+        <button class="save-btn" onclick="saveProfile()">
+            Save Store Profile
+        </button>
+
+        <div class="message" id="message"></div>
+
+    </main>
+
+    <script>
+
+        const STORAGE_KEY = "leilyStoreProfile";
+
+        function loadProfile() {
+
+            const saved = localStorage.getItem(STORAGE_KEY);
+
+            if (!saved) return;
+
+            try {
+
+                const profile = JSON.parse(saved);
+
+                document.getElementById("storeName").value =
+                    profile.storeName || "";
+
+                document.getElementById("description").value =
+                    profile.description || "";
+
+                document.getElementById("wilaya").value =
+                    profile.wilaya || "";
+
+                document.getElementById("municipality").value =
+                    profile.municipality || "";
+
+                document.getElementById("instagram").value =
+                    profile.instagram || "";
+
+                document.getElementById("facebook").value =
+                    profile.facebook || "";
+
+                document.getElementById("logoUrl").value =
+                    profile.logoUrl || "";
+
+                updateLogoPreview(profile.logoUrl);
+
+            } catch (error) {
+
+                console.log("Could not load store profile.");
+
+            }
+        }
+
+
+        function saveProfile() {
+
+            const profile = {
+
+                storeName:
+                    document.getElementById("storeName").value.trim(),
+
+                description:
+                    document.getElementById("description").value.trim(),
+
+                wilaya:
+                    document.getElementById("wilaya").value.trim(),
+
+                municipality:
+                    document.getElementById("municipality").value.trim(),
+
+                instagram:
+                    document.getElementById("instagram").value.trim(),
+
+                facebook:
+                    document.getElementById("facebook").value.trim(),
+
+                logoUrl:
+                    document.getElementById("logoUrl").value.trim()
+            };
+
+
+            localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify(profile)
+            );
+
+
+            updateLogoPreview(profile.logoUrl);
+
+
+            const message =
+                document.getElementById("message");
+
+            message.textContent =
+                "Store profile saved successfully.";
+
+
+            setTimeout(() => {
+                message.textContent = "";
+            }, 2500);
+        }
+
+
+        function updateLogoPreview(url) {
+
+            const preview =
+                document.getElementById("logoPreview");
+
+            if (!url) {
+
+                preview.innerHTML = "👜";
+                return;
+            }
+
+            preview.innerHTML =
+                `<img src="${url}" alt="Store logo"
+                onerror="this.parentElement.innerHTML='👜'">`;
+        }
+
+
+        document
+            .getElementById("logoUrl")
+            .addEventListener("input", function () {
+
+                updateLogoPreview(this.value.trim());
+
+            });
+
+
+        loadProfile();
+
+    </script>
+
+</body>
+</html>
