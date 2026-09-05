@@ -1675,30 +1675,39 @@
             }
 
 
-            const productData = {
+            const storeProfile =
+    JSON.parse(
+        localStorage.getItem("leilyStoreProfile") || "{}"
+    );
 
-                name: name,
+const productData = {
 
-                category: category,
+    name: name,
 
-                price: Number(price),
+    category: category,
+    price: Number(price),
 
-                images: selectedImages,
+    images: selectedImages,
 
-                description: description,
+    description: description,
 
-                keywords: keywords,
+    keywords: keywords,
 
-                colors: colors,
+    colors: colors,
 
-                sizes: sizes,
+    sizes: sizes,
 
-                quantity:
-                    Number.isFinite(quantity) &&
-                    quantity >= 0
-                        ? quantity
-                        : 0
-            };
+    quantity:
+        Number.isFinite(quantity) &&
+        quantity >= 0
+            ? quantity
+            : 0,
+
+    seller: {
+        storeName: storeProfile.storeName || "",
+        logoUrl: storeProfile.logoUrl || ""
+    }
+};
 
 
             /* EDIT */
