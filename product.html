@@ -1027,19 +1027,31 @@
 
 
     /* =========================
-       GET PRODUCT
-    ========================= */
+   GET PRODUCT
+========================= */
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
 
-    const params =
-        new URLSearchParams(
-            window.location.search
-        );
+const productId =
+    params.get("product") || "sweater";
 
-    const productId =
-        params.get("product") || "sweater";
+const savedProducts =
+    JSON.parse(
+        localStorage.getItem("leilyProducts") || "[]"
+    );
 
-    const product =
-        products[productId] || products.sweater;
+const savedProduct =
+    savedProducts.find(
+        item =>
+            String(item.id) === String(productId)
+    );
+
+const product =
+    savedProduct ||
+    products[productId] ||
+    products.sweater;
 
 
 
