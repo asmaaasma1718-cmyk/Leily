@@ -207,6 +207,115 @@ if (overlay) {
 const productCards =
     document.querySelectorAll(".product-card");
 
+/* ========================= SELLER PRODUCTS ========================= */
+
+function getSellerProducts() {
+    try {
+        const products =
+            JSON.parse(
+                localStorage.getItem("leilySellerProducts") || "[]"
+            );
+
+        return Array.isArray(products)
+            ? products
+            : [];
+    } catch (error) {
+        return [];
+    }
+}
+
+function addSellerProductsToHome() {
+    const grid =
+        document.getElementById("productsGrid");
+
+    if (!grid) {
+        return;
+    }
+
+    const sellerProducts =
+        getSellerProducts();
+
+    sellerProducts.forEach(product => {
+        if (!product || !product.id) {
+            return;
+        }
+
+        const article =
+            document.createElement("article");
+
+        article.className = "product-card";
+        article.dataset.category =
+            String(product.category || "").toLowerCase();
+        article.dataset.product =
+            String(product.id);
+
+        const image =
+            product.images &&
+            product.images.length
+                ? product.images[0]
+                : "";
+
+        article.innerHTML = `
+            <div
+                class="product-image product-open"
+                data-product-link="product.html"
+            >
+                ${
+                    image
+                        ? `<img src="${image}" alt="${product.name || "Product"}">`
+                        : `<div class="placeholder-image">
+                            <span>Product</span>
+                           </div>`
+                }
+
+                <button
+                    class="save-btn"
+                    aria-label="Save product"
+                    type="button"
+                >
+                    ♡
+                </button>
+            </div>
+
+            <div
+                class="product-info product-open"
+                data-product-link="product.html"
+            >
+                <p class="seller-name">
+                    ${
+                        product.seller &&
+                        product.seller.storeName
+                            ? product.seller.storeName
+                            : ""
+                    }
+                </p>
+
+                <h3>
+                    ${product.name || ""}
+                </h3>
+
+                <div class="product-bottom">
+                    <strong>
+                        ${product.price || 0} DA
+                    </strong>
+
+                    <span class="product-color">
+                        ${
+                            Array.isArray(product.colors)
+                                ? product.colors.length
+                                : 0
+                        } colors
+                    </span>
+                </div>
+            </div>
+        `;
+
+        grid.appendChild(article);
+    });
+}
+
+addSellerProductsToHome();
+
 
 /* ========================= SAVE PRODUCTS ========================= */
 
