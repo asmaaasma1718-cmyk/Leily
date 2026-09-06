@@ -1038,8 +1038,9 @@ const productId =
     params.get("product") || "sweater";
 
 const savedProducts =
+const savedProducts =
     JSON.parse(
-        localStorage.getItem("leilyProducts") || "[]"
+        localStorage.getItem("leilySellerProducts") || "[]"
     );
 
 const savedProduct =
